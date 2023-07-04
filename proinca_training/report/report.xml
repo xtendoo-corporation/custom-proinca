@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright (C) 2014-2015 Akretion (http://www.akretion.com/)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data>
+
+<report id="report_diploma"
+    model="sale.order.line"
+    string="Diploma"
+    report_type="qweb-pdf"
+    name="proinca_training.report_diploma_alumno"
+    file="proinca_training.report_diploma"
+    />
+
+<report id="report_curso"
+    model="proinca.curso"
+    string="Curso"
+    report_type="qweb-pdf"
+    name="proinca_training.report_curso_print"
+    file="proinca_training.report_curso"
+    />
+
+</data>
+</openerp>

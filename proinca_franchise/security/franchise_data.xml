@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record model="ir.module.category" id="franchise_category">
+			<field name="name">Franquicias</field>
+            <field name="description">Sistema de Franquiciado para Proinca</field>
+            <field name="sequence">50</field>
+        </record>
+
+		<record id='franchise_group' model="res.groups">
+			<field name="name">Comercial/Franquicia Básica</field>
+			<field name="category_id" ref="franchise_category" />
+			<field name="comment">Comercil Proinca</field>
+		</record>
+
+		<record id='franchise_partner_group' model="res.groups">
+			<field name="name">Franquicia Parnter Proinca</field>
+			<field name="category_id" ref='franchise_category' />
+			<field name="implied_ids" eval="[(4, ref('franchise_group'))]"/>
+			<field name="comment">Permiso para Franquicias</field>
+		</record>
+
+		<record id='franchise_consultor_group' model="res.groups">
+			<field name="name">Franquicia Consultor Proinca</field>
+			<field name="category_id" ref='franchise_category' />
+  			<field name="implied_ids" eval="[(4, ref('franchise_partner_group'))]"/>
+			<field name="comment">Permiso para la Gestión de Franquicias por parte de los consultores</field>
+		</record>
+
+		<record id='franchise_manager_group' model="res.groups">
+			<field name="name">Franquicia Manager</field>
+			<field name="category_id" ref='franchise_category' />
+  			<field name="implied_ids" eval="[(4, ref('franchise_consultor_group'))]"/>
+			<field name="comment">Permiso para la Gestión de Franquicias</field>
+		</record>
+
+		<record id='franchise_create_cg_group' model="res.groups">
+			<field name="name">Crear Contratos Globales</field>
+			<!--<field name="category_id" ref='franchise_category' />-->
+  			<!--<field name="implied_ids" eval="[(4, ref('franchise_consultor_group'))]"/>-->
+			<field name="comment">Creación de Contratos Globales</field>
+		</record>
+
+		<record id='admin_security_odoo' model="res.groups">
+			<field name="name">Grupo Administración ODOO</field>
+			<!--<field name="category_id" ref='franchise_category' />-->
+  			<!--<field name="implied_ids" eval="[(4, ref('franchise_consultor_group'))]"/>-->
+			<field name="comment">Grupo Seguridad Odoo</field>
+		</record>
+
+		<record id="hr.menu_hr_root" model="ir.ui.menu">
+			<field name="group_ids" eval="[(6,0,[ ref('franchise_consultor_group')])]"/>
+		</record>
+
+
+
+	</data>
+
+	<data>
+		<!-- Multi - Company Rules -->
+
+		<record id="crm_lead_franchise_rule" model="ir.rule">
+			<field name="name">CRM Franquicia</field>
+			<field ref="crm.model_crm_lead" name="model_id"/>
+			<field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
+			<field name="groups" eval="[(4, ref('franchise_group'))]"/>
+		</record>
+
+		<record id="account_invoice_odoo_franchise_rule" model="ir.rule">
+			<field name="name">Factura Franquicia</field>
+			<field ref="account.model_account_invoice" name="model_id"/>
+			<field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
+			<field name="groups" eval="[(4, ref('franchise_group'))]"/>
+		</record>
+
+		<record id="account_invoice_proinca_franchise_rule" model="ir.rule">
+			<field name="name">Factura Franquicia Proinca</field>
+			<field ref="model_account_invoice_franchise" name="model_id"/>
+			<field name="domain_force">[('user_id','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('franchise_group'))]"/>
+		</record>
+
+		<record id="res_partner_franchise_rule" model="ir.rule">
+			<field name="name">Clientes Franquicia</field>
+			<field ref="base.model_res_partner" name="model_id"/>
+			<field name="domain_force">['|','|','|','|',('franchise_id','=',user.id),('id','=',user.partner_id.id),('user_id','=',user.id),('parent_id.user_id','=',user.id),('parent_id.franchise_id','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('franchise_group'))]"/>
+		</record>
+
+		<record id="res_partner_franchise_no_franchise_rule" model="ir.rule">
+			<field name="name">Clientes Franquicia - Incluir Partner sin franquicias</field>
+			<field ref="base.model_res_partner" name="model_id"/>
+			<field name="domain_force">[('parent_id','=',False),('franchise_id','=',False)]</field>
+			<field name="groups" eval="[(4, ref('franchise_group'))]"/>
+		</record>
+
+		<record id="res_partner_franchise_manager_rule" model="ir.rule">
+			<field name="name">Clientes</field>
+			<field ref="base.model_res_partner" name="model_id"/>
+			<field name="domain_force">[(1,'=',1)]</field>
+			<field name="groups" eval="[(4, ref('franchise_consultor_group'))]"/>
+		</record>
+
+		<record id="account_invoice_proinca_manager_franchise_rule" model="ir.rule">
+			<field name="name">Factura Franquicia Proinca</field>
+			<field ref="model_account_invoice_franchise" name="model_id"/>
+			<field name="domain_force">[(1,'=',1)]</field>
+			<field name="groups" eval="[(4, ref('franchise_consultor_group'))]"/>
+		</record>
+
+		<record id="account_invoice_odoo_franchise_manager_rule" model="ir.rule">
+			<field name="name">Factura Franquicia</field>
+			<field ref="account.model_account_invoice" name="model_id"/>
+			<field name="domain_force">[(1,'=',1)]</field>
+			<field name="groups" eval="[(4, ref('franchise_consultor_group'))]"/>
+		</record>
+
+		<record id="hr.menu_hr_root" model="ir.ui.menu">
+			<field name="groups_id" eval="[(6,0,[ref('franchise_consultor_group')])]"/>
+		</record>
+		d<record id="hr.menu_hr_reporting" model="ir.ui.menu">
+			<field name="groups_id" eval="[(6,0,[ref('franchise_consultor_group')])]"/>
+		</record>
+
+	</data>
+
+
+</openerp>

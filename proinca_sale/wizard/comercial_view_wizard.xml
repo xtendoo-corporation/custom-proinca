@@ -1,0 +1,35 @@
+<openerp>
+	<data>
+
+
+		<record id="invoicing_services_comission_wizard_form" model="ir.ui.view">
+			<field name="name">Facturación de los Comercial</field>
+			<field name="model">invoicing.comercial.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Invoicing Services">
+						<h1>Facturas Comercial</h1>
+						<p class="oe_grey">Generación para facturas de los comerciales, para el pago de las comisiones</p>
+                        <group colspan="4" col="4">
+							<field name="contracts" colspan="4" nolabel="1"/>
+						</group>
+						<!--<button name="create_canon_invoices" type="object" string="Crear Facturas Canón" />-->
+				</form>
+			</field>
+		</record>
+
+		<record id="invoicing_comercial_wizard_action" model="ir.actions.act_window">
+			<field name="name">Invoicing Services</field>
+            <field name="type">ir.actions.act_window</field>
+			<field name="res_model">invoicing.comercial.wizard</field>
+            <field name="view_type">form</field>
+			<field name="view_mode">form</field>
+            <field name="target">new</field>
+		</record>
+
+        <!--<menuitem id="wizard_action_comercial" name="Generar Facturas Comercial"-->
+          <!--parent="proinca_franchise.franchise_proinca_parent_menu"-->
+		  <!--groups="proinca_franchise.franchise_manager_group"-->
+		  <!--action="invoicing_comercial_wizard_action" sequence="95"-->
+				<!--/>-->
+	</data>
+</openerp>

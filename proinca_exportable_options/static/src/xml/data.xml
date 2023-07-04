@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+		<record id="grupo_exportar" model="res.groups">
+			<field name="name">Mostrar opciones avanzadas botón [Más]</field>
+		</record>
+	</data>
+</openerp>

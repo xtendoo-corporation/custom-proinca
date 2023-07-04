@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_task,project.task,project.model_project_task,proinca_franchise.franchise_group,1,0.0,0
+access_project_project,project.project,project.model_project_project,proinca_franchise.franchise_group,1,1,1,0
+access_project_task_kit,project.task.kit,model_project_task_kit,proinca_franchise.franchise_group,1,1,1,1
+access_project_task_work,project.task.work,project.model_project_task_work,proinca_franchise.franchise_group,1,1,1,0
+access_project_task_type,project.task.type,project.model_project_task_type,proinca_franchise.franchise_group,1,1,1,0

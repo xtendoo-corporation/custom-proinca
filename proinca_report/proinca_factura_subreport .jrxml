@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="proinca_factura_subreport" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="OPENERP_RELATIONS" value="[&apos;invoice_line&apos;]"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="147"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[/data/record]]>
+	</queryString>
+	<field name="Concepto-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas-invoice_line/Concepto-name]]></fieldDescription>
+	</field>
+	<field name="Total-price_total" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas-invoice_line/Total-price_total]]></fieldDescription>
+	</field>
+	<field name="Precio_Unidad-price_unit" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lineas-invoice_line/Precio_Unidad-price_unit]]></fieldDescription>
+	</field>
+	<field name="Cantidad-quantity" class="java.lang.Integer">
+		<fieldDescription><![CDATA[/data/record/Lineas-invoice_line/Cantidad-quantity]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="280" height="20"/>
+				<box topPadding="4" leftPadding="3" bottomPadding="4"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Concepto-name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="280" y="0" width="60" height="20"/>
+				<box topPadding="4" leftPadding="3" bottomPadding="4"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cantidad-quantity}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="340" y="0" width="85" height="20"/>
+				<box topPadding="4" leftPadding="3" bottomPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["€ "+(($F{Precio_Unidad-price_unit} == null) || ($F{Precio_Unidad-price_unit} == "" ) ? "0.00": new java.text.DecimalFormat("###0.00").format(Double.valueOf($F{Precio_Unidad-price_unit})))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="425" y="0" width="85" height="20"/>
+				<box topPadding="4" leftPadding="3" bottomPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["€ "+(($F{Total-price_total} == null) || ($F{Total-price_total} == "" ) ? "0.00": new java.text.DecimalFormat("###0.00").format(Double.valueOf($F{Total-price_total})))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

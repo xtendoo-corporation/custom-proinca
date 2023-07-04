@@ -1,0 +1,189 @@
+<openerp>
+	<data>
+
+        <record id="invoicing_canon_comercial_tree" model="ir.ui.view">
+            <field name="name">invoicing.canon.comercial.tree</field>
+            <field name="model">invoicing.canon.comercial</field>
+            <field name="arch" type="xml">
+                <tree string="Facturas Comerciales y de Canon">
+                    <field name="date_ini"  />
+                    <field name="date_end"  />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="invoicing_canon_comercial_form" model="ir.ui.view">
+            <field name="name">invoicing.canon.comercial.form</field>
+            <field name="model">invoicing.canon.comercial</field>
+            <field name="arch" type="xml">
+                <form string="Facturación Comisiones" create="0">
+                <header>
+                    <button string="Calcular" name="get_records" type="object" states="draft" />
+                    <button string="Recalcular" name="recalculate" type="object" states="done" />
+                    <button string="Facturas Canon" name="create_canon_invoice" states="done" type="object" />
+                    <button string="Facturas Prov" name="create_supplier_invoice" states="done" type="object" />
+                    <button string="Facturas Comercial" name="create_comercial_invoice" states="done" type="object" />
+                    <field name="state" widget="statusbar" nolabel="1" />
+                </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date_ini" attrs="{'readonly':[('state','in',['done'])]}"/>
+                        </group>
+                        <group>
+                            <field name="date_end" attrs="{'readonly':[('state','in',['done'])]}" />
+                        </group>
+                    </group>
+                    <notebook>
+
+                        <page string="Facturación Canon">
+                            <field name="record_canon" widget="one2many">
+                                <tree string="Contratos" >
+                                    <field name="partner_id" string="Franquicia" readonly="1"/>
+                                    <field name="type" invisible="1" />
+                                    <field name="amount" />
+                                    <field name="invoice_id" readonly="1"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Facturas Pago Franquicia">
+                            <field name="record_franchise" widget="one2many">
+                                <tree string="Contratos" >
+                                    <field name="partner_id" string="Franquicia" readonly="1" />
+                                    <field name="type" invisible="1" />
+                                    <field name="amount" />
+                                    <field name="invoice_id" readonly="1"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Facturas Pago Comercial">
+                            <field name="record_comercial" widget="one2many">
+                                <tree string="Contratos" >
+                                    <field name="partner_id" string="Comercial" readonly="1" />
+                                    <field name="type" invisible="1" />
+                                    <field name="amount" />
+                                    <field name="invoice_id" readonly="1"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                    </notebook>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="invoicing_canon_comercial_line_tree" model="ir.ui.view">
+            <field name="name">invoicing.canon.comercial.line.tree</field>
+            <field name="model">invoicing.canon.comercial.line</field>
+            <field name="arch" type="xml">
+                <tree string="Facturación Comisiones">
+
+                    <field name="partner_id" readonly="1" />
+                    <field name="amount" />
+                    <field name="type" invisible="1" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="invoicing_canon_comercial_line_form" model="ir.ui.view">
+            <field name="name">invoicing.canon.comercial.line.form</field>
+            <field name="model">invoicing.canon.comercial.line</field>
+            <field name="arch" type="xml">
+                <form string="Facturación Comisiones">
+                    <group>
+                        <field name="partner_id" readonly="1"/>
+                        <field name="invoice_id" readonly="1"/>
+                        <field name="type" invisible="1"/>
+                        <field name="invoices_detail" attrs="{'invisible':[('type','not in',['comercial','franchise'])]}" widget="one2many" />
+                        <field name="canon_detail" attrs="{'invisible':[('type','not in',['canon'])]}" widget="one2many" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+       <record id="invoicing_canon_comercial_detail_tree" model="ir.ui.view">
+            <field name="name">invoicing.canon.comercial.detail.tree</field>
+            <field name="model">invoicing.canon.comercial.detail</field>
+            <field name="arch" type="xml">
+                <tree string="Facturación Comisiones">
+                        <field name="contract_id" readonly="1"/>
+                        <field name="service_line" readonly="1"/>
+                        <field name="pago" />
+                        <!--<field name="invoices" widget="one2many" />-->
+                </tree>
+            </field>
+        </record>
+
+        <record id="invoicing_canon_comercial_detail_form" model="ir.ui.view">
+            <field name="name">invoicing.canon.comercial.detail.form</field>
+            <field name="model">invoicing.canon.comercial.detail</field>
+            <field name="arch" type="xml">
+                <form string="Facturación Comisiones">
+                    <group>
+                        <field name="contract_id" readonly="True" />
+                        <field name="service_line" readonly="True" />
+                        <field name="pago" />
+                        <field name="invoices" widget="one2many" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+       <record id="invoicing_canon_comercial_canon_tree" model="ir.ui.view">
+            <field name="name">invoicing.canon.comercial.canon.tree</field>
+            <field name="model">invoicing.canon.comercial.canon</field>
+            <field name="arch" type="xml">
+                <tree string="Facturación Comisiones">
+                    <field name="contract_id" readonly="True" />
+                    <field name="partner_id" readonly="True"/>
+                    <!--<field name="invoices" widget="one2many" />-->
+                    <field name="service_line" readonly="True" />
+                    <field name="concepto" />
+                    <field name="comision" sum="Total"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="invoicing_canon_comercial_canon_form" model="ir.ui.view">
+            <field name="name">invoicing.canon.comercial.canon.form</field>
+            <field name="model">invoicing.canon.comercial.canon</field>
+            <field name="arch" type="xml">
+                <form string="Facturación Comisiones">
+                    <group>
+                        <field name="contract_id" readonly="True"/>
+                        <field name="partner_id" readonly="True"/>
+                        <field name="service_line" readonly="True" />
+                        <field name="concepto" />
+                        <field name="comision" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+		<record id="invoicing_canon_comercial_action" model="ir.actions.act_window">
+			<field name="name">Invoicing Services</field>
+            <field name="type">ir.actions.act_window</field>
+			<field name="res_model">invoicing.canon.comercial</field>
+            <field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+            <!--<field name="target">new</field>-->
+		</record>
+
+
+        <menuitem id="invoicing_canon_comercial_menu" name="Generar Facturas Contratos"
+          parent="proinca_franchise.franchise_proinca_parent_menu"
+		  groups="proinca_franchise.franchise_manager_group"
+		  action="invoicing_canon_comercial_action" sequence="95"
+				/>
+
+    </data>
+</openerp>

@@ -1,0 +1,401 @@
+<openerp>
+	<data>
+
+
+        <record id="sale_order_form_contract" model="ir.ui.view">
+            <field name="name">sale.order.contract.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//header" position="attributes">
+                    <attribute name="groups">base.group_sale_salesman</attribute>
+                </xpath>
+                <field name="partner_id" position="after">
+                    <field name="contract_proinca_id" readonly="1"/>
+                    <field name="contract_proinca_line_id" readonly="1"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="sale_order_franchise_tree" model="ir.ui.view">
+            <field name="name">sale.order.franchise.tree</field>
+            <field name="model">sale.order.franchise</field>
+            <field name="arch" type="xml">
+                <tree colors="blue:state == 'draft';green:state == 'done';grey:state == 'cancel'" string="Presupuesto Franquicia">
+                    <field name="number" />
+                    <field string="Cliente" name="partner_id" />
+                    <field name="date" />
+                    <field name="date_end" />
+                    <field name="amount_untaxed" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="sale_order_franchise_search" model="ir.ui.view">
+            <field name="name">sale.order.franchise.search</field>
+            <field name="model">sale.order.franchise</field>
+            <field name="arch" type="xml">
+                <search string="Contratos Globales">
+
+                    <field name="partner_id" string="Cliente" />
+                    <field name="number" string="Número Contrato" />
+                    <field name="user_id" string="Responsable" />
+                    <field name="franchise_id" string="Franquicia" />
+
+                    <group expand="0" string="Filtros">
+                        <filter name="canon_no_invoiced" string="Pte Facturar Canon" domain="[('canon_no_invoiced','=',True)]" />
+                    </group>
+
+                    <group expand="0" string="Group By">
+                        <filter string="Fecha" icon="terp-personal" domain="[]" context="{'group_by':'date:year'}"/>
+                        <filter string="Cliente" icon="terp-stock_align_left_24" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Responsable" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'user_id'}"/>
+                        <filter string="Franquicia" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'franchise_id'}"/>
+                        <filter string="Comercial" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'comercial_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+        <record id="sale_order_franchise_form" model="ir.ui.view">
+            <field name="name">sale.order.franchise.form</field>
+            <field name="model">sale.order.franchise</field>
+            <field name="arch" type="xml">
+                <form string="Presupuesto">
+                    <header>
+                        <button type="object" name="to_cancel" states="draft" string="Cancelar"
+                                groups="proinca_franchise.franchise_consultor_group"/>
+                        <button type="object" name="create_sale_and_project" states="draft"
+                                groups="proinca_franchise.franchise_consultor_group"
+                                string="Confirmar Contrato" />
+                        <button type="object" name="back_to_draft" states="planned,cancel,done"
+                                groups="proinca_franchise.franchise_consultor_group"
+                                string="Reabrir" />
+                        <button type="object" name="to_done" states="planned"
+                                groups="proinca_franchise.franchise_consultor_group"
+                                string="Finalizar" />
+                        <button type="object" name="renovar" states="planned"
+                                groups="proinca_franchise.franchise_consultor_group"
+                                string="Renovar Contrato" />
+                        <field name="state" widget="statusbar" nolabel="1" />
+                    </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="number"
+                                   class="oe_inline"
+                                   placeholder="Código" required="1"/>
+                        </h1>
+                    </div>
+                    <div class="oe_right">
+                        <button class="oe_stat_button oe_inline"
+                                icon="fa-tasks"
+                                type="object"
+                                name="giveme_tasks">
+                            <div>Tareas</div>
+                        </button>
+                    </div>
+                    <div class="oe_right">
+                        <button class="oe_stat_button oe_inline"
+                                groups="proinca_franchise.franchise_manager_group"
+                                icon="fa-strikethrough"
+                                type="object"
+                                name="giveme_sale_invoices">
+                            <div>Facturas Venta</div>
+                        </button>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field string="Cliente" required="1" name="partner_id" options="{'quick_create':False}"/>
+                            <field name="franchise_id" />
+                            <field name="user_id" string="Responsable"/>
+                            <field name="comercial_id" />
+                            <!--<field name="analytic_id" />-->
+                        </group>
+                        <group>
+                            <field name="date" required="1"/>
+                            <field name="date_end" required="1" />
+                        </group>
+                    </group>
+                        <notebook groups="proinca_franchise.franchise_partner_group">
+                        <page string="Presupuesto" >
+                            <h3>Línea Pack de Servicios</h3>
+                            <field name="order_line_pack" widget="one2many"  context="{'default_service_type':'pack'}">
+                                <tree string="Lineas de Presupuestos" editable="button">
+                                    <field name="service_type" invisible="1" />
+                                    <!--<field name="company_id" />-->
+                                    <field required="1" name="service_id" domain="[('service_type','=','pack')]"
+                                           options="{'no_create':True,'no_edit':True,'no_open':True}" />
+                                    <field name="franchise" string="F" help="Trabajo realizado por la franquicia" />
+                                    <field name="comercial" string="C"  />
+                                    <field name="name" required="1" />
+                                    <field name="date" />
+                                    <field name="quantity"  required="1" />
+                                    <field name="range_date" />
+                                    <field name="price_unit" required="1" />
+                                    <field name="canon_amount" string="CF" sum="Comisión" />
+                                    <field name="comercial_amount" sum="Comisión Comercial" />
+                                    <field name="canon_extra"  sum="Comisión Extra" />
+                                    <field name="comercial_extra"  sum="Comisión Comercial Extra" />
+                                    <field name="price_total" readonly="1" sum="Total" />
+                                </tree>
+                            </field>
+
+                            <h3 style="margin-top:10px">Línea Formación</h3>
+                            <field name="order_line_formacion" widget="one2many" context="{'default_service_type':'formacion'}">
+                                <tree string="Lineas de Presupuestos" editable="button" >
+                                    <field name="service_type" invisible="1" />
+                                    <!--<field name="company_id" />-->
+                                    <field required="1" name="service_id" domain="[('service_type','=','formacion')]"
+                                           options="{'no_create':True,'no_edit':True,'no_open':True}" />
+
+                                    <field name="franchise" string="F" help="Trabajo realizado por la franquicia" />
+                                    <field name="comercial" string="C"  />
+
+                                    <field name="name" required="1" />
+                                    <field name="quantity"  required="1" />
+                                    <field name="price_unit" required="1" />
+                                    <field name="canon_amount" string="CF" sum="Comisión" />
+                                    <field name="comercial_amount" sum="Comisión Comercial" />
+                                    <field name="canon_extra"  sum="Comisión Extra" />
+                                    <field name="comercial_extra"  sum="Comisión Comercial Extra" />
+                                    <field name="price_total" readonly="1" sum="Total" />
+                                </tree>
+                            </field>
+
+                            <h3 style="margin-top:10px">Línea Proinca Consultoría</h3>
+                            <field name="order_line_consultores" widget="one2many" context="{'default_service_type':'consultores'}">
+                                <tree string="Lineas de Presupuestos" editable="button">
+                                    <field name="service_type" invisible="1" />
+                                    <!--<field name="company_id" />-->
+                                    <field required="1" name="service_id" domain="[('service_type','=','consultoria')]"
+                                           options="{'no_create':True,'no_edit':True,'no_open':True}" />
+                                    <field name="franchise" string="F" help="Trabajo realizado por la franquicia" />
+                                    <field name="comercial" string="C"  />
+                                    <field name="name" required="1" />
+                                    <field name="quantity"  required="1" />
+                                    <field name="price_unit" required="1" />
+                                    <field name="canon_amount" string="CF" sum="Comisión" />
+                                    <field name="comercial_amount" sum="Comisión Comercial" />
+                                    <field name="canon_extra"  sum="Comisión Extra" />
+                                    <field name="comercial_extra"  sum="Comisión Comercial Extra" />
+                                    <field name="price_total" readonly="1" sum="Total" />
+
+                                </tree>
+                            </field>
+
+                            <h3 style="margin-top:10px">Línea Servicios Ajenos/Externos</h3>
+                            <field name="order_line_prevencion" widget="one2many" context="{'default_service_type':'prevencion'}">
+                                <tree string="Lineas de Presupuestos" editable="button">
+                                    <field name="service_type" invisible="1" />
+                                    <field required="1" name="service_id" domain="[('service_type','=','prevencion')]"
+                                           options="{'no_create':True,'no_edit':True,'no_open':True}" />
+                                    <field name="franchise" string="F" help="Trabajo realizado por la franquicia" />
+                                    <field name="comercial" string="C"  />
+                                    <field name="date" string="Fecha Contrato" />
+                                    <field name="supplier_id" required="1" />
+                                    <field name="name" required="1" />
+                                    <field name="quantity"  required="1" />
+                                    <field name="price_unit" required="1" />
+                                    <field name="canon_amount" string="CF" sum="Comisión" />
+                                    <field name="comercial_amount" sum="Comisión Comercial" />
+                                    <field name="canon_extra"  sum="Comisión Extra" />
+                                    <field name="comercial_extra"  sum="Comisión Comercial Extra" />
+                                    <field name="price_total" readonly="1" sum="Total" />
+                                </tree>
+                            </field>
+
+                          <group class="oe_subtotal_footer oe_right" colspan="4" col="4">
+                          	<group colspan="2" col="2">
+                                <field name="amount_untaxed" readonly="True"  widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                            </group>
+                            <group colspan="4" col="4">
+                            	<field name="comment" string="Observaciones" nolabel="True" placeholder="Notas adicionales destinadas al cliente..."/>
+                            </group>
+                        </page>
+
+                        <page string="Pedidos de Ventas">
+                            <field name="sale_ids" readonly="1"/>
+                        </page>
+
+                        <page string="Facturación a Cobrar">
+                            <!--<div style="background-color:#eeeeee" >-->
+                            <h3 style="margin-top:10px"> Facturas de Proinca al Cliente </h3>
+                            <field name="invoice_sale_ids" context="{'form_view_ref':'proinca_sale.gst_invoice_proinca_simple_form'}" readonly="1" />
+
+                            <h3 style="margin-top:10px"> Conceptos de Proinca a las Franquicias </h3>
+                            <field name="invoice_canon_id" readonly="1" >
+                                <tree>
+                                    <field name="name" />
+                                    <field name="quantity" />
+                                    <field name="price_unit" />
+                                    <field name="price_subtotal" sum="Total"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Facturación para Pagar">
+                            <h3 style="margin-top:10px">Conceptos de Franquicia a Proinca</h3>
+                            <field name="invoice_supplier_ids" readonly="1">
+                                <tree>
+                                    <field name="name" />
+                                    <field name="quantity" />
+                                    <field name="price_unit" />
+                                    <field name="price_subtotal" sum="Total"/>
+                                </tree>
+                            </field>
+
+                            <h3 style="margin-top:10px"> Conceptos a Comerciales a Proinca</h3>
+                            <field name="invoice_comercial_id" readonly="1" >
+                                <tree>
+                                    <field name="name" />
+                                    <field name="quantity" />
+                                    <field name="price_unit" />
+                                    <field name="price_subtotal" sum="Total"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Facturación de Franquicias">
+
+                            <h3 style="margin-top:10px"> Facturas de Franquicia al Cliente </h3>
+                            <field name="invoice_franchise_ids" readonly="1"/>
+
+                        </page>
+                        <page string="Proyectos">
+                            <h3 style="margin-top:10px">Proyectos</h3>
+                            <field name="project_ids" readonly="1" />
+                            <h3 style="margin-top:10px">Tareas</h3>
+                            <field name="task_ids" readonly="1" />
+
+                        </page>
+                        <page string="Condiones Generales">
+                            <button type="object" name="generate_clauses" string="Cargar Clausulas" class="oe_link"
+                                    groups="proinca_franchise.franchise_consultor_group" />
+                            <field name="contract_clauses_company" nolabel="True" placeholder="Condiciones Generales para el contrato, pulse el botón para que se precargen según los servicios de proinca." />
+                            <field name="contract_clauses_service" nolabel="True" placeholder="Condiciones Generales para el contrato, pulse el botón para que se precargen según los servicios de proinca." />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+
+		<record id="order_franchise_action" model="ir.actions.act_window">
+			<field name="name">Contrato Global</field>
+			<field name="res_model">sale.order.franchise</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="provided_service_search"/>-->
+            <!--<field name="context">{"search_default_groupby_partner":1}</field>-->
+		</record>
+
+        <menuitem id="franchise_order_menu" name="Contrato Global"
+                  parent="proinca_franchise.franchise_parent_menu" action="order_franchise_action" sequence="1"/>
+
+        <record id="sale_order_franchise_graph2" model="ir.ui.view">
+            <field name="name">sale.order.franchise.graph</field>
+            <field name="model">sale.order.franchise</field>
+            <field name="arch" type="xml">
+                <graph string="Contratos" type="pivot">
+                    <field name="partner_id" type="row" />
+                    <field name="date" interval="year" type="col"/>
+                    <field name="total_invoiced_franchise" type="measure" />
+                    <field name="total_invoiced_canon" type="measure" />
+                    <field name="total_invoiced_comercial" type="measure" />
+                    <field name="total_invoiced_expenses" type="measure" />
+                    <field name="total_invoiced_income"  type="measure" />
+                    <field name="pte_cobro" type="measure" />
+                    <field name="cash_flow" type="measure"/>
+                    <field name="amount_untaxed" type="measure" />
+
+                </graph>
+            </field>
+        </record>
+
+        <record id="sale_order_franchise_line_tree" model="ir.ui.view">
+            <field name="name">sale.order.franchise.tree</field>
+            <field name="model">sale.order.franchise.line</field>
+            <field name="arch" type="xml">
+                <tree string="Presupuesto Franquicia">
+                    <field name="date_order" />
+                    <field name="partner_id" />
+                    <field name="order_id" />
+                    <field name="service_type" />
+                    <field name="service_id" />
+                    <field name="name" />
+                    <field name="price_total" sum="Total" />
+                    <field name="canon_amount" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="sale_order_franchise_line_graph" model="ir.ui.view">
+            <field name="name">sale.order.franchise.graph</field>
+            <field name="model">sale.order.franchise.line</field>
+            <field name="arch" type="xml">
+                <graph string="Servicios Contrato" type="pivot">
+                    <field name="price_total" type="measure" sum="Total"/>
+                    <field name="canon_amount" type="measure" sum="Canon"/>
+                    <field name="date_order" intervals="months" type="col"/>
+                    <field name="service_type" type="row"/>
+                </graph>
+            </field>
+        </record>
+        <record id="sale_order_franchise_line_search" model="ir.ui.view">
+            <field name="name">sale.order.franchise.line.search</field>
+            <field name="model">sale.order.franchise.line</field>
+            <field name="arch" type="xml">
+                <search string="Servicios Contrato">
+                    <field name="order_id" string="Contrato"/>
+                    <field name="service_type" string="Tipo Servicio"/>
+                    <field name="service_id" string="Servicio"/>
+
+                    <!--<field name="user_id" string="Franquicia/Responsable" />-->
+                    <group expand="0" string="Group By">
+                        <filter string="Pte Facturar Canon" domain="[('canon_no_invoiced','=',True)]" />
+                        <filter string="Tipo Servicio" icon="terp-personal" domain="[]" context="{'group_by':'service_type'}"/>
+                        <filter string="Fecha Contrato" icon="terp-personal" domain="[]" context="{'group_by':'date_order:year'}"/>
+                        <filter string="Cliente" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Franquicia/Responsable" icon="terp-personal" domain="[]" context="{'group_by':'user_id'}"/>
+                        <filter string="Servicio" icon="terp-stock_align_left_24" domain="[]" context="{'group_by':'service_id'}"/>
+                        <filter string="Contrato" name="group_state" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'order_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+
+		<record id="invoice_report_line_action" model="ir.actions.act_window">
+			<field name="name">Servicios Contrato</field>
+			<field name="res_model">sale.order.franchise.line</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">graph,tree,form</field>
+            <!--<field name="search_view_id" ref="provided_service_search"/>-->
+            <!--<field name="context">{"search_default_groupby_partner":1}</field>-->
+		</record>
+        <menuitem id="franchise_report_service_lines_menu" name="Servicios de Contrato"
+                  parent="proinca_franchise.franchise_report_menu" action="invoice_report_line_action" sequence="55"/>
+
+
+        <record id="contract_proinca_report" model="ir.actions.act_window">
+			<field name="name">Contratos</field>
+			<field name="res_model">sale.order.franchise</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">graph,tree,form</field>
+		</record>
+        <menuitem id="franchise_report_service_menu" name="Contratos"
+                  parent="proinca_franchise.franchise_report_menu" action="contract_proinca_report" sequence="45"/>
+
+
+
+    </data>
+</openerp>

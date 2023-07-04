@@ -1,0 +1,21 @@
+<openerp>
+	<data>
+
+
+
+        <record id="view_hr_expenses_expenses_proinca" model="ir.ui.view">
+            <field name="name">hr.expenses.proinca</field>
+            <field name="model">hr.expense.expense</field>
+            <field name="inherit_id" ref="hr_expense.view_expenses_form"/>
+            <field name="arch" type="xml">
+                <!--<xpath expr="//form/field[@name='analytic_account']" position="attributes">-->
+                    <!--<attribute name="required" >True</attribute>-->
+                <!--</xpath>-->
+                <xpath expr="//tree/field[@name='analytic_account']" position="attributes">
+                    <attribute name="required" >True</attribute>
+                </xpath>
+            </field>
+        </record>
+
+	</data>
+</openerp>

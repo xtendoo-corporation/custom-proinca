@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="proinca_sale_order_franchise" language="groovy" pageWidth="595" pageHeight="842" columnWidth="510" leftMargin="51" rightMargin="34" topMargin="20" bottomMargin="34">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/cumplidr/Escritorio/Jasper/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SR1" class="java.lang.Object"/>
+	<parameter name="SR2" class="java.lang.Object"/>
+	<parameter name="SR3" class="java.lang.Object"/>
+	<parameter name="SR4" class="java.lang.Object"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Fecha_creacion-create_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Fecha_creacion-create_date]]></fieldDescription>
+	</field>
+	<field name="Nombre-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empresa-partner_id/Nombre-name]]></fieldDescription>
+	</field>
+	<field name="Nombre_comercial-comercial" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empresa-partner_id/Nombre_comercial-comercial]]></fieldDescription>
+	</field>
+	<field name="Movil-mobile" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empresa-partner_id/Movil-mobile]]></fieldDescription>
+	</field>
+	<field name="Direccion_completa-contact_address" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empresa-partner_id/Direccion_completa-contact_address]]></fieldDescription>
+	</field>
+	<field name="Ciudad-city" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empresa-partner_id/Ciudad-city]]></fieldDescription>
+	</field>
+	<field name="C.P.-zip" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empresa-partner_id/C.P.-zip]]></fieldDescription>
+	</field>
+	<field name="NIF-vat" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empresa-partner_id/NIF-vat]]></fieldDescription>
+	</field>
+	<field name="Nombre_provincia-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empresa-partner_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Notas-description" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Notas-description]]></fieldDescription>
+	</field>
+	<field name="Email-email" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empresa-partner_id/Email-email]]></fieldDescription>
+	</field>
+	<field name="Total_Facturado-total_invoiced" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Facturado-total_invoiced]]></fieldDescription>
+	</field>
+	<field name="City-city" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/City-city]]></fieldDescription>
+	</field>
+	<field name="Complete_Address-contact_address" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/Complete_Address-contact_address]]></fieldDescription>
+	</field>
+	<field name="Email-email2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/Email-email]]></fieldDescription>
+	</field>
+	<field name="Mobile-mobile" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/Mobile-mobile]]></fieldDescription>
+	</field>
+	<field name="Nombre_provincia-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/State-state_id/Nombre_provincia-name]]></fieldDescription>
+	</field>
+	<field name="Zip-zip" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/Zip-zip]]></fieldDescription>
+	</field>
+	<field name="TIN-vat" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/TIN-vat]]></fieldDescription>
+	</field>
+	<field name="Ciudad-city2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/Empresa_relacionada-partner_id/Ciudad-city]]></fieldDescription>
+	</field>
+	<field name="Direccion_completa-contact_address2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/Empresa_relacionada-partner_id/Direccion_completa-contact_address]]></fieldDescription>
+	</field>
+	<field name="Email-email3" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/Empresa_relacionada-partner_id/Email-email]]></fieldDescription>
+	</field>
+	<field name="Movil-mobile2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/Empresa_relacionada-partner_id/Movil-mobile]]></fieldDescription>
+	</field>
+	<field name="NIF-vat2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/Empresa_relacionada-partner_id/NIF-vat]]></fieldDescription>
+	</field>
+	<field name="C.P.-zip2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Comercial-user_id/Empresa_relacionada-partner_id/C.P.-zip]]></fieldDescription>
+	</field>
+	<title>
+		<band height="110" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="22" width="172" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRESUPUESTO CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="72" width="65" height="20"/>
+				<box topPadding="3" leftPadding="3"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="65" y="72" width="182" height="20"/>
+				<box topPadding="3"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{Fecha_creacion-create_date}))]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="356" y="4" width="154" height="88"/>
+				<imageExpression><![CDATA["./packdeservicios_odoo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="261" y="-1" width="115" height="88"/>
+				<imageExpression><![CDATA["./Proinca_Consultores.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="1" y="52" width="65" height="20"/>
+				<box topPadding="3" leftPadding="3"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Cliente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="65" y="52" width="183" height="20"/>
+				<box topPadding="3"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nombre-name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="83">
+			<line>
+				<reportElement x="0" y="35" width="132" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<rectangle>
+				<reportElement x="0" y="1" width="510" height="72"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="206" y="15" width="104" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<text><![CDATA[Nombre Comercial:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="29" width="54" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="43" width="25" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<text><![CDATA[CIF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="57" width="50" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="261" y="29" width="249" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textFieldExpression><![CDATA[$F{Direccion_completa-contact_address}+" "+$F{Ciudad-city}+", "+$F{Nombre_provincia-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="232" y="43" width="278" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textFieldExpression><![CDATA[$F{NIF-vat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="207" y="1" width="70" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<text><![CDATA[Razón Social:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="206" y="1" width="1" height="72"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="195" y="1" width="1" height="72"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="255" y="57" width="89" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textFieldExpression><![CDATA[$F{Movil-mobile}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="343" y="57" width="36" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<text><![CDATA[Email:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="377" y="57" width="133" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textFieldExpression><![CDATA[$F{Email-email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="15" width="200" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textFieldExpression><![CDATA[$F{Nombre_comercial-comercial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="1" width="195" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textFieldExpression><![CDATA[$F{Name-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="277" y="1" width="233" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textFieldExpression><![CDATA[$F{Nombre-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="15" width="96" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textFieldExpression><![CDATA["CIF: "+$F{NIF-vat2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="29" width="195" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textFieldExpression><![CDATA[$F{Direccion_completa-contact_address2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="43" width="195" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textFieldExpression><![CDATA[$F{C.P.-zip2}+" "+$F{Ciudad-city2}+" "+$F{Nombre_provincia-name2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="57" width="195" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textFieldExpression><![CDATA[$F{Email-email3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="97" y="15" width="98" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textFieldExpression><![CDATA["Móvil: "+$F{Movil-mobile2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20">
+			<rectangle>
+				<reportElement x="0" y="0" width="510" height="20"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<line>
+				<reportElement x="447" y="0" width="1" height="20"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="0" width="172" height="20"/>
+				<box topPadding="3" leftPadding="4"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRESUPUESTO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="447" y="0" width="63" height="20"/>
+				<box topPadding="3" leftPadding="0"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="61">
+			<frame>
+				<reportElement x="0" y="18" width="510" height="10" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<subreport>
+					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="510" height="10" isRemoveLineWhenBlank="true"/>
+					<dataSourceExpression><![CDATA[$P{SR1}]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "proinca_presupuesto_subreport.jasper"]]></subreportExpression>
+				</subreport>
+			</frame>
+			<line>
+				<reportElement x="447" y="0" width="1" height="18"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="0" width="510" height="18"/>
+				<box topPadding="3" leftPadding="4">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Servicios]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="28" width="510" height="33" isPrintWhenDetailOverflows="true"/>
+				<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4">
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Justified" markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Notas-description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="0" width="62" height="18"/>
+				<box topPadding="3" leftPadding="4"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(($F{Total_Facturado-total_invoiced} == null) || ($F{Total_Facturado-total_invoiced} == "" ) ? "0": new java.text.DecimalFormat("###0.00").format(Double.valueOf($F{Total_Facturado-total_invoiced})))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="33">
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="23" width="143" height="10"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Resumen Presupuesto Cliente]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

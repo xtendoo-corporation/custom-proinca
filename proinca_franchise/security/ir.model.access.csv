@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_provided_service,provided.service,model_provided_service,franchise_group,1,0,0,0
+access_provided_service_manager,provided.service,model_provided_service,franchise_manager_group,1,1,1,1
+access_account_invoice_franchise,account.invoice.franchise,model_account_invoice_franchise,proinca_franchise.franchise_group,1,1,1,1
+access_account_invoice_franchise_line,account.invoice.franchise.line,model_account_invoice_franchise_line,proinca_franchise.franchise_group,1,1,1,1
+
+

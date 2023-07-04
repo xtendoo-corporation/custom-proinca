@@ -1,0 +1,54 @@
+<openerp>
+	<data>
+
+        <!--<record model="ir.ui.view" id="res_partner_franchise_view1">-->
+            <!--<field name="name">res.partner.franchise</field>-->
+            <!--<field name="model">res.partner</field>-->
+            <!--<field name="inherit_id" ref="base.view_partner_form"/>-->
+            <!--<field name="priority" eval="10" />-->
+            <!--<field name="arch" type="xml">-->
+
+            <!--</field>-->
+        <!--</record>        -->
+        <!---->
+        <record id="view_partner_proinca_contracts" model="ir.ui.view">
+            <field name="name">partner.proinca.contracts</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='buttons']" position="inside">
+                        <button class="oe_stat_button oe_inline"
+                                icon="fa-book"
+                                type="object"
+                                name="giveme_contracts">
+                                <div>
+                                    <field string="Contratos Proinca" name="count_contract" widget="statinfo"/>
+                                </div>
+                        </button>
+                </xpath>
+
+                <xpath expr="//field[@name='mobile']" position="attributes">
+                    <attribute name="required">True</attribute>
+                </xpath>
+
+                <xpath expr="//page[@string='Sales &amp; Purchases']" position="attributes">
+                    <attribute name="groups">proinca_franchise.franchise_partner_group</attribute>
+                </xpath>
+
+
+            </field>
+        </record>
+
+        <record id="view_partner_proinca_contracts_pend" model="ir.ui.view">
+            <field name="name">partner.proinca.contracts.pend</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.partner_view_buttons"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@id='invoice_button']/div" position="replace">
+                    <div><strong><field name="total_pendiente" widget="monetary"/></strong><br/>Pendiente</div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="proinca_sale_order_franchise_subreport_pack" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="OPENERP_RELATIONS" value="[&apos;order_line&apos;]"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Nombre-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Servicios-order_line/Servicio-service_id/Nombre-name]]></fieldDescription>
+	</field>
+	<field name="Concepto-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Servicios-order_line/Concepto-name]]></fieldDescription>
+	</field>
+	<field name="Fecha-date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Servicios-order_line/Fecha-date]]></fieldDescription>
+	</field>
+	<field name="Codigo-code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Servicios-order_line/Servicio-service_id/Codigo-code]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement x="21" y="0" width="1" height="15"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="22" y="0" width="147" height="15"/>
+				<box topPadding="3" leftPadding="3"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Codigo-code}+" "+$F{Nombre-name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="168" y="0" width="1" height="15"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="447" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="331" y="0" width="116" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{Fecha-date}!=null||$F{Fecha-date}!=""]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="3" leftPadding="3"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["F. Revisión :   "+(new SimpleDateFormat("dd/MM/yyyy").format($F{Fecha-date}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="0" width="161" height="15"/>
+				<box topPadding="3" leftPadding="3"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Concepto-name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="330" y="0" width="1" height="15"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="15" width="447" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

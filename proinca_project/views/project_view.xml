@@ -1,0 +1,178 @@
+<openerp>
+    <data>
+
+
+        <record id="view_project_search_proinca_num_visits" model="ir.ui.view">
+            <field name="name">project.search.max.visits.proinca</field>
+            <field name="model">project.project</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="project.view_project_project_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='Template']" position="after">
+                    <separator/>
+                    <filter name="max_visits_passed" string="Visitas Sobrepasadas"
+                            domain="[('max_visits_passed','=',True)]"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_project_search_partner_task" model="ir.ui.view">
+            <field name="name">project.search.partner.task</field>
+            <field name="model">project.task</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="project.view_task_search_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='project']" position="after">
+                        <filter string="Cliente" name="partner" context="{'group_by':'partner_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_project_kanban_visits" model="ir.ui.view">
+            <field name="name">project.project.kanban.proinca</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='task_count']" position="before">
+                    <field name="num_visits"/>
+                </xpath>
+                <xpath expr="//div[@class='oe_kanban_content']/div[@class='oe_kanban_footer_left']" position="inside">
+                    <span t-attf-style="#{record.task_count.raw_value > record.num_visits.raw_value ? 'color:red' : ''}">
+                        <span class="oe_e">R</span>
+                        <t t-raw="record.task_count.raw_value"/>
+                        /
+                        <t t-raw="record.num_visits.raw_value"/>
+                        Visitas
+                    </span>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_project_form_proinca" model="ir.ui.view">
+            <field name="name">project.project.form.proinca</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <newline/>
+                    <field name="num_visits"/>
+                </xpath>
+                <xpath expr='//div[@name="options_active"]' position='inside'>
+                    <field name="contraincendio"/>
+                    <label for="contraincendio" string="Control Contra Incendios"/>
+                </xpath>
+
+                <!-- new security for proinca projects !-->
+
+                <xpath expr='//header' position='attributes'>
+                    <attribute name="groups" >project.group_project_manager</attribute>
+                </xpath>
+
+
+            </field>
+        </record>
+
+
+        <record id="view_task_form_proinca" model="ir.ui.view">
+            <field name="name">project.task.form.proinca</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="replace"/>
+                <xpath expr="//field[@name='project_id']" position="before">
+                    <field name="partner_id"/>
+                    <field name="contraincendio" invisible="True"/>
+                    <field name="emplazamiento_id"
+                           domain="[('parent_id', '=',partner_id)]"
+                           options="{'no_create':True,'no_edit':True}"
+                           attrs="{'invisible':[('contraincendio','=',False)]}"
+                           placeholder="Especifique el emplazamiento si es distinto al del Cliente"/>
+
+
+                </xpath>
+                <xpath expr="//notebook[last()]" position="inside">
+                    <page string="Equipos" attrs="{'invisible':[('contraincendio','=',False)]}">
+
+                        <field name="kit_ids" readonly="1">
+                            <tree string="Equipos Contra Incendios" editable="bottom">
+                                <field name="operation"/>
+                                <field name="kit"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_task_form_proinca_superv" model="ir.ui.view">
+            <field name="name">project.task.form.proinca.superv</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="view_task_form_proinca"/>
+            <field name="groups_id" eval="[(4, ref('proinca_franchise.franchise_consultor_group'))]" />
+            <field name="arch" type="xml">
+                <field name="kit_ids" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+            </field>
+        </record>
+
+
+        <record id="view_task_tree_proinca" model="ir.ui.view">
+            <field name="name">project.task.tree.proinca</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_tree2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='project_id']" position="before">
+                    <field name="partner_id"/>
+                </xpath>
+                <xpath expr="//field[@name='date_start']" position="attributes">
+                    <attribute name="groups"/>
+                </xpath>
+                <xpath expr="//field[@name='date_end']" position="attributes">
+                    <attribute name="groups"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_task_kanban_proinca" model="ir.ui.view">
+            <field name="name">project.task.kanban.proinca</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_kanban_content']" position="inside">
+                    <div>
+                        <b>
+                            <field name="partner_id"/>
+                        </b>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="action_view_task_proinca" model="ir.actions.act_window">
+            <field name="name">Tasks</field>
+            <field name="res_model">project.task</field>
+            <field name="view_mode">kanban,tree,form,calendar,gantt,graph</field>
+            <field name="search_view_id" ref="project.view_task_search_form"/>
+            <field name="domain">[('user_id','=',uid)]</field>
+            <field name="help" type="html">
+                <p></p>
+            </field>
+        </record>
+
+
+        <menuitem id="franchise_task_menu" name="Planificación" sequence="20"
+                  parent="proinca_franchise.franchise_top_menu"
+                  groups="proinca_franchise.franchise_partner_group"/>
+
+        <menuitem id="franchise_task_franchise_menu" name="Sesiones"
+                  parent="franchise_task_menu"
+                  action="action_view_task_proinca"/>
+
+
+    </data>
+</openerp>

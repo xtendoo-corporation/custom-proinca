@@ -1,0 +1,40 @@
+<openerp>
+	<data>
+
+        <record id="account_credit_debit_form" model="ir.ui.view">
+            <field name="name">account.account.credit.debit.form</field>
+            <field name="model">account.account</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_account_form" />
+            <field name="arch" type="xml">
+                <field name="active" position="after">
+                    <field name="exclude_balance_partner" />
+                </field>
+            </field>
+        </record>
+
+        <record id="payment_mode_no_cc" model="ir.ui.view">
+            <field name="name">payment.mode.no.cc</field>
+            <field name="model">payment.mode</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account_payment.view_payment_mode_form" />
+            <field name="arch" type="xml">
+                <field name="journal" position="after">
+                    <field name="no_show_cc" />
+                    <field name="show_customer_account" />
+                </field>
+            </field>
+        </record>
+        <record id="view_invoice_bank_account" model="ir.ui.view">
+            <field name="name">account.invoice.bank.account</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_bank_id']" position="after">
+                    <field name="partner_bank_report_id"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

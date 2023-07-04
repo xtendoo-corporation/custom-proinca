@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="proinca_certificado_contraincendios" language="groovy" pageWidth="595" pageHeight="842" columnWidth="510" leftMargin="51" rightMargin="34" topMargin="20" bottomMargin="34">
+	<property name="ireport.zoom" value="1.3636363636363635"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SR1" class="java.lang.Object"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Fecha_creacion-create_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Fecha_creacion-create_date]]></fieldDescription>
+	</field>
+	<field name="Reference-ref" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Reference-ref]]></fieldDescription>
+	</field>
+	<field name="Nombre_de_la_compania-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Nombre_de_la_compania-name]]></fieldDescription>
+	</field>
+	<field name="ID_de_impuesto-vat" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/ID_de_impuesto-vat]]></fieldDescription>
+	</field>
+	<field name="Ciudad-city" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Ciudad-city]]></fieldDescription>
+	</field>
+	<field name="Calle-street" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Calle-street]]></fieldDescription>
+	</field>
+	<field name="Calle2-street2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Calle2-street2]]></fieldDescription>
+	</field>
+	<field name="Nombre_provincia-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
+	</field>
+	<field name="C.P.-zip" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Compania-company_id/C.P.-zip]]></fieldDescription>
+	</field>
+	<field name="Nombre-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Creado_por-create_uid/Empresa_relacionada-partner_id/Nombre-name]]></fieldDescription>
+	</field>
+	<field name="Titulo-title" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Creado_por-create_uid/Empresa_relacionada-partner_id/Titulo-title]]></fieldDescription>
+	</field>
+	<field name="Nombre-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Nombre-name]]></fieldDescription>
+	</field>
+	<field name="NIF-vat" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/NIF-vat]]></fieldDescription>
+	</field>
+	<field name="Calle-street2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Calle-street]]></fieldDescription>
+	</field>
+	<field name="Calle2-street22" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Calle2-street2]]></fieldDescription>
+	</field>
+	<field name="Nombre_provincia-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
+	</field>
+	<field name="C.P.-zip2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/C.P.-zip]]></fieldDescription>
+	</field>
+	<field name="Ciudad-city2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Cliente-partner_id/Ciudad-city]]></fieldDescription>
+	</field>
+	<field name="Fecha_limite-date_deadline" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Fecha_limite-date_deadline]]></fieldDescription>
+	</field>
+	<field name="Calle-street3" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Emplazamiento-emplazamiento_id/Calle-street]]></fieldDescription>
+	</field>
+	<field name="Calle2-street23" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Emplazamiento-emplazamiento_id/Calle2-street2]]></fieldDescription>
+	</field>
+	<field name="C.P.-zip3" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Emplazamiento-emplazamiento_id/C.P.-zip]]></fieldDescription>
+	</field>
+	<field name="Ciudad-city3" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Emplazamiento-emplazamiento_id/Ciudad-city]]></fieldDescription>
+	</field>
+	<field name="Nombre_provincia-name3" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Emplazamiento-emplazamiento_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
+	</field>
+	<field name="Emplazamiento-emplazamiento_id" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Emplazamiento-emplazamiento_id]]></fieldDescription>
+	</field>
+	<title>
+		<band height="482" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="163" width="510" height="219"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<image>
+				<reportElement x="92" y="237" width="120" height="118"/>
+				<imageExpression><![CDATA["./firma_as_opt.jpg"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="0" y="402" width="510" height="80"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<image>
+				<reportElement x="180" y="0" width="330" height="98"/>
+				<imageExpression><![CDATA["./Sin-titulo-11.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="14" width="193" height="30"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CERTIFICADO DE MANTENIMIENTO CONTRA INCENDIOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="44" width="25" height="20"/>
+				<box topPadding="3" leftPadding="3"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="63" width="42" height="20"/>
+				<box topPadding="3" leftPadding="3"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="25" y="44" width="68" height="20"/>
+				<box topPadding="3"/>
+				<textElement markup="none">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Reference-ref}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="41" y="63" width="152" height="20"/>
+				<box topPadding="3"/>
+				<textElement markup="none">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{Fecha_limite-date_deadline}))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="333" y="410" width="177" height="14"/>
+				<box leftPadding="3"/>
+				<textElement markup="none">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CIF: "+$F{NIF-vat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="333" width="510" height="49"/>
+				<box topPadding="0" leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Fdo: Antonio Miguel Sánchez Rojas
+Ingeniero Superior Industrial.
+Colegiado nº4168 Colegio Oficial de Ingenieros Industriales de Andalucía Occidental
+Técnico Titulado competente de la empresa instaladora]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="97" width="510" height="66"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="424" width="63" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Dirección]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="209" width="510" height="61"/>
+				<box topPadding="0" leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CERTIFICA que se han realizado las operaciones de mantenimiento anual de acuerdo con lo establecido en el Reglamento de Instalaciones de Protección Contra Incendios, aprobado por el Real Decreto 1942/1993, y que el resultado de las operaciones realizadas que se describe a continuación es CONFORME. Y para que conste y surta los efectos oportunos donde proceda, expido y firmo la presente.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="82" y="402" width="1" height="80"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="102" width="283" height="14"/>
+				<box leftPadding="3"/>
+				<textElement markup="none">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nombre_de_la_compania-name}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="130" width="424" height="14"/>
+				<box leftPadding="3"/>
+				<textElement markup="none">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Calle-street}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="410" width="63" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="283" y="102" width="141" height="14"/>
+				<textElement markup="none">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CIF: "+$F{ID_de_impuesto-vat}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="291" width="103" height="20"/>
+				<box topPadding="3" leftPadding="3"/>
+				<textElement markup="none">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{Fecha_limite-date_deadline}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="116" width="424" height="14"/>
+				<box leftPadding="3"/>
+				<textElement markup="none">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[Nº REIA 41035926 Andalucía]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="82" y="410" width="278" height="14"/>
+				<box leftPadding="3"/>
+				<textElement markup="none">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nombre-name2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="163" width="510" height="46"/>
+				<box topPadding="3" leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" isBold="false"/>
+				</textElement>
+				<text><![CDATA[La empresa mantenedora de instalaciones contra incendios que emite este certificado declara que se encuentra autorizada para el mantenimiento de los sistemas de protección contra incendios que a continuación se relacionan e inscrita en el Registro de empresas instaladoras y mantenedoras de la Junta de Andalucía.
+]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="82" y="438" width="428" height="14"/>
+				<box leftPadding="3"/>
+				<textElement markup="none">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{C.P.-zip2}+$F{Ciudad-city2}+$F{Nombre_provincia-name2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="382" width="510" height="20" backcolor="#CCCCCC"/>
+				<box topPadding="3" leftPadding="4">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL CLIENTE]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="82" y="424" width="428" height="14"/>
+				<box leftPadding="3"/>
+				<textElement markup="none">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Calle-street2}+$F{Calle2-street22}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="144" width="424" height="14"/>
+				<box leftPadding="3"/>
+				<textElement markup="none">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Calle2-street2}+" "+$F{C.P.-zip}+" "+$F{Ciudad-city}+" "+$F{Nombre_provincia-name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="82" y="452" width="428" height="14" isRemoveLineWhenBlank="true"/>
+				<box leftPadding="3"/>
+				<textElement markup="none">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( $F{Calle-street3}==null&&$F{Calle2-street23}==null ?  $F{Calle-street2}+$F{Calle2-street22} : ($F{Calle-street3}==""&&$F{Calle2-street23}=="" ? $F{Calle-street2}+$F{Calle2-street22} : $F{Calle-street3}+$F{Calle2-street23} ))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="82" y="466" width="428" height="14" isRemoveLineWhenBlank="true"/>
+				<box leftPadding="3"/>
+				<textElement markup="none">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( $F{C.P.-zip3}==null&&$F{Ciudad-city3}==null&&$F{Nombre_provincia-name3}==null ?  $F{C.P.-zip2}+$F{Ciudad-city2}+$F{Nombre_provincia-name2} : ($F{C.P.-zip3}==""&&$F{Ciudad-city3}==""&&$F{Nombre_provincia-name3}=="" ? $F{C.P.-zip2}+$F{Ciudad-city2}+$F{Nombre_provincia-name2} : $F{C.P.-zip3}+$F{Ciudad-city3}+$F{Nombre_provincia-name3} ))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="452" width="81" height="14"/>
+				<box topPadding="0" leftPadding="3"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Emplazamiento]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="35">
+			<rectangle>
+				<reportElement x="0" y="20" width="510" height="15"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="510" height="20" backcolor="#CCCCCC"/>
+				<box topPadding="3" leftPadding="4">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EQUIPOS CONTRA INCENDIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="20" width="64" height="15" backcolor="#BAE3DA"/>
+				<box topPadding="2" leftPadding="4">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="64" y="20" width="232" height="15" backcolor="#BAE3DA"/>
+				<box topPadding="2" leftPadding="4">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Operación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="296" y="20" width="214" height="15" backcolor="#BAE3DA"/>
+				<box topPadding="2" leftPadding="4">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Equipos]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<frame>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="510" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<subreport>
+					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="510" height="20" isRemoveLineWhenBlank="true"/>
+					<dataSourceExpression><![CDATA[$P{SR1}]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "proinca_certificado_contraincendios_subreport1.jasper"]]></subreportExpression>
+				</subreport>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,114 @@
+<openerp>
+	<data>
+
+        <record id="provided_service_tree" model="ir.ui.view">
+            <field name="name">provided.service.tree</field>
+            <field name="model">provided.service</field>
+            <field name="arch" type="xml">
+                <tree string="Servicios Proinca">
+                    <field name="code" />
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="provided_service_form" model="ir.ui.view">
+            <field name="name">provided.service.form</field>
+            <field name="model">provided.service</field>
+            <field name="arch" type="xml">
+                <form string="Servicios Proinca" create="0">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="code" class="oe_inline" placeholder="Código"/> -
+                            <field name="name" class="oe_inline" placeholder="Descripción"/>
+                        </h1>
+                    </div>
+                    <group colspan="4" col="4">
+                        <group colspan="2">
+                            <field name="service_type" required="1" colspan="2"  col="2" />
+                            <field name="company_id" options="{'quick_create':False}" col="2" string="Realizado por" required="1" help="Compañia" colspan="2" />
+                            <field name="product_id" options="{'quick_create':False}" col="2" />
+                        </group>
+                        <group colspan="2">
+                            <field name="skip" colspan="2"  col="2" />
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Proyecto">
+                            <group string="Proyecto" colspan="4" col="4">
+                            <group colspan="2" col="2" >
+                                <field name="action_project" colspan="2" />
+                            </group>
+                            <group colspan="2" col="2" >
+
+                                <field name="project_id" options="{'quick_create':False}" colspan="2"
+                                   attrs="{'required':[('action_project','=','task')],
+                                           'invisible':['|',('action_project','=',False),('action_project','in',['none','project'])]}" />
+
+                                <field name="template_id" options="{'quick_create':False}" colspan="2"
+                                   attrs="{'required':[('action_project','=','project')],
+                                           'invisible':['|',('action_project','=',False),('action_project','in',['none','task'])]}" />
+                            </group>
+                            </group>
+                        </page>
+                        <page string="Fact. Proveedor" attrs="{'invisible':[('service_type','not in',['formacion','consultoria'])]}">
+
+                            <p class="oe_grey">Configuración del servicio para generar una factura proveedor de la franquicia a una de las compañias</p>
+                            <group colspan="4" col="4">
+                                <field name="supplier_invoice" />
+                                <field name="company_supplier_id" options="{'quick_create':False}" attrs="{'required':[('supplier_invoice','=',True)]}"/>
+                            </group>
+                        </page>
+                        <page string="Canon">
+                            <p class="oe_grey">Configuración para la generación del canon a la franquica</p>
+                            <group colspan="4" col="4">
+                                <field name="min_value" string="Mínimo a aplicar" colspan="2"/>
+                                <field name="percent" string="Canon %" colspan="2" />
+                                <field name="product_canon_id" string="Producto Canón" colspan="2" options="{'quick_create':False}" />
+                            </group>
+                            <p class="oe_grey">Configuración para la generación de las comisiones al comercial cuando corresonda</p>
+                            <group colspan="4" col="4">
+                                <field name="min_value_comercial" string="Mínimo a aplicar" colspan="2"/>
+                                <field name="percent_comision" string="Comisión aplicada %" colspan="2"/>
+                                <field name="product_comercial_id" options="{'quick_create':False}" string="Producto Comercial" colspan="2" />
+
+                            </group>
+
+                        </page>
+                        <page string="Cláusula">
+                            <field name="clausula"/>
+                        </page>
+                    </notebook>
+
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+		<record id="provided_service_action" model="ir.actions.act_window">
+			<field name="name">Servicios Proinca</field>
+			<field name="res_model">provided.service</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="provided_service_search"/>-->
+            <!--<field name="context">{"search_default_groupby_partner":1}</field>-->
+		</record>
+
+
+        <menuitem id="franchise_configuration_parent_menu" name="Configuración"
+                  groups="proinca_franchise.franchise_manager_group"
+                  parent="proinca_franchise.franchise_top_menu" sequence="60" />
+
+        <menuitem id="franchise_services_menu" name="Servicios Proinca"
+                  parent="proinca_franchise.franchise_configuration_parent_menu"
+                  action="provided_service_action" sequence="60"/>
+
+
+
+
+
+
+    </data>
+</openerp>
