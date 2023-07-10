@@ -1,0 +1,14 @@
+<odoo>
+
+    <menuitem id="proinca_top_menu" name="Formación" sequence="10"/>
+
+    <menuitem id="proinca_menu"
+              parent="proinca_top_menu"
+              name="Formación" sequence="10"/>
+
+    <menuitem id="cursos_menu"
+              name="Cursos" sequence="10"
+              action="proinca_curso_action"
+              parent="proinca_menu"/>
+
+</odoo>

@@ -1,2 +1,0 @@
-import training
-import sale

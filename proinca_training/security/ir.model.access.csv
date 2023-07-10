@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_proinca_alumno,proinca.alumno,model_proinca_alumno,,1,1,1,1
-access_proinca_curso,proinca.curso,model_proinca_curso,,1,1,1,1
-access_proinca_curso_area,proinca.curso.area,model_proinca_curso_area,,1,1,1,1
