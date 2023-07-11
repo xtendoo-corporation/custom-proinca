@@ -36,9 +36,10 @@ class ProincaCurso(models.Model):
     state = fields.Selection(
         selection=[
             ('open', "Alta"),
-                   ('close', "Baja"),
+            ('close', "Baja"),
         ],
-        string="Estado")
+        string="Estado"
+    )
     area = fields.Char(
         comodel_name="proinca.curso.area",
         string="Area Profesional",

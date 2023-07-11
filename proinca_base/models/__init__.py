@@ -1,1 +1,1 @@
-from . import proinca_curso
+from . import slide_channel
