@@ -10,3 +10,22 @@ class SaleOrder(models.Model):
         comodel_name="slide.channel",
         string="Curso",
     )
+    slide_channel_n_cuestionario = fields.Integer(
+        comodel_name="slide_channel",
+        related="slide_channel_id.n_cuestionario",
+    )
+    url = fields.Char(
+        string="URL",
+    )
+    curso_partner_formacion_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="E. Impartidora",
+    )
+    tutor_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Tutor",
+    )
+    gestor_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Gestor",
+    )
