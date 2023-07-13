@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Copyright 2023 Jaime Millan (https://xtendoo.es)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
 
@@ -13,11 +13,6 @@ class Channel(models.Model):
     url = fields.Char(
         "URL",
     )
-    # sale_order_ids = fields.One2many(
-    #     inverse_name="curso_id",
-    #     comodel_name="sale.order",
-    #     string="Pedidos",
-    # )
     hours = fields.Integer(
         string='Horas',
     )
