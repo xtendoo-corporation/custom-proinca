@@ -13,11 +13,11 @@
             <xpath expr="//field[@name='partner_invoice_id']" position="before">
                 <field name="curso_partner_formacion_id"/>
             </xpath>
-            <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="tutor_id" domain="[('is_tutor', '=', True)]"/>
-            </xpath>
             <xpath expr="//field[@name='partner_invoice_id']" position="before">
                 <field name="gestor_id"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="tutor_id" domain="[('is_tutor', '=', True)]"/>
             </xpath>
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="slide_channel_n_cuestionario"/>

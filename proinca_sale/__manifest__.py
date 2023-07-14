@@ -15,7 +15,6 @@
     "data":
     [
         "views/sale_order_views.xml",
-        #"views/partner_view.xml",
     ],
     'installable': True,
     'active': False,

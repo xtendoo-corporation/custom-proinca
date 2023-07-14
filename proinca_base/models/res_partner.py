@@ -6,4 +6,6 @@ from odoo import fields, models
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    is_tutor = fields.Boolean(string='Tutor', default="false")
+    is_tutor = fields.Boolean(
+        string='Tutor',
+    )

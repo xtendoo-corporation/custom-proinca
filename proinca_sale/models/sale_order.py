@@ -17,13 +17,13 @@ class SaleOrder(models.Model):
     url = fields.Char(
         string="URL",
     )
-    curso_partner_formacion_id = fields.Many2one(
-        comodel_name="res.partner",
-        string="E. Impartidora",
-    )
     tutor_id = fields.Many2one(
         comodel_name="res.partner",
         string="Tutor",
+    )
+    curso_partner_formacion_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="E. Impartidora",
     )
     gestor_id = fields.Many2one(
         comodel_name="res.partner",

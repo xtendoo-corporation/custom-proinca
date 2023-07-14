@@ -7,10 +7,18 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='partner_longitude']" position="after">
-                    <field name="is_tutor"/>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Formación" name="formacion">
+                        <sheet>
+                            <group>
+                                <field name="is_tutor" string="Tutor"/>
+                            </group>
+                        </sheet>
+                    </page>
                 </xpath>
             </field>
         </record>
     </data>
 </odoo>
+
+

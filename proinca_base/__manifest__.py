@@ -14,6 +14,7 @@
     "category": "Proinca",
     "data": [
         "views/slide_channel_views.xml",
+        "views/partner_view.xml",
     ],
     'installable': True,
     'active': False,
