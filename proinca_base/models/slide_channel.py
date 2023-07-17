@@ -19,3 +19,6 @@ class Channel(models.Model):
     n_cuestionario = fields.Integer(
         string="Nº Cuestionario",
     )
+    p_hora = fields.Float(
+        string="Precio/Hora",
+    )

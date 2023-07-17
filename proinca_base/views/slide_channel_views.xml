@@ -12,6 +12,7 @@
                         <field name="url"/>
                         <field name="hours"/>
                         <field name="n_cuestionario"/>
+                        <field name="p_hora"/>
                     </group>
                 </page>
             </xpath>

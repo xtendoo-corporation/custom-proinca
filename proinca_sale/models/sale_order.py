@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
-from odoo.custom.src.odoo.odoo.exceptions import ValidationError
 
 
 class SaleOrder(models.Model):
@@ -36,4 +35,8 @@ class SaleOrder(models.Model):
     )
     fecha_fin = fields.Date(
         string="Fecha de Fin",
+    )
+    p_hora = fields.Float(
+        comodel_name="slide_channel",
+        related="slide_channel_id.p_hora",
     )
