@@ -40,3 +40,8 @@ class SaleOrder(models.Model):
         comodel_name="slide_channel",
         related="slide_channel_id.p_hora",
     )
+    modalidad = fields.Selection(
+        selection=lambda self: self.env['slide.channel'].fields_get(['modalidad'])['modalidad']['selection'],
+        string='Modalidad',
+        related="slide_channel_id.modalidad",
+    )

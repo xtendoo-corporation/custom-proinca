@@ -22,3 +22,7 @@ class Channel(models.Model):
     p_hora = fields.Float(
         string="Precio/Hora",
     )
+    modalidad = fields.Selection(
+        selection=[('teleformacion', 'Teleformación'), ('presencial', 'Presencial')],
+        string='Modalidad',
+    )

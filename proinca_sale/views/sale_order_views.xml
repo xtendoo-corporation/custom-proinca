@@ -46,6 +46,9 @@
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="p_hora"/>
             </xpath>
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="modalidad"/>
+            </xpath>
         </field>
     </record>
 </odoo>

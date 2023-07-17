@@ -13,6 +13,7 @@
                         <field name="hours"/>
                         <field name="n_cuestionario"/>
                         <field name="p_hora"/>
+                        <field name="modalidad"/>
                     </group>
                 </page>
             </xpath>
