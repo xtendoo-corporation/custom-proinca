@@ -25,6 +25,13 @@
             <xpath expr="//field[@name='payment_term_id']" position="before">
                 <field name="url"/>
             </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="fecha_fin"/>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="fecha_inicio"/>
+            </xpath>
         </field>
     </record>
 </odoo>
+

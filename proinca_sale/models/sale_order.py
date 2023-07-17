@@ -2,6 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
+from odoo.custom.src.odoo.odoo.exceptions import ValidationError
+
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
@@ -28,4 +30,10 @@ class SaleOrder(models.Model):
     gestor_id = fields.Many2one(
         comodel_name="res.partner",
         string="Gestor",
+    )
+    fecha_inicio = fields.Date(
+        string="Fecha de Inicio",
+    )
+    fecha_fin = fields.Date(
+        string="Fecha de Fin",
     )
