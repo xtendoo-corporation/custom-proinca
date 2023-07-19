@@ -76,6 +76,7 @@
             <field name="name">Tutores</field>
             <field name="res_model">res.partner</field>
             <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_is_tutor' : 1, 'default_is_tutor' : True,}</field>
         </record>
 
         <menuitem id="menu_formacion" name="Formación" sequence="20" web_icon="proinca_menu,static/img/icon.png"/>

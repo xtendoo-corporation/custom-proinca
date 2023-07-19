@@ -9,7 +9,6 @@
         "account",
         "product",
         "website_slides",
-        "proinca_base",
     ],
     "author": "Jaime Millan (https://xtendoo.es)",
     "category": "Proinca",
