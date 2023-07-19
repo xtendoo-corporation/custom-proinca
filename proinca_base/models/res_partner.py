@@ -9,3 +9,9 @@ class ResPartner(models.Model):
     is_tutor = fields.Boolean(
         string='Tutor',
     )
+    is_alumno = fields.Boolean(
+        string='Alumno',
+    )
+    seguridad_social = fields.Char(
+        string='Número de la Seguridad Social',
+    )

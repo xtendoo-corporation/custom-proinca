@@ -4,16 +4,11 @@
 from odoo import api, fields, models
 
 
-class FormacionCurso(models.Model):
+class Channel(models.Model):
     _inherit = 'slide.channel'
 
     code = fields.Char(
         'Código',
-    )
-    curso = fields.Char(
-        string='Curso',
-        related='name',
-        store=True
     )
     url = fields.Char(
         "URL",
@@ -28,6 +23,9 @@ class FormacionCurso(models.Model):
         string="Precio/Hora",
     )
     modalidad = fields.Selection(
-        selection=[('teleformacion', 'Teleformación'), ('presencial', 'Presencial')],
+        selection=[
+            ('teleformacion', 'Teleformación'),
+            ('presencial', 'Presencial')
+        ],
         string='Modalidad',
     )

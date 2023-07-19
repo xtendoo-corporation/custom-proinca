@@ -9,11 +9,11 @@
             <field name="arch" type="xml">
                 <xpath expr="//notebook" position="inside">
                     <page string="Formación" name="formacion">
-                        <sheet>
-                            <group>
-                                <field name="is_tutor" string="Tutor"/>
-                            </group>
-                        </sheet>
+                        <group>
+                            <field name="is_tutor" string="Tutor"/>
+                            <field name="is_alumno" string="Alumno"/>
+                            <field name="seguridad_social" string="Seguridad Social"/>
+                        </group>
                     </page>
                 </xpath>
             </field>

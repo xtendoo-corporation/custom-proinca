@@ -23,6 +23,9 @@ class Channel(models.Model):
         string="Precio/Hora",
     )
     modalidad = fields.Selection(
-        selection=[('teleformacion', 'Teleformación'), ('presencial', 'Presencial')],
+        selection=[
+            ('teleformacion', 'Teleformación'),
+            ('presencial', 'Presencial'),
+        ],
         string='Modalidad',
     )

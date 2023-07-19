@@ -7,46 +7,18 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='sale_order_template_id']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-            <xpath expr="//field[@name='validity_date']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-            <xpath expr="//field[@name='partner_invoice_id']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-            <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="slide_channel_id"/>
-            </xpath>
-            <xpath expr="//field[@name='partner_invoice_id']" position="before">
                 <field name="curso_partner_formacion_id"/>
-            </xpath>
-            <xpath expr="//field[@name='partner_invoice_id']" position="before">
                 <field name="gestor_id"/>
-            </xpath>
-            <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="tutor_id" domain="[('is_tutor', '=', True)]"/>
-            </xpath>
-            <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="slide_channel_n_cuestionario"/>
-            </xpath>
-            <xpath expr="//field[@name='payment_term_id']" position="before">
                 <field name="url"/>
             </xpath>
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="fecha_fin"/>
-            </xpath>
-            <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="fecha_inicio"/>
-            </xpath>
-            <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="p_hora"/>
-            </xpath>
-            <xpath expr="//field[@name='partner_shipping_id']" position="after">
                 <field name="modalidad"/>
             </xpath>
         </field>
