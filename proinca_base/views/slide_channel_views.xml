@@ -11,9 +11,9 @@
                         <field name="code"/>
                         <field name="url"/>
                         <field name="hours"/>
-                        <field name="n_cuestionario"/>
-                        <field name="p_hora"/>
-                        <field name="modalidad"/>
+                        <field name="questionnaire_number"/>
+                        <field name="price_hours"/>
+                        <field name="modality"/>
                     </group>
                 </page>
             </xpath>

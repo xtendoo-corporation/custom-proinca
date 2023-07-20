@@ -16,13 +16,13 @@ class Channel(models.Model):
     hours = fields.Integer(
         string='Horas',
     )
-    n_cuestionario = fields.Integer(
+    questionnaire_number = fields.Integer(
         string="Nº Cuestionario",
     )
-    p_hora = fields.Float(
+    price_hours = fields.Float(
         string="Precio/Hora",
     )
-    modalidad = fields.Selection(
+    modality = fields.Selection(
         selection=[
             ('teleformacion', 'Teleformación'),
             ('presencial', 'Presencial'),
