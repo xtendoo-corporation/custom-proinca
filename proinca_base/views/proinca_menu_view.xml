@@ -3,16 +3,6 @@
 
     <data>
 
-        <record id="view_proinca_pedido_tree" model="ir.ui.view">
-            <field name="name">formacion.pedido.tree</field>
-            <field name="model">sale.order</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="name"/>
-                </tree>
-            </field>
-        </record>
-
         <record id="view_proinca_curso_tree" model="ir.ui.view">
             <field name="name">formacion.curso.tree</field>
             <field name="model">slide.channel</field>
@@ -22,14 +12,14 @@
                     <field name="name"/>
                     <field name="url"/>
                     <field name="hours"/>
-                    <field name="n_cuestionario"/>
-                    <field name="p_hora"/>
-                    <field name="modalidad"/>
+                    <field name="questionnaire_number"/>
+                    <field name="price_hours"/>
+                    <field name="modality"/>
                 </tree>
             </field>
         </record>
 
-        <record id="action_proinca_chanel" model="ir.actions.act_window">
+        <record id="action_proinca_channel" model="ir.actions.act_window">
             <field name="name">Cursos</field>
             <field name="res_model">slide.channel</field>
             <field name="view_mode">tree,form</field>
@@ -39,6 +29,7 @@
             <field name="name">Alumnos</field>
             <field name="res_model">res.partner</field>
             <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_is_alumno' : 1, 'default_is_alumno' : True,}</field>
         </record>
 
         <record id="action_proinca_sale_order" model="ir.actions.act_window">
@@ -54,6 +45,17 @@
             <field name="arch" type="xml">
                 <xpath expr="//filter[@name='inactive']" position="before">
                    <filter string="Tutores" name="is_tutor" domain="[('is_tutor','=', 1)]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="res_partner_view_search_alumno" model="ir.ui.view">
+            <field name="name">res.partner.search.inherit.alumno</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='inactive']" position="before">
+                   <filter string="Alumnos" name="is_alumno" domain="[('is_alumno','=', 1)]"/>
                 </xpath>
             </field>
         </record>
@@ -76,11 +78,11 @@
                   sequence="10"
                   action="action_proinca_sale_order"/>
 
-        <menuitem id="proinca_menu_chanel"
+        <menuitem id="proinca_menu_channel"
                   name="Cursos"
                   parent="proinca_menu"
                   sequence="20"
-                  action="action_proinca_chanel"/>
+                  action="action_proinca_channel"/>
 
         <menuitem id="proinca_menu_alumnos"
                   name="Alumnos"

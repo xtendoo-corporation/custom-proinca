@@ -9,17 +9,17 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="slide_channel_id"/>
-                <field name="curso_partner_formacion_id"/>
-                <field name="gestor_id"/>
+                <field name="course_partner_formation_id"/>
+                <field name="manager_id"/>
                 <field name="tutor_id" domain="[('is_tutor', '=', True)]"/>
-                <field name="slide_channel_n_cuestionario"/>
+                <field name="questionnaire_number"/>
                 <field name="url"/>
             </xpath>
             <xpath expr="//field[@name='payment_term_id']" position="after">
-                <field name="fecha_fin"/>
-                <field name="fecha_inicio"/>
-                <field name="p_hora"/>
-                <field name="modalidad"/>
+                <field name="end_date"/>
+                <field name="start_date"/>
+                <field name="price_hours"/>
+                <field name="modality"/>
             </xpath>
         </field>
     </record>

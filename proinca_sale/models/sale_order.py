@@ -11,9 +11,9 @@ class SaleOrder(models.Model):
         comodel_name="slide.channel",
         string="Curso",
     )
-    slide_channel_n_cuestionario = fields.Integer(
+    questionnaire_number = fields.Integer(
         comodel_name="slide_channel",
-        related="slide_channel_id.n_cuestionario",
+        related="slide_channel_id.questionnaire_number",
     )
     url = fields.Char(
         string="URL",
@@ -22,26 +22,26 @@ class SaleOrder(models.Model):
         comodel_name="res.partner",
         string="Tutor",
     )
-    curso_partner_formacion_id = fields.Many2one(
+    course_partner_formation_id = fields.Many2one(
         comodel_name="res.partner",
         string="E. Impartidora",
     )
-    gestor_id = fields.Many2one(
+    manager_id = fields.Many2one(
         comodel_name="res.partner",
         string="Gestor",
     )
-    fecha_inicio = fields.Date(
+    start_date = fields.Date(
         string="Fecha de Inicio",
     )
-    fecha_fin = fields.Date(
+    end_date = fields.Date(
         string="Fecha de Fin",
     )
-    p_hora = fields.Float(
+    price_hours = fields.Float(
         comodel_name="slide_channel",
-        related="slide_channel_id.p_hora",
+        related="slide_channel_id.price_hours",
     )
-    modalidad = fields.Selection(
-        selection=lambda self: self.env['slide.channel'].fields_get(['modalidad'])['modalidad']['selection'],
+    modality = fields.Selection(
+        selection=lambda self: self.env['slide.channel'].fields_get(['modality'])['modality']['selection'],
         string='Modalidad',
-        related="slide_channel_id.modalidad",
+        related="slide_channel_id.modality",
     )

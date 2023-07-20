@@ -15,7 +15,6 @@
             "account",
             "website_slides",
             "proinca_base",
-            "proinca_menu",
         ],
     "data":
         [
