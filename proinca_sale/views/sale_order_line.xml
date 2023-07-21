@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record id="view_sale_order_form_custom" model="ir.ui.view">
+            <field name="name">sale.order.form.custom</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <!-- Pestaña "Participantes" -->
+                    <page string="Participantes" name="participantes">
+                        <field name="order_line" widget="one2many" mode="tree,kanban">
+                            <!-- Modificación de campos para las líneas de pedido -->
+                            <tree string="Participantes" editable="bottom">
+                                <field name="modality"/>
+                                <field name="participant_name"/>
+                                <field name="slide_channel_id"/>
+                                <field name="course_hours"/>
+                            </tree>
+                            <kanban>
+                                <field name="modality"/>
+                                <field name="participant_name"/>
+                                <field name="slide_channel_id"/>
+                                <field name="course_hours"/>
+                            </kanban>
+                        </field>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</odoo>

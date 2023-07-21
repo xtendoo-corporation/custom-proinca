@@ -32,11 +32,6 @@
             <field name="context">{'search_default_is_alumno' : 1, 'default_is_alumno' : True,}</field>
         </record>
 
-        <record id="action_proinca_sale_order" model="ir.actions.act_window">
-            <field name="name">Pedidos</field>
-            <field name="res_model">sale.order</field>
-            <field name="view_mode">tree,form</field>
-        </record>
 
         <record id="res_partner_view_search" model="ir.ui.view">
             <field name="name">res.partner.search.inherit</field>
@@ -72,11 +67,6 @@
                   sequence="20"
                   web_icon="proinca_menu,static/img/icon.png"/>
 
-        <menuitem id="proinca_menu_sale_order"
-                  name="Pedidos"
-                  parent="proinca_menu"
-                  sequence="10"
-                  action="action_proinca_sale_order"/>
 
         <menuitem id="proinca_menu_channel"
                   name="Cursos"

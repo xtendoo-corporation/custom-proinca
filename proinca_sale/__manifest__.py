@@ -19,6 +19,8 @@
     "data":
         [
             "views/sale_order_views.xml",
+            "views/menu_sale_order_view.xml",
+            "views/sale_order_line.xml",
         ],
     'installable': True,
     'active': False,
