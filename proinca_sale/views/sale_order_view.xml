@@ -20,6 +20,7 @@
                 <field name="start_date"/>
                 <field name="price_hours"/>
                 <field name="modality"/>
+                <field name="milestone_id"/>
             </xpath>
         </field>
     </record>

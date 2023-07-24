@@ -50,6 +50,10 @@ class SaleOrder(models.Model):
         compute='_compute_total',
         store=True,
     )
+    milestone_id = fields.Many2one(
+        comodel_name='proinca.milestone',
+        string='Hito',
+    )
 
     @api.depends('order_line.subtotal')
     def _compute_total(self):
