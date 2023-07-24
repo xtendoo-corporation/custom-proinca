@@ -7,12 +7,11 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    participant_name = fields.Many2one(
+    student_id = fields.Many2one(
         string='Alumno',
         comodel_name='res.partner',
-        domain="[('is_alumno','=', 1)]",
+        domain="[('is_alumno','=', True)]",
     )
-
     course_hours = fields.Integer(
         string='Horas',
         related="slide_channel_id.hours",
