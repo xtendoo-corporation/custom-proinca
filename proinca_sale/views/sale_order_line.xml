@@ -6,27 +6,24 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <notebook position="inside">
-                    <!-- Pestaña "Participantes" -->
                     <page string="Participantes" name="participantes">
                         <field name="order_line" widget="one2many" mode="tree,kanban">
-                            <!-- Modificación de campos para las líneas de pedido -->
                             <tree string="Participantes" editable="bottom">
-                                <field name="modality"/>
+<!--                                <field name="modality"/>-->
                                 <field name="participant_name"/>
                                 <field name="slide_channel_id"/>
                                 <field name="course_hours"/>
+                                <field name="price_hours"/>
+                                <field name="subtotal"/>
                             </tree>
-                            <kanban>
-                                <field name="modality"/>
-                                <field name="participant_name"/>
-                                <field name="slide_channel_id"/>
-                                <field name="course_hours"/>
-                            </kanban>
                         </field>
+                        <group>
+                            <field name="total" string="Total" readonly="1"/>
+                        </group>
                     </page>
                 </notebook>
             </field>
         </record>
-
     </data>
 </odoo>
+
