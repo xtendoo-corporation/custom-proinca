@@ -45,17 +45,7 @@ class SaleOrder(models.Model):
         string='Modalidad',
         related="slide_channel_id.modality",
     )
-    total = fields.Float(
-        string='Total',
-        compute='_compute_total',
-        store=True,
-    )
     milestone_id = fields.Many2one(
         comodel_name='proinca.milestone',
         string='Hito',
     )
-
-    @api.depends('order_line.subtotal')
-    def _compute_total(self):
-        for order in self:
-            order.total = sum(order.mapped('order_line.subtotal'))
