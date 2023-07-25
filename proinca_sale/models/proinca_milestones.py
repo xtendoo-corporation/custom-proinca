@@ -17,3 +17,6 @@ class ProincaMilestone(models.Model):
     days = fields.Integer(
         string='Dias entre hitos',
     )
+    date_field = fields.Date(
+        string='Fecha',
+    )

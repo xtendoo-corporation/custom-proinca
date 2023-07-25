@@ -21,7 +21,6 @@
             "security/ir.model.access.csv",
             "views/sale_order_view.xml",
             "views/menu_sale_order_view.xml",
-            "views/proinca_milestone_view.xml",
         ],
     'installable': True,
     'active': False,

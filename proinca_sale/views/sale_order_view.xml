@@ -5,7 +5,7 @@
     <record id="view_order_form" model="ir.ui.view">
         <field name="name">Sale Slide Channel</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="slide_channel_id"/>
@@ -16,12 +16,29 @@
                 <field name="url"/>
             </xpath>
             <xpath expr="//field[@name='payment_term_id']" position="after">
-                <field name="end_date"/>
                 <field name="start_date"/>
+                <field name="end_date"/>
                 <field name="price_hours"/>
                 <field name="modality"/>
-                <field name="milestone_id"/>
             </xpath>
+            <xpath expr="//notebook/page[@name='order_lines']" position="after">
+                <page string="Hitos" name="milestones">
+                    <field name="milestone_ids" widget="one2many">
+                        <tree string="Hitos" editable="bottom">
+                            <field name="date"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            <field name="partner_invoice_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="partner_shipping_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="sale_order_template_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
         </field>
     </record>
 </odoo>

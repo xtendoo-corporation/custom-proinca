@@ -7,7 +7,11 @@ from odoo import api, fields, models
 class SaleOrderMilestone(models.Model):
     _name = 'sale.order.milestone'
 
-    milestone_id = fields.Many2one(
-        comodel_name='proinca.milestone',
-        string='Hito',
+    sale_order_id = fields.Many2one(
+        comodel_name='sale.order',
+        string='Número de pedido',
+    )
+
+    date = fields.Date(
+        string='Fecha',
     )

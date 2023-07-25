@@ -38,14 +38,22 @@ class SaleOrder(models.Model):
     )
     price_hours = fields.Float(
         comodel_name="slide_channel",
-        related="slide_channel_id.price_hours",
+        string="Precio/Hora",
     )
     modality = fields.Selection(
         selection=lambda self: self.env['slide.channel'].fields_get(['modality'])['modality']['selection'],
         string='Modalidad',
         related="slide_channel_id.modality",
     )
-    milestone_id = fields.Many2one(
-        comodel_name='proinca.milestone',
-        string='Hito',
+    milestone_ids = fields.One2many(
+        comodel_name='sale.order.milestone',
+        inverse_name='sale_order_id',
+        string='Hitos',
     )
+
+    @api.onchange('slide_channel_id')
+    def _onchange_slide_channel_id(self):
+        if self.slide_channel_id:
+            self.update({'price_hours': self.slide_channel_id.price_hours})
+        else:
+            self.price_hours = 0.0
