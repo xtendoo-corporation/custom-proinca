@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
-
+<!-- Copyright 2023 Xtendoo - Jaime Millán
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
     <record id="action_proinca_sale_order" model="ir.actions.act_window">

@@ -57,3 +57,5 @@ class SaleOrder(models.Model):
             self.update({'price_hours': self.slide_channel_id.price_hours})
         else:
             self.price_hours = 0.0
+
+

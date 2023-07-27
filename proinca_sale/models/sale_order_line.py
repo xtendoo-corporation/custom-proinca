@@ -11,4 +11,11 @@ class SaleOrderLine(models.Model):
         string='Alumno',
         comodel_name='res.partner',
         domain="[('is_alumno','=', True)]",
+        # required=True,
+    )
+    user = fields.Char(
+        string='Usuario',
+    )
+    password = fields.Char(
+        string='Contraseña',
     )

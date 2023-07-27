@@ -16,6 +16,7 @@
         "views/slide_channel_views.xml",
         "views/partner_view.xml",
         "views/proinca_menu_view.xml",
+        "views/proinca_informes_menu_view.xml",
     ],
     'installable': True,
     'active': False,
