@@ -58,4 +58,11 @@ class SaleOrder(models.Model):
         else:
             self.price_hours = 0.0
 
+    @api.onchange('slide_channel_id')
+    def _onchange_slide_channel_id(self):
+        if self.slide_channel_id:
+            self.update({'questionnaire_number': self.slide_channel_id.questionnaire_number})
+        else:
+            self.questionnaire_number = 0
+
 
