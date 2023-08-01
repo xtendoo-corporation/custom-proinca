@@ -11,7 +11,13 @@ class SaleOrderMilestone(models.Model):
         comodel_name='sale.order',
         string='Número de pedido',
     )
-
     date = fields.Date(
         string='Fecha',
     )
+
+    def name_get(self):
+        result = []
+        for record in self:
+            name = record.date.strftime("%d-%m-%Y")
+            result.append((record.id, name))
+        return result

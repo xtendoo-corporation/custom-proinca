@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
     )
     questionnaire_number = fields.Integer(
         comodel_name="slide_channel",
-        related="slide_channel_id.questionnaire_number",
+        string="Nº Cuestionario",
     )
     url = fields.Char(
         string="URL",
@@ -53,16 +53,17 @@ class SaleOrder(models.Model):
 
     @api.onchange('slide_channel_id')
     def _onchange_slide_channel_id(self):
+        self.price_hours = 0
+        self.questionnaire_number = 0
         if self.slide_channel_id:
-            self.update({'price_hours': self.slide_channel_id.price_hours})
-        else:
-            self.price_hours = 0.0
+            self.price_hours = self.slide_channel_id.price_hours
+            self.questionnaire_number = self.slide_channel_id.questionnaire_number
 
-    @api.onchange('slide_channel_id')
-    def _onchange_slide_channel_id(self):
-        if self.slide_channel_id:
-            self.update({'questionnaire_number': self.slide_channel_id.questionnaire_number})
-        else:
-            self.questionnaire_number = 0
+            # self.update(
+            #     {
+            #         'price_hours': self.slide_channel_id.price_hours,
+            #         'questionnaire_number': self.slide_channel_id.questionnaire_number
+            #     }
+            # )
 
 

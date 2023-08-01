@@ -8,18 +8,18 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="slide_channel_id"/>
                 <field name="course_partner_formation_id"/>
                 <field name="manager_id"/>
                 <field name="tutor_id" domain="[('is_tutor', '=', True)]"/>
-                <field name="questionnaire_number"/>
                 <field name="url"/>
-            </xpath>
-            <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="start_date"/>
                 <field name="end_date"/>
-                <field name="price_hours"/>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="slide_channel_id"/>
                 <field name="modality"/>
+                <field name="price_hours"/>
+                <field name="questionnaire_number"/>
             </xpath>
             <xpath expr="//notebook/page[@name='order_lines']" position="after">
                 <page string="Hitos" name="milestones">
