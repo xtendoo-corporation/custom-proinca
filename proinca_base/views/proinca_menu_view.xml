@@ -120,3 +120,41 @@
     </data>
 
 </odoo>
+
+2023-08-01 06:13:23,590 1 ERROR devel odoo.modules.registry: Failed to load registry
+odoo_1                        | Traceback (most recent call last):
+odoo_1                        |   File "/opt/odoo/custom/src/odoo/odoo/modules/registry.py", line 90, in new
+odoo_1                        |     odoo.modules.load_modules(registry, force_demo, status, update_module)
+odoo_1                        |   File "/opt/odoo/custom/src/odoo/odoo/modules/loading.py", line 510, in load_modules
+odoo_1                        |     registry.setup_models(cr)
+odoo_1                        |   File "/opt/odoo/custom/src/odoo/odoo/modules/registry.py", line 297, in setup_models
+odoo_1                        |     model._setup_fields()
+odoo_1                        |   File "/opt/odoo/custom/src/odoo/odoo/models.py", line 2806, in _setup_fields
+odoo_1                        |     field.setup(self)
+odoo_1                        |   File "/opt/odoo/custom/src/odoo/odoo/fields.py", line 536, in setup
+odoo_1                        |     self.setup_related(model)
+odoo_1                        |   File "/opt/odoo/custom/src/odoo/odoo/fields.py", line 601, in setup_related
+odoo_1                        |     raise KeyError(
+odoo_1                        | KeyError: 'Field questionnaire_number referenced in related field definition sale.order.line.questionnaire_number does not exist.'
+odoo_1                        | 2023-08-01 06:13:23,593 1 CRITICAL devel odoo.service.server: Failed to initialize database `devel`.
+odoo_1                        | Traceback (most recent call last):
+odoo_1                        |   File "/opt/odoo/custom/src/odoo/odoo/service/server.py", line 1299, in preload_registries
+odoo_1                        |     registry = Registry.new(dbname, update_module=update_module)
+odoo_1                        |   File "<decorator-gen-14>", line 2, in new
+odoo_1                        |   File "/opt/odoo/custom/src/odoo/odoo/tools/func.py", line 87, in locked
+odoo_1                        |     return func(inst, *args, **kwargs)
+odoo_1                        |   File "/opt/odoo/custom/src/odoo/odoo/modules/registry.py", line 90, in new
+odoo_1                        |     odoo.modules.load_modules(registry, force_demo, status, update_module)
+odoo_1                        |   File "/opt/odoo/custom/src/odoo/odoo/modules/loading.py", line 510, in load_modules
+odoo_1                        |     registry.setup_models(cr)
+odoo_1                        |   File "/opt/odoo/custom/src/odoo/odoo/modules/registry.py", line 297, in setup_models
+odoo_1                        |     model._setup_fields()
+odoo_1                        |   File "/opt/odoo/custom/src/odoo/odoo/models.py", line 2806, in _setup_fields
+odoo_1                        |     field.setup(self)
+odoo_1                        |   File "/opt/odoo/custom/src/odoo/odoo/fields.py", line 536, in setup
+odoo_1                        |     self.setup_related(model)
+odoo_1                        |   File "/opt/odoo/custom/src/odoo/odoo/fields.py", line 601, in setup_related
+odoo_1                        |     raise KeyError(
+odoo_1                        | KeyError: 'Field questionnaire_number referenced in related field definition sale.order.line.questionnaire_number does not exist.'
+
+
