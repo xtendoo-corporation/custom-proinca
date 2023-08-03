@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_partner_form_tutor" model="ir.ui.view">
+            <field name="name">partner.form.tutor</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <div name="button_box" position="inside">
+                    <button name="action_open_student_sale_order_line" type="object"
+                            class="oe_stat_button" icon="fa-graduation-cap"
+                            attrs="{'invisible': [('is_alumno', '=', False)]}">
+                        Información
+                    </button>
+                </div>
+            </field>
+        </record>
+
+        <record id="view_student_sale_order_line" model="ir.ui.view">
+            <field name="name">student.sale.order.line.tree</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="order_id"/>
+                    <field name="slide_channel_id"/>
+                    <field name="modality"/>
+                    <field name="product_uom_qty"/>
+                    <field name="student_status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_open_student_sale_order_line" model="ir.actions.act_window">
+            <field name="name">Cursos</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_student_sale_order_line"/>
+        </record>
+
+    </data>
+</odoo>

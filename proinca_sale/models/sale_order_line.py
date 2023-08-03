@@ -58,3 +58,15 @@ class SaleOrderLine(models.Model):
         string='Hitos',
         related='order_id.milestone_ids',
     )
+    student_status = fields.Selection(
+        selection=[
+            ('apto', 'Apto'),
+            ('no apto', 'No Apto'),
+        ],
+        string='Estado Alumno',
+    )
+    modality = fields.Selection(
+        selection=lambda self: self.env['slide.channel'].fields_get(['modality'])['modality']['selection'],
+        string='Modalidad',
+        related="slide_channel_id.modality",
+    )

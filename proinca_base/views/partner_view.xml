@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <odoo>
     <data>
         <record id="view_partner_form_tutor" model="ir.ui.view">
@@ -7,7 +6,7 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//notebook" position="inside">
+                <notebook position="inside">
                     <page string="Formación" name="formacion">
                         <group>
                             <field name="is_tutor" string="Tutor"/>
@@ -15,10 +14,8 @@
                             <field name="seguridad_social" string="Seguridad Social"/>
                         </group>
                     </page>
-                </xpath>
+                </notebook>
             </field>
         </record>
     </data>
 </odoo>
-
-
