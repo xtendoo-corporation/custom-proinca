@@ -28,7 +28,7 @@
             <field name="name">informes.seguimiento.tree</field>
             <field name="model">sale.order.line</field>
             <field name="arch" type="xml">
-                <tree create="false">
+                <tree create="false" editable="top">
                     <field name="start_date"/>
                     <field name="end_date"/>
                     <field name="slide_channel_id"/>
@@ -37,9 +37,12 @@
                     <field name="phone"/>
                     <field name="manager_id"/>
                     <field name="customer_id"/>
-                    <field name="questionnaire_number"/>
+                    <field name="questionnaire_number_done"/>
+                    <field name="questionnaire_percentage_completed"/>
                     <field name="hours"/>
+                    <field name="conexion_percentage"/>
                     <field name="milestone_ids" widget="many2many_tags"/>
+                    <field name="student_status"/>
                 </tree>
             </field>
         </record>
@@ -47,7 +50,7 @@
         <record id="action_proinca_tracking" model="ir.actions.act_window">
             <field name="name">Seguimiento</field>
             <field name="res_model">sale.order.line</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree</field>
         </record>
 
         <menuitem id="proinca_menu_tracking"

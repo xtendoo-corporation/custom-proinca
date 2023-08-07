@@ -51,6 +51,14 @@ class SaleOrder(models.Model):
         string='Hitos',
     )
 
+    curso_n_group = fields.Integer(
+        string="Nº Grupo",
+    )
+
+    curso_learning_action = fields.Integer(
+        string="Nº Acción Formativa",
+    )
+
     @api.onchange('slide_channel_id')
     def _onchange_slide_channel_id(self):
         self.price_hours = 0
@@ -58,12 +66,4 @@ class SaleOrder(models.Model):
         if self.slide_channel_id:
             self.price_hours = self.slide_channel_id.price_hours
             self.questionnaire_number = self.slide_channel_id.questionnaire_number
-
-            # self.update(
-            #     {
-            #         'price_hours': self.slide_channel_id.price_hours,
-            #         'questionnaire_number': self.slide_channel_id.questionnaire_number
-            #     }
-            # )
-
 

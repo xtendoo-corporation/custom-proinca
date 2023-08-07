@@ -20,6 +20,8 @@
                 <field name="modality"/>
                 <field name="price_hours"/>
                 <field name="questionnaire_number"/>
+                <field name="curso_n_group"/>
+                <field name="curso_learning_action"/>
             </xpath>
             <xpath expr="//notebook/page[@name='order_lines']" position="after">
                 <page string="Hitos" name="milestones">
