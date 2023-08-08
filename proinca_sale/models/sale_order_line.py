@@ -84,6 +84,15 @@ class SaleOrderLine(models.Model):
         string='% Conexión',
         compute='_compute_conexion_percentage',
     )
+    milestone_dates = fields.Selection(
+        string="Próximo Hito",
+        selection='_get_milestone_dates',
+    )
+
+    @api.model
+    def _get_milestone_dates(self):
+        milestone_dates = self.env['sale.order.milestone'].search([]).mapped('date')
+        return [(date.strftime('%Y-%m-%d'), date.strftime('%d-%m-%Y')) for date in milestone_dates]
 
     @api.depends('hours', 'product_uom_qty')
     def _compute_conexion_percentage(self):
@@ -97,7 +106,8 @@ class SaleOrderLine(models.Model):
     def _compute_percentage_completed(self):
         for record in self:
             if record.questionnaire_number:
-                record.questionnaire_percentage_completed = (record.questionnaire_number_done / record.questionnaire_number) * 100
+                record.questionnaire_percentage_completed = (
+                                                                    record.questionnaire_number_done / record.questionnaire_number) * 100
             else:
                 record.questionnaire_percentage_completed = 0.0
 
@@ -108,4 +118,3 @@ class SaleOrderLine(models.Model):
                 record.student_status = 'apto'
             else:
                 record.student_status = 'no apto'
-

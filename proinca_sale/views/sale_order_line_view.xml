@@ -42,6 +42,7 @@
                     <field name="hours"/>
                     <field name="conexion_percentage"/>
                     <field name="milestone_ids" widget="many2many_tags"/>
+                    <field name="milestone_dates"/>
                     <field name="student_status"/>
                 </tree>
             </field>
