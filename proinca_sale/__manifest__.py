@@ -18,6 +18,7 @@
         ],
     "data":
         [
+            "data/proinca_sale_data.xml",
             "security/ir.model.access.csv",
             "views/sale_order_view.xml",
             "views/menu_sale_order_view.xml",

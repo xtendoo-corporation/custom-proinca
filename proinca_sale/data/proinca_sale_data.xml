@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data noupdate="1">
-
-        <!-- Sequences for sale.order -->
-        <record id="seq_type_sale_franchise" model="ir.sequence.type">
-            <field name="name">Contract</field>
-            <field name="code">sale.order.franchise</field>
+        <record id="email_template_diploma_alumno" model="mail.template">
+            <field name="name">Diploma Envio</field>
+            <field name="model_id" ref="sale.model_sale_order_line"/>
+            <field name="email_from">{{ (object.user_id.email_formatted or object.company_id.email_formatted or
+                user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.student_id.mail }}</field>
+            <field name="subject">{{object.company_id.name}} Diploma (Ref {{object.slide_channel_id.name or 'n/a'}})</field>
+            <!-- <field name="report_template" ref="proinca_training.report_diploma"/>
+            <field name="report_name">Diploma</field>
+            <field name="report_template" ref="account_invoices"/> -->
+            <field name="lang">{{ object.student_id.lang }}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                <![CDATA[
+                <div style="font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">
+                    <p>Hola {{object.student_id.name}},</p>
+                    <p>Enviamos el diploma del curso vía mail</p>
+                    <p>Saludos</p>
+                </div>
+                ]]>
+            </field>
         </record>
-
-        <record id="seq_res_customer" model="ir.sequence">
-            <field name="name">Contrato Global</field>
-            <field name="code">sale.order.franchise</field>
-            <field name="padding">4</field>
-            <field name="prefix">CG</field>
-            <field name="company_id" eval="False"/>
-        </record>
-
     </data>
-</openerp>
+</odoo>
