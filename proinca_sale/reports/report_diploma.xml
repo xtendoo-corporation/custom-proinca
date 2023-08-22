@@ -16,25 +16,22 @@
                     color: black;
                     font-weight: bold;
                 }
+                .background-image {
+                    position: relative;
+                }
             </style>
-            <t t-call="web.html_container">
+             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
-
                     <t t-set="o" t-value="o.with_context(lang=lang)"/>
                     <t t-set="company" t-value="o.company_id"/>
-
-                    <div class="page" style="background: url(../static/src/img/how_to_fold_1.png) bottom no-repeat">
-                        <div class="oe_structure"/>
-
-                        <div>
-                            <img src="/proinca_sale/static/src/img/how_to_fold_1.png" style="width:100%" alt="How to Fold (1)"/>
+                    <t t-call="proinca_sale.diploma_layout">
+                        <div class="page">
+                            <div class="text-center">
+                                <img src="/proinca_sale/static/src/img/how_to_fold_1.png" />
+                            </div>
+                                <h1>Test</h1>
                         </div>
-
-                        <h2 class="mt-4">
-                            <span>Hola </span>
-                        </h2>
-
-                    </div>
+                    </t>
 
 
 <!--                        <img src="/proinca_sale/static/img/page_001.jpg"/>-->
