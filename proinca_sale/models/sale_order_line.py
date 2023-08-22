@@ -1,8 +1,9 @@
 # Copyright 2023 Jaime Millan (https://xtendoo.es)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from odoo.tools.misc import get_lang
 
 from odoo import api, fields, models
-from odoo.tools.misc import get_lang
+
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
@@ -108,7 +109,7 @@ class SaleOrderLine(models.Model):
         for record in self:
             if record.questionnaire_number:
                 record.questionnaire_percentage_completed = (
-                                                                    record.questionnaire_number_done / record.questionnaire_number) * 100
+                                                                record.questionnaire_number_done / record.questionnaire_number) * 100
             else:
                 record.questionnaire_percentage_completed = 0.0
 
@@ -159,4 +160,3 @@ class SaleOrderLine(models.Model):
             'target': 'new',
             'context': ctx,
         }
-

@@ -44,9 +44,19 @@
                     <field name="milestone_ids" widget="many2many_tags"/>
                     <field name="milestone_dates"/>
                     <field name="student_status"/>
-                    <button name="action_diploma_sent" type="object" string="Send by Email" />
+                    <button name="action_diploma_sent" type="object" string="Send by Email"/>
                 </tree>
             </field>
+        </record>
+
+        <record id="action_print_diplomas" model="ir.actions.report">
+            <field name="name">Imprimir diplomas</field>
+            <field name="model">sale.order.line</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">proinca_sale.report_diploma_alumno</field>
+            <field name="report_file">proinca_sale.report_diploma_alumno</field>
+            <field name="binding_model_id" ref="model_sale_order_line"/>
+            <field name="binding_type">report</field>
         </record>
 
         <record id="action_proinca_tracking" model="ir.actions.act_window">
