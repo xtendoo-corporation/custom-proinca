@@ -19,8 +19,25 @@
             </style>
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
-                    <div class="page">
-                        <img src="/proinca_sale/static/img/page_001.jpg"/>
+
+                    <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                    <t t-set="company" t-value="o.company_id"/>
+
+                    <div class="page" style="background: url(../static/src/img/how_to_fold_1.png) bottom no-repeat">
+                        <div class="oe_structure"/>
+
+                        <div>
+                            <img src="/proinca_sale/static/src/img/how_to_fold_1.png" style="width:100%" alt="How to Fold (1)"/>
+                        </div>
+
+                        <h2 class="mt-4">
+                            <span>Hola </span>
+                        </h2>
+
+                    </div>
+
+
+<!--                        <img src="/proinca_sale/static/img/page_001.jpg"/>-->
 <!--                         height="827" width="1170"-->
 <!--                             style="page-break-inside:avoid;color:midnightblue;width:1170px;height:827px;"-->
 <!--                        <div class="pos" style="position:absolute;z-index:0;left:0px;top:0px;">-->
@@ -103,7 +120,7 @@
 <!--                                impartir la formación-->
 <!--                            </span>-->
 <!--                        </div>-->
-                    </div>
+<!--                    </div>-->
 
 <!--                    <div class="page" t-if="o.slide_channel_id.description"-->
 <!--                         style="page-break-inside:avoid;color:midnightblue;width:1170px;height:827px;">-->
