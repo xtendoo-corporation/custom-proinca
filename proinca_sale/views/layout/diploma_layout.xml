@@ -3,8 +3,6 @@
     <data>
         <template id="proinca_sale.diploma_layout">
             <t t-name="document_format_cecotrans.layout_auto_invoice_cecotrans">
-
-
                 <div
                     t-attf-class="article o_report_layout_bold o company#{company.id}_layout {{ 'o_layout_background' if company.layout_background in ['Geometric', 'Custom'] else '' }}"
                     t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else ('/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else '') }});"
