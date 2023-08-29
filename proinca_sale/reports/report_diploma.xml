@@ -3,16 +3,16 @@
         <template id="report_diploma_alumno">
             <style type="text/css">
                 .pos {
-                    position: absolute;
-                    z-index: 0;
-                    border: 1px solid red;
+                position: absolute;
+                z-index: 0;
+                border: 1px solid red;
                 }
                 div {
-                    color: #2f5395;
+                color: #2f5395;
                 }
                 span {
-                    color: black;
-                    font-weight: bold;
+                color: black;
+                font-weight: bold;
                 }
             </style>
             <t t-call="web.html_container">
@@ -21,60 +21,72 @@
                     <t t-set="company" t-value="o.company_id"/>
                     <t t-call="proinca_sale.diploma_layout">
                         <div class="page">
-                            <div class="text-center" style="position: absolute; left: 0px; top: 0px">
+                            <div style="position: relative; width: 1170px; height: 827px;">
                                 <img src="/proinca_sale/static/src/img/page_001.jpg" height="827" width="1170"/>
-                            </div>
-                            <div class="pos" style="position:absolute;left:118px;top:355px;color:#2f5395">
-                                D./Dña. <span t-field="o.student_id.name" style="color: black;font-weight: bold"/>
-                            </div>
-                            <div class="pos" style="position:absolute;left:720px;top:355px;color:#2f5395">
-                                con NIF <span t-raw="o.student_id.vat" style="color: black;font-weight: bold"/>
-                            </div>
-                            <div class="pos" style="position:absolute;left:118px;top:396px;color:#2f5395">
-                                Que presta sus servicios en la empresa <span t-raw="o.order_id.partner_id.name" style="color: black;font-weight: bold"/>
-                            </div>
-                            <div class="pos" style="position:absolute;left:720px;top:396px;color:#2f5395">
-                                con CIF <span t-raw="o.order_id.partner_id.vat" style="color: black;font-weight: bold"/>
-                            </div>
-                            <div class="pos" style="position:absolute;left:118px;top:489px;color:#2f5395;white-space: nowrap;">
-                                Ha superado con evaluación positiva la Acción Formativa <span t-raw="o.slide_channel_id.name" style="color: black;font-weight: bold"/>
-                            </div>
-                            <div class="pos" style="position:absolute;left:118px;top:530px;color:#2f5395">
-                                Código AF / Grupo <span t-raw="o.order_id.curso_learning_action" style="color: black;font-weight: bold"/>/<span t-raw="o.order_id.curso_n_group" style="color: black;font-weight: bold"/>
-                            </div>
-                            <div class="pos" style="position:absolute;left:318px;top:530px;color:#2f5395">
-                                Durante los días <span t-esc="o.order_id.start_date.strftime('%d-%m-%Y') if o.order_id.start_date else 'Fecha no disponible'" style="color: black;font-weight: bold"/>
-                            </div>
-                            <div class="pos" style="position:absolute;left:538px;top:530px;color:#2f5395">
-                                al <span t-esc="o.order_id.end_date.strftime('%d-%m-%Y') if o.order_id.end_date else 'Fecha no disponible'" style="color: black;font-weight: bold"/>
-                            </div>
-                            <div class="pos" style="position:absolute;left:118px;top:561px;color:#2f5395">
-                                Con una duración total de <span t-raw="o.slide_channel_id.hours" style="color: black;font-weight: bold"/> horas en modalidad <span t-raw="o.slide_channel_id.modality" style="color: black;font-weight: bold"/>
-                            </div>
-                            <div class="pos" style="position:absolute;left:118px;top:623px;">
-                                <span style="font-weight:bold; font-family:Arial; font-size:12.1px; color:#2f5395">Contenidos impartidos (Ver dorso)</span>
-                            </div>
-                            <div class="pos" style="position:absolute;left:158px;top:650px;">
-                                <img src="/proinca_sale/static/src/img/FIRMA.png" height="60" width="100" border="0" usemap="#Map"/>
-                            </div>
-                            <div class="pos" style="position:absolute;left:118px;top:713px;">
-                                <span style="font-weight:bold; font-family:Arial; font-size:12.1px; color:#2f5395">Firma y sello de la entidad responsable de</span>
-                            </div>
-                            <div class="pos" style="position:absolute;left:511px;top:690px;">
-                                <span t-esc="o.order_id.end_date.strftime('%d-%m-%Y') if o.order_id.end_date else 'Fecha no disponible'"/>
-                            </div>
-                            <div class="pos" style="position:absolute;left:511px;top:713px;">
-                                <span style="font-weight:bold; font-family:Arial; font-size:12.6px; color:#2f5395">Fecha de Expedición</span>
-                            </div>
-                            <div class="pos" style="position:absolute;left:806px;top:713px;">
-                                <span style="font-weight:bold; font-family:Arial; font-size:12.6px; color:#2f5395">Firma del Trabajador/a</span>
-                            </div>
-                            <div class="pos" style="position:absolute;left:167px;top:730px;">
-                                <span style="font-weight:bold; font-family:Arial; font-size:12.1px; color:#2f5395">impartir la formación</span>
-                            </div>
-                            <div class="page" t-if="o.slide_channel_id.description"
-                                 style="page-break-inside:avoid;color:midnightblue;width:1170px;height:827px;">
-                                <img src="/proinca_sale/static/src/img/page_001.jpg" height="827" width="1170"/>
+                                <div class="pos"
+                                     style="position:absolute;left:118px;top:400px; font-size: 18px; max-width: 950px;">
+                                    D./Dña.
+                                    <span t-field="o.student_id.name" style="text-transform: uppercase"/>
+                                    con NIF <span t-raw="o.student_id.vat"/>, quien presta sus
+                                    servicios en la empresa
+                                    <span t-raw="o.order_id.partner_id.name" style="text-transform: uppercase"/>
+                                    con CIF <span t-raw="o.order_id.partner_id.vat"/>.<br/><br/>
+                                    Ha superado con evaluación positiva la Acción Formativa "<span
+                                    t-raw="o.slide_channel_id.name" style="text-transform: uppercase"/>",
+                                    correspondiente al Código AF / Grupo
+                                    <span t-raw="o.order_id.curso_learning_action"/>/
+                                    <span t-raw="o.order_id.curso_n_group"/>.<br/><br/>
+                                    Ha realizado el curso durante los días
+                                    <span
+                                        t-esc="o.order_id.start_date.strftime('%d-%m-%Y') if o.order_id.start_date else 'Fecha no disponible'"/>
+                                    al <span
+                                    t-esc="o.order_id.end_date.strftime('%d-%m-%Y') if o.order_id.end_date else 'Fecha no disponible'"/>
+                                    ,
+                                    con una duración total de
+                                    <span t-raw="o.slide_channel_id.hours"/>
+                                    horas en modalidad <span t-raw="o.slide_channel_id.modality"
+                                                            style="text-transform: uppercase"/>.
+                                </div>
+                                <div class="pos" style="position:absolute;left:118px;top:623px;">
+                                    <span style="font-weight:bold; font-family:Arial; font-size:12.1px; color:black">
+                                        Contenidos impartidos (Ver dorso)
+                                    </span>
+                                </div>
+                                <div class="pos" style="position:absolute;left:158px;top:650px;">
+                                    <img src="/proinca_sale/static/src/img/FIRMA.png" height="60" width="100" border="0"
+                                         usemap="#Map"/>
+                                </div>
+                                <div class="pos" style="position:absolute;left:118px;top:713px;">
+                                    <span style="font-weight:bold; font-family:Arial; font-size:12.1px; color:black">
+                                        Firma y
+                                        sello de la entidad responsable de
+                                    </span>
+                                </div>
+                                <div class="pos" style="position:absolute;left:511px;top:690px;">
+                                    <span
+                                        t-esc="o.order_id.end_date.strftime('%d-%m-%Y') if o.order_id.end_date else 'Fecha no disponible'"/>
+                                </div>
+                                <div class="pos" style="position:absolute;left:511px;top:713px;">
+                                    <span style="font-weight:bold; font-family:Arial; font-size:12.6px; color:black">
+                                        Fecha
+                                        de Expedición
+                                    </span>
+                                </div>
+                                <div class="pos" style="position:absolute;left:806px;top:713px;">
+                                    <span style="font-weight:bold; font-family:Arial; font-size:12.6px; color:black">
+                                        Firma
+                                        del Trabajador/a
+                                    </span>
+                                </div>
+                                <div class="pos" style="position:absolute;left:167px;top:730px;">
+                                    <span style="font-weight:bold; font-family:Arial; font-size:12.1px; color:black">
+                                        impartir la formación
+                                    </span>
+                                </div>
+                                <div class="page" t-if="o.slide_channel_id.description"
+                                     style="page-break-inside:avoid;color:black;width:1170px;height:827px;">
+                                    <img src="/proinca_sale/static/src/img/page_001.jpg" height="827" width="1170"/>
+                                </div>
                             </div>
                         </div>
                     </t>
