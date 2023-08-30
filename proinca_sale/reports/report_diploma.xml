@@ -24,7 +24,7 @@
                             <div style="position: relative; width: 1170px; height: 827px;">
                                 <img src="/proinca_sale/static/src/img/page_001.jpg" height="827" width="1170"/>
                                 <div class="pos"
-                                     style="position:absolute;left:118px;top:400px; font-size: 18px; max-width: 950px;">
+                                     style="position:absolute;left:118px;top:385px; font-size: 18px; max-width: 950px; text-align: center;">
                                     D./Dña.
                                     <span t-field="o.student_id.name" style="text-transform: uppercase"/>
                                     con NIF <span t-raw="o.student_id.vat"/>, quien presta sus
@@ -44,41 +44,41 @@
                                     ,
                                     con una duración total de
                                     <span t-raw="o.slide_channel_id.hours"/>
-                                    horas en modalidad <span t-raw="o.slide_channel_id.modality"
+                                    horas en modalidad de <span t-raw="o.slide_channel_id.modality"
                                                             style="text-transform: uppercase"/>.
                                 </div>
-                                <div class="pos" style="position:absolute;left:118px;top:623px;">
+                                <div class="pos" style="position:absolute;left:118px;top:593px; white-space: nowrap;">
                                     <span style="font-weight:bold; font-family:Arial; font-size:12.1px; color:black">
                                         Contenidos impartidos (Ver dorso)
                                     </span>
                                 </div>
-                                <div class="pos" style="position:absolute;left:158px;top:650px;">
-                                    <img src="/proinca_sale/static/src/img/FIRMA.png" height="60" width="100" border="0"
+                                <div class="pos" style="position:absolute;left:138px;top:610px;">
+                                    <img src="/proinca_sale/static/src/img/FIRMA.png" height="150" width="230" border="0"
                                          usemap="#Map"/>
                                 </div>
-                                <div class="pos" style="position:absolute;left:118px;top:713px;">
+                                <div class="pos" style="position:absolute;left:118px;top:693px;">
                                     <span style="font-weight:bold; font-family:Arial; font-size:12.1px; color:black">
                                         Firma y
                                         sello de la entidad responsable de
                                     </span>
                                 </div>
-                                <div class="pos" style="position:absolute;left:511px;top:690px;">
+                                <div class="pos" style="position:absolute;left:511px;top:720px;">
                                     <span
                                         t-esc="o.order_id.end_date.strftime('%d-%m-%Y') if o.order_id.end_date else 'Fecha no disponible'"/>
                                 </div>
-                                <div class="pos" style="position:absolute;left:511px;top:713px;">
+                                <div class="pos" style="position:absolute;left:511px;top:693px;">
                                     <span style="font-weight:bold; font-family:Arial; font-size:12.6px; color:black">
                                         Fecha
                                         de Expedición
                                     </span>
                                 </div>
-                                <div class="pos" style="position:absolute;left:806px;top:713px;">
+                                <div class="pos" style="position:absolute;left:806px;top:693px;">
                                     <span style="font-weight:bold; font-family:Arial; font-size:12.6px; color:black">
                                         Firma
                                         del Trabajador/a
                                     </span>
                                 </div>
-                                <div class="pos" style="position:absolute;left:167px;top:730px;">
+                                <div class="pos" style="position:absolute;left:167px;top:710px;">
                                     <span style="font-weight:bold; font-family:Arial; font-size:12.1px; color:black">
                                         impartir la formación
                                     </span>
