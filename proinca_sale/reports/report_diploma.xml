@@ -27,25 +27,30 @@
                                      style="position:absolute;left:118px;top:385px; font-size: 18px; max-width: 950px; text-align: center;">
                                     D./Dña.
                                     <span t-field="o.student_id.name" style="text-transform: uppercase"/>
-                                    con NIF <span t-raw="o.student_id.vat"/>, quien presta sus
+                                    con NIF<span t-raw="o.student_id.vat"/>, quien presta sus
                                     servicios en la empresa
                                     <span t-raw="o.order_id.partner_id.name" style="text-transform: uppercase"/>
-                                    con CIF <span t-raw="o.order_id.partner_id.vat"/>.<br/><br/>
+                                    con CIF<span t-raw="o.order_id.partner_id.vat"/>.
+                                    <br/>
+                                    <br/>
                                     Ha superado con evaluación positiva la Acción Formativa "<span
                                     t-raw="o.slide_channel_id.name" style="text-transform: uppercase"/>",
                                     correspondiente al Código AF / Grupo
                                     <span t-raw="o.order_id.curso_learning_action"/>/
-                                    <span t-raw="o.order_id.curso_n_group"/>.<br/><br/>
+                                    <span t-raw="o.order_id.curso_n_group"/>.
+                                    <br/>
+                                    <br/>
                                     Ha realizado el curso durante los días
                                     <span
                                         t-esc="o.order_id.start_date.strftime('%d-%m-%Y') if o.order_id.start_date else 'Fecha no disponible'"/>
-                                    al <span
-                                    t-esc="o.order_id.end_date.strftime('%d-%m-%Y') if o.order_id.end_date else 'Fecha no disponible'"/>
+                                    al
+                                    <span
+                                        t-esc="o.order_id.end_date.strftime('%d-%m-%Y') if o.order_id.end_date else 'Fecha no disponible'"/>
                                     ,
                                     con una duración total de
                                     <span t-raw="o.slide_channel_id.hours"/>
-                                    horas en modalidad de <span t-raw="o.slide_channel_id.modality"
-                                                            style="text-transform: uppercase"/>.
+                                    horas en modalidad de<span t-raw="o.slide_channel_id.modality"
+                                                               style="text-transform: uppercase"/>.
                                 </div>
                                 <div class="pos" style="position:absolute;left:118px;top:593px; white-space: nowrap;">
                                     <span style="font-weight:bold; font-family:Arial; font-size:12.1px; color:black">
@@ -53,7 +58,8 @@
                                     </span>
                                 </div>
                                 <div class="pos" style="position:absolute;left:138px;top:610px;">
-                                    <img src="/proinca_sale/static/src/img/FIRMA.png" height="150" width="230" border="0"
+                                    <img src="/proinca_sale/static/src/img/FIRMA.png" height="150" width="230"
+                                         border="0"
                                          usemap="#Map"/>
                                 </div>
                                 <div class="pos" style="position:absolute;left:118px;top:693px;">
@@ -83,9 +89,43 @@
                                         impartir la formación
                                     </span>
                                 </div>
-                                <div class="page" t-if="o.slide_channel_id.description"
-                                     style="page-break-inside:avoid;color:black;width:1170px;height:827px;">
-                                    <img src="/proinca_sale/static/src/img/page_001.jpg" height="827" width="1170"/>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                    <t t-set="company" t-value="o.company_id"/>
+                    <t t-call="proinca_sale.diploma_layout">
+                        <div class="page"
+                             style="page-break-inside:avoid;color:black;width:1170px;height:827px;">
+                            <div
+                                style="width: 1170px; height: 827px; background-color: white; border: 2px solid #2f5395;">
+                                <div style="position: absolute; left: 50px; top: 50px;">
+                                    <b>
+                                        <u>
+                                            <span
+                                                style="font-weight: bold; font-size: 20px; color: #2f5395; text-decoration: underline;">
+                                                Contenidos impartidos:
+                                            </span>
+                                        </u>
+                                    </b>
+                                    <br/>
+                                    <br/>
+                                    <t t-set="counter" t-value="1"/>
+                                    <t t-foreach="o.order_id.slide_channel_id" t-as="channel">
+                                        <t t-foreach="channel.slide_ids" t-as="slide">
+                                            <b>
+                                                <span style="color: #2f5395; text-transform: uppercase;">
+                                                    <span t-esc="'UD ' + str(counter) + '. ' + slide.name"/>
+                                                </span>
+                                            </b>
+                                            <br/>
+                                            <t t-set="counter" t-value="counter + 1"/>
+                                        </t>
+                                    </t>
                                 </div>
                             </div>
                         </div>

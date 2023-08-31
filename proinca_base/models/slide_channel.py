@@ -29,3 +29,4 @@ class Channel(models.Model):
         ],
         string='Modalidad',
     )
+
