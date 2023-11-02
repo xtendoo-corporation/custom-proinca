@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="is_formation"/>
+                <field name="is_formation" invisible="1"/>
                 <field name="course_partner_formation_id" attrs="{'invisible': [('is_formation', '=', False)]}"/>
                 <field name="manager_id" attrs="{'invisible': [('is_formation', '=', False)]}"/>
                 <field name="tutor_id" domain="[('is_tutor', '=', True)]"  attrs="{'invisible': [('is_formation', '=', False)]}"/>
