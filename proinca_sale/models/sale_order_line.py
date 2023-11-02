@@ -8,11 +8,14 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+    is_formation = fields.Boolean(
+        string="Es Formación",
+        related='order_id.is_formation',
+    )
     student_id = fields.Many2one(
         string='Alumno',
         comodel_name='res.partner',
         domain="[('is_alumno','=', True)]",
-        # required=True,
     )
     user = fields.Char(
         string='Usuario',
@@ -88,8 +91,13 @@ class SaleOrderLine(models.Model):
         string="Próximo Hito",
         selection='_get_milestone_dates',
     )
-    diploma_sended = fields.Boolean()
-    diploma_sended_date = fields.Date(string="Fecha Envio Diploma")
+    diploma_send = fields.Boolean(
+        string="Diploma Enviado",
+        default=False,
+    )
+    diploma_send_date = fields.Date(
+        string="Fecha Envio Diploma",
+    )
 
     @api.model
     def _get_milestone_dates(self):
@@ -146,8 +154,8 @@ class SaleOrderLine(models.Model):
         }
 
         self.write({
-            "diploma_sended": True,
-            "diploma_sended_date": fields.Date.today(),
+            "diploma_send": True,
+            "diploma_send_date": fields.Date.today(),
         })
 
         return {

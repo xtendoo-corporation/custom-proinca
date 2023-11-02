@@ -8,23 +8,24 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="course_partner_formation_id"/>
-                <field name="manager_id"/>
-                <field name="tutor_id" domain="[('is_tutor', '=', True)]"/>
-                <field name="url"/>
-                <field name="start_date"/>
-                <field name="end_date"/>
+                <field name="is_formation"/>
+                <field name="course_partner_formation_id" attrs="{'invisible': [('is_formation', '=', False)]}"/>
+                <field name="manager_id" attrs="{'invisible': [('is_formation', '=', False)]}"/>
+                <field name="tutor_id" domain="[('is_tutor', '=', True)]"  attrs="{'invisible': [('is_formation', '=', False)]}"/>
+                <field name="url"  attrs="{'invisible': [('is_formation', '=', False)]}"/>
+                <field name="start_date" attrs="{'invisible': [('is_formation', '=', False)]}"/>
+                <field name="end_date" attrs="{'invisible': [('is_formation', '=', False)]}"/>
             </xpath>
             <xpath expr="//field[@name='payment_term_id']" position="after">
-                <field name="slide_channel_id"/>
-                <field name="modality"/>
-                <field name="price_hours"/>
-                <field name="questionnaire_number"/>
-                <field name="curso_n_group"/>
-                <field name="curso_learning_action"/>
+                <field name="slide_channel_id"  attrs="{'invisible': [('is_formation', '=', False)]}"/>
+                <field name="modality" attrs="{'invisible': [('is_formation', '=', False)]}"/>
+                <field name="price_hours" attrs="{'invisible': [('is_formation', '=', False)]}"/>
+                <field name="questionnaire_number" attrs="{'invisible': [('is_formation', '=', False)]}"/>
+                <field name="curso_n_group" attrs="{'invisible': [('is_formation', '=', False)]}"/>
+                <field name="curso_learning_action" attrs="{'invisible': [('is_formation', '=', False)]}"/>
             </xpath>
             <xpath expr="//notebook/page[@name='order_lines']" position="after">
-                <page string="Hitos" name="milestones">
+                <page string="Hitos" name="milestones" attrs="{'invisible': [('is_formation', '=', False)]}">
                     <field name="milestone_ids" widget="one2many">
                         <tree string="Hitos" editable="bottom">
                             <field name="date"/>
@@ -33,13 +34,13 @@
                 </page>
             </xpath>
             <field name="partner_invoice_id" position="attributes">
-                <attribute name="invisible">1</attribute>
+                <attribute name="attrs">{'invisible': [('is_formation', '=', False)]}</attribute>
             </field>
             <field name="partner_shipping_id" position="attributes">
-                <attribute name="invisible">1</attribute>
+                <attribute name="attrs">{'invisible': [('is_formation', '=', False)]}</attribute>
             </field>
             <field name="sale_order_template_id" position="attributes">
-                <attribute name="invisible">1</attribute>
+                <attribute name="attrs">{'invisible': [('is_formation', '=', False)]}</attribute>
             </field>
         </field>
     </record>

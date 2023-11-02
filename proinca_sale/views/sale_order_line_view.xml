@@ -4,6 +4,22 @@
 <odoo>
     <data>
 
+        <record id="view_sales_order_filter" model="ir.ui.view">
+            <field name="name">sale.order.list.select</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter" />
+            <field name="arch" type="xml">
+                <filter name="my_sale_orders_filter" position="after">
+                    <filter
+                        name="is_formation"
+                        string="Formación"
+                        domain="[('is_formation','=',True)]"
+                        help="Ventas de formación"
+                    />
+                </filter>
+            </field>
+        </record>
+
         <record id="view_sale_order_form_custom" model="ir.ui.view">
             <field name="name">sale.order.form.custom</field>
             <field name="model">sale.order</field>
@@ -11,16 +27,17 @@
             <field name="arch" type="xml">
                 <xpath expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='name']"
                        position="after">
-                    <field name="student_id"/>
+                    <field name="student_id" optional="show"
+                           attrs="{'column_invisible': [('parent.is_formation', '=', False)]}"/>
                 </xpath>
-                <xpath expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='price_unit']"
-                       position="attributes">
-                    <attribute name="string">€/Horas</attribute>
-                </xpath>
-                <xpath expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='product_uom_qty']"
-                       position="attributes">
-                    <attribute name="string">Horas</attribute>
-                </xpath>
+<!--                <xpath expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='price_unit']"-->
+<!--                       position="attributes">-->
+<!--                    <attribute name="string">€/Horas</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='product_uom_qty']"-->
+<!--                       position="attributes">-->
+<!--                    <attribute name="string">Horas</attribute>-->
+<!--                </xpath>-->
             </field>
         </record>
 

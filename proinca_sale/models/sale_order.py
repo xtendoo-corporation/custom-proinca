@@ -7,6 +7,9 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    is_formation = fields.Boolean(
+        string="Es Formación",
+    )
     slide_channel_id = fields.Many2one(
         comodel_name="slide.channel",
         string="Curso",
