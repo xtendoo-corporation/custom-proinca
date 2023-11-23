@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_project_form">
+            <field name="name">project.form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page[@name='timesheet']" position="after">
+                    <page string="Smart Button">
+                        <button name="open_partner_project_link" string="Partner Project Link" type="action" class="oe_highlight"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
