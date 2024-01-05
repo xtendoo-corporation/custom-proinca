@@ -11,6 +11,7 @@
     "depends": [
         "base",
         "account",
+        "web",
     ],
     "data": [
         "views/invoice/invoice_document.xml",

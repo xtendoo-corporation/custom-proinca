@@ -5,7 +5,7 @@
 		<template id="proinca_document_format.report_invoice_document_inherit" inherit_id="account.report_invoice_document">
 			<xpath expr="//p[@name='payment_communication']" position="before">
 				<p t-if="o.payment_mode_id" name="payment_mode" class="mt-4">
-                    <b><span t-field="o.payment_mode_id"/></b>
+                    <span>Modo de pago: </span><b><span t-field="o.payment_mode_id"/></b>
                 </p>
 			</xpath>
 		</template>
