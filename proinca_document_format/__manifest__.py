@@ -10,6 +10,7 @@
     "license": "AGPL-3",
     "depends": [
         "base",
+        "sale",
         "account",
         "web",
     ],

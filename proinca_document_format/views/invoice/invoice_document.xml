@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <odoo>
 	<data>
-		<!-- Herencia del tenplate del informe -->
+		<!-- Herencia del template del informe
 		<template id="proinca_document_format.report_invoice_document_inherit" inherit_id="account.report_invoice_document">
 			<xpath expr="//p[@name='payment_communication']" position="before">
 				<p t-if="o.payment_mode_id" name="payment_mode" class="mt-4">
@@ -9,5 +9,30 @@
                 </p>
 			</xpath>
 		</template>
+		-->
+
+        <!-- Herencia del template del informe de factura -->
+
+		<template id="proinca_document_format.report_invoice_document_inherit" inherit_id="account.report_invoice_document">
+
+            <xpath expr="//table[@name='invoice_line_table']" position="before">
+                <table class="table table-sm" style="page-break-inside: avoid;">
+                    <th class="border-black">
+                        <strong>ACCIONES FORMATIVAS Y ALUMNOS</strong>
+                    </th>
+                    <tr>
+                        <td><strong>Número:</strong><span t-field="o.sale_order_id.name"/></td>
+                    </tr>
+                </table>
+            </xpath>
+
+			<xpath expr="//p[@name='payment_communication']" position="before">
+				<p t-if="o.payment_mode_id" name="payment_mode" class="mt-4">
+                    <span>Modo de pago: </span><b><span t-field="o.payment_mode_id"/></b>
+                </p>
+			</xpath>
+
+		</template>
+
     </data>
 </odoo>
