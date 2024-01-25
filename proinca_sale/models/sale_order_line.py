@@ -124,7 +124,7 @@ class SaleOrderLine(models.Model):
     @api.depends('questionnaire_percentage_completed')
     def _compute_student_status(self):
         for record in self:
-            if record.questionnaire_percentage_completed >= 50:
+            if record.questionnaire_percentage_completed >= 75:
                 record.student_status = 'apto'
             else:
                 record.student_status = 'no apto'

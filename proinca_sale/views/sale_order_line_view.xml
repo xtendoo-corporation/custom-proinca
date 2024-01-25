@@ -7,7 +7,7 @@
         <record id="view_sales_order_filter" model="ir.ui.view">
             <field name="name">sale.order.list.select</field>
             <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_sales_order_filter" />
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
             <field name="arch" type="xml">
                 <filter name="my_sale_orders_filter" position="after">
                     <filter
@@ -30,14 +30,14 @@
                     <field name="student_id" optional="show"
                            attrs="{'column_invisible': [('parent.is_formation', '=', False)]}"/>
                 </xpath>
-<!--                <xpath expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='price_unit']"-->
-<!--                       position="attributes">-->
-<!--                    <attribute name="string">€/Horas</attribute>-->
-<!--                </xpath>-->
-<!--                <xpath expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='product_uom_qty']"-->
-<!--                       position="attributes">-->
-<!--                    <attribute name="string">Horas</attribute>-->
-<!--                </xpath>-->
+                <!--                <xpath expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='price_unit']"-->
+                <!--                       position="attributes">-->
+                <!--                    <attribute name="string">€/Horas</attribute>-->
+                <!--                </xpath>-->
+                <!--                <xpath expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='product_uom_qty']"-->
+                <!--                       position="attributes">-->
+                <!--                    <attribute name="string">Horas</attribute>-->
+                <!--                </xpath>-->
             </field>
         </record>
 
@@ -66,14 +66,32 @@
             </field>
         </record>
 
+        <record id="paperformat_diploma" model="report.paperformat">
+            <field name="name">Diploma</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">0</field>
+            <field name="disable_shrinking" eval="True"/>
+            <field name="dpi">96</field>
+        </record>
+
         <record id="action_print_diplomas" model="ir.actions.report">
             <field name="name">Imprimir diplomas</field>
             <field name="model">sale.order.line</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">proinca_sale.report_diploma_alumno</field>
             <field name="report_file">proinca_sale.report_diploma_alumno</field>
+            <field name="print_report_name">'Diploma - %s' % (object.order_id.name)</field>
+            <field name="attachment">'diploma.pdf'</field>
             <field name="binding_model_id" ref="model_sale_order_line"/>
             <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="paperformat_diploma"/>
         </record>
 
         <record id="action_proinca_tracking" model="ir.actions.act_window">

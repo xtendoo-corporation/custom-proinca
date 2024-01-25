@@ -1,29 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
 
-<!--
-  Copyright (C) 2014-2015 Akretion (http://www.akretion.com/)
-  @author: Alexis de Lattre <alexis.delattre@akretion.com>
-  The licence is in the file __manifest__.py
--->
+        <record id="paperformat_diploma" model="report.paperformat">
+            <field name="name">Diploma</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">0</field>
+            <field name="disable_shrinking" eval="True"/>
+            <field name="dpi">96</field>
+        </record>
 
-<openerp>
-<data>
+        <!--<report id="report_diploma"-->
+        <!--    model="sale.order.line"-->
+        <!--    string="Diploma"-->
+        <!--    report_type="qweb-pdf"-->
+        <!--    name="proinca_training.report_diploma_alumno"-->
+        <!--    file="proinca_training.report_diploma"-->
+        <!--    />-->
 
-<report id="report_diploma"
-    model="sale.order.line"
-    string="Diploma"
-    report_type="qweb-pdf"
-    name="proinca_training.report_diploma_alumno"
-    file="proinca_training.report_diploma"
-    />
+        <record id="report_diploma" model="ir.actions.report">
+            <field name="name">Diploma</field>
+            <field name="model">sale.order.line</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">proinca_base.diploma_report_view</field>
+            <field name="report_file">proinca_base.diploma_report_view</field>
+            <field name="print_report_name">'Diploma - %s' % (object.order_id.name)</field>
+            <field name="attachment">'diploma.pdf'</field>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="paperformat_diploma"/>
+        </record>
 
-<report id="report_curso"
-    model="proinca.curso"
-    string="Curso"
-    report_type="qweb-pdf"
-    name="proinca_training.report_curso_print"
-    file="proinca_training.report_curso"
-    />
 
-</data>
-</openerp>
+        <report id="report_curso"
+                model="proinca.curso"
+                string="Curso"
+                report_type="qweb-pdf"
+                name="proinca_training.report_curso_print"
+                file="proinca_training.report_curso"
+        />
+
+    </data>
+</odoo>
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+
+    <!--&lt;!&ndash;-->
+    <!--  Copyright (C) 2014-2015 Akretion (http://www.akretion.com/)-->
+    <!--  @author: Alexis de Lattre <alexis.delattre@akretion.com>-->
+    <!--  The licence is in the file __manifest__.py-->
+    <!--&ndash;&gt;-->
+
+    <!--<openerp>-->
+    <!--<data>-->
+
+    <!--<report id="report_diploma"-->
+    <!--    model="sale.order.line"-->
+    <!--    string="Diploma"-->
+    <!--    report_type="qweb-pdf"-->
+    <!--    name="proinca_training.report_diploma_alumno"-->
+    <!--    file="proinca_training.report_diploma"-->
+    <!--    />-->
+
+    <!--<report id="report_curso"-->
+    <!--    model="proinca.curso"-->
+    <!--    string="Curso"-->
+    <!--    report_type="qweb-pdf"-->
+    <!--    name="proinca_training.report_curso_print"-->
+    <!--    file="proinca_training.report_curso"-->
+    <!--    />-->
+
+    <!--</data>-->
+    <!--</openerp>-->

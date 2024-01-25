@@ -21,10 +21,10 @@
                     <t t-set="company" t-value="o.company_id"/>
                     <t t-call="proinca_sale.diploma_layout">
                         <div class="page">
-                            <div style="position: relative; width: 1170px; height: 827px;">
-                                <img src="/proinca_sale/static/src/img/page_001.jpg" height="827" width="1170"/>
+                            <div style="position: relative; width: 1095px; height: 793px;">
+                                <img src="/proinca_sale/static/src/img/page_001.jpg" height="793" width="1095"/>
                                 <div class="pos"
-                                     style="position:absolute;left:118px;top:385px; font-size: 18px; max-width: 950px; text-align: center;">
+                                     style="position:absolute;left:100px;top:385px; font-size: 18px; max-width: 950px; text-align: center;">
                                     D./Dña.
                                     <span t-field="o.student_id.name" style="text-transform: uppercase"/>
                                     con NIF<span t-raw="o.student_id.vat"/>, quien presta sus
@@ -52,39 +52,39 @@
                                     horas en modalidad de<span t-raw="o.slide_channel_id.modality"
                                                                style="text-transform: uppercase"/>.
                                 </div>
-                                <div class="pos" style="position:absolute;left:118px;top:593px; white-space: nowrap;">
+                                <div class="pos" style="position:absolute;left:100px;top:553px; white-space: nowrap;">
                                     <span style="font-weight:bold; font-family:Arial; font-size:12.1px; color:black">
                                         Contenidos impartidos (Ver dorso)
                                     </span>
                                 </div>
-                                <div class="pos" style="position:absolute;left:138px;top:610px;">
+                                <div class="pos" style="position:absolute;left:120px;top:570px;">
                                     <img src="/proinca_sale/static/src/img/FIRMA.png" height="150" width="230"
                                          border="0"
                                          usemap="#Map"/>
                                 </div>
-                                <div class="pos" style="position:absolute;left:118px;top:693px;">
+                                <div class="pos" style="position:absolute;left:100px;top:653px;">
                                     <span style="font-weight:bold; font-family:Arial; font-size:12.1px; color:black">
                                         Firma y
                                         sello de la entidad responsable de
                                     </span>
                                 </div>
-                                <div class="pos" style="position:absolute;left:511px;top:720px;">
+                                <div class="pos" style="position:absolute;left:493px;top:680px;">
                                     <span
                                         t-esc="o.order_id.end_date.strftime('%d-%m-%Y') if o.order_id.end_date else 'Fecha no disponible'"/>
                                 </div>
-                                <div class="pos" style="position:absolute;left:511px;top:693px;">
+                                <div class="pos" style="position:absolute;left:493px;top:653px;">
                                     <span style="font-weight:bold; font-family:Arial; font-size:12.6px; color:black">
                                         Fecha
                                         de Expedición
                                     </span>
                                 </div>
-                                <div class="pos" style="position:absolute;left:806px;top:693px;">
+                                <div class="pos" style="position:absolute;left:788px;top:653px;">
                                     <span style="font-weight:bold; font-family:Arial; font-size:12.6px; color:black">
                                         Firma
                                         del Trabajador/a
                                     </span>
                                 </div>
-                                <div class="pos" style="position:absolute;left:167px;top:710px;">
+                                <div class="pos" style="position:absolute;left:149px;top:670px;">
                                     <span style="font-weight:bold; font-family:Arial; font-size:12.1px; color:black">
                                         impartir la formación
                                     </span>
@@ -100,10 +100,24 @@
                     <t t-set="company" t-value="o.company_id"/>
                     <t t-call="proinca_sale.diploma_layout">
                         <div class="page"
-                             style="page-break-inside:avoid;color:black;width:1170px;height:827px;">
+                             style="page-break-inside:avoid;color:black;width:1095px;height:793px;">
                             <div
-                                style="width: 1170px; height: 827px; background-color: white; border: 2px solid #2f5395;">
-                                <div style="position: absolute; left: 50px; top: 50px;">
+                                style="width: 1095px; height: 793px; background-color: white; border: 2px solid #2f5395;">
+                                <div style="position: relative; left: 50px; top: 50px;">
+                                    <b>
+                                        <u>
+                                            <span
+                                                style="font-weight: bold; font-size: 20px; color: #2f5395; text-decoration: underline;">
+                                                Descripción del curso:
+                                            </span>
+                                        </u>
+                                    </b>
+                                    <span style="color: #2f5395;">
+                                        <span t-field="o.slide_channel_id.description"/>
+                                    </span>
+
+                                </div>
+                                <div style="position: relative; left: 50px; top: 50px;">
                                     <b>
                                         <u>
                                             <span

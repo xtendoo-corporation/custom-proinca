@@ -17,6 +17,9 @@ class ResPartner(models.Model):
     is_alumno = fields.Boolean(
         string='Alumno',
     )
+    DNI = fields.Char(
+        string='DNI',
+    )
     seguridad_social = fields.Char(
         string='Número de la Seguridad Social',
     )
