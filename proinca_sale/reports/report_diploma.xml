@@ -103,20 +103,20 @@
                              style="page-break-inside:avoid;color:black;width:1095px;height:793px;">
                             <div
                                 style="width: 1095px; height: 793px; background-color: white; border: 2px solid #2f5395;">
-                                <div style="position: relative; left: 50px; top: 50px;">
-                                    <b>
-                                        <u>
-                                            <span
-                                                style="font-weight: bold; font-size: 20px; color: #2f5395; text-decoration: underline;">
-                                                Descripción del curso:
-                                            </span>
-                                        </u>
-                                    </b>
-                                    <span style="color: #2f5395;">
-                                        <span t-field="o.slide_channel_id.description"/>
-                                    </span>
+<!--                                <div style="position: relative; left: 50px; top: 50px;">-->
+<!--                                    <b>-->
+<!--                                        <u>-->
+<!--                                            <span-->
+<!--                                                style="font-weight: bold; font-size: 20px; color: #2f5395; text-decoration: underline;">-->
+<!--                                                Descripción del curso:-->
+<!--                                            </span>-->
+<!--                                        </u>-->
+<!--                                    </b>-->
+<!--                                    <span style="color: #2f5395;">-->
+<!--                                        <span t-field="o.slide_channel_id.description"/>-->
+<!--                                    </span>-->
 
-                                </div>
+<!--                                </div>-->
                                 <div style="position: relative; left: 50px; top: 50px;">
                                     <b>
                                         <u>
