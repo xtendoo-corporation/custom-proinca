@@ -11,7 +11,7 @@
                         <group>
                             <field name="is_tutor" string="Tutor"/>
                             <field name="is_alumno" string="Alumno"/>
-                            <field name="DNI" string="DNI"/>
+                            <field name="dni" string="DNI"/>
                             <field name="seguridad_social" string="Seguridad Social"/>
                         </group>
                     </page>

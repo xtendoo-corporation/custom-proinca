@@ -16,17 +16,39 @@
 		<template id="proinca_document_format.report_invoice_document_inherit" inherit_id="account.report_invoice_document">
 
             <xpath expr="//table[@name='invoice_line_table']" position="before">
-                <table class="table table-sm" style="page-break-inside: avoid;">
-                    <th class="border-black">
+                <table t-if="o.sale_order_id" class="table table-sm" style="page-break-inside: avoid;">
+                    <th colspan="5" class="border-black">
                         <strong>ACCIONES FORMATIVAS Y ALUMNOS</strong>
                     </th>
                     <tr>
-                        <td><strong>Número:</strong><span t-field="o.sale_order_id.name"/></td>
+                        <td><strong>Número: </strong><span t-field="o.sale_order_id.curso_learning_action"/></td>
+                        <td><strong>Grupo: </strong><span t-field="o.sale_order_id.curso_n_group"/></td>
+                        <td><strong>Modalidad: </strong><span t-field="o.sale_order_id.modality"/></td>
+                        <td><strong>Horas: </strong><span t-field="o.sale_order_id.slide_channel_id.hours"/></td>
+                        <td><strong>Inicio: </strong><span t-field="o.sale_order_id.start_date"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>E. Organizadora: </strong><span t-field="o.sale_order_id.company_id"/></td>
+                        <td colspan="2"><strong>E. Impartidora: </strong><span t-field="o.sale_order_id.course_partner_formation_id"/></td>
+                        <td><strong>Fin: </strong><span t-field="o.sale_order_id.end_date"/></td>
                     </tr>
                 </table>
             </xpath>
 
 			<xpath expr="//p[@name='payment_communication']" position="before">
+
+                <t t-foreach="tax_totals['subtotals']" t-as="subtotal">
+                    <tr class="border-black o_subtotal">
+                        <td><strong t-esc="subtotal['name']"/></td>
+                        <td class="text-end">
+                            <span
+                                t-att-class="oe_subtotal_footer_separator"
+                                t-esc="subtotal['formatted_amount']"
+                            />
+                        </td>
+                    </tr>
+                </t>
+
 				<p t-if="o.payment_mode_id" name="payment_mode" class="mt-4">
                     <span>Modo de pago: </span><b><span t-field="o.payment_mode_id"/></b>
                 </p>
