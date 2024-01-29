@@ -34,7 +34,7 @@
 
         <template id="proinca_document_format.report_invoice_base_document">
             <t t-call="web.external_layout">
-                <t t-set="o" t-value="o.with_context(lang=lang)" />
+                <t t-set="o" t-value="o.with_context(lang='es_ES')" />
                 <t t-set="forced_vat" t-value="o.fiscal_position_id.foreign_vat"/> <!-- So that it appears in the footer of the report instead of the company VAT if it's set -->
                 <div class="row">
                     <t t-if="o.partner_shipping_id and (o.partner_shipping_id != o.partner_id)">
@@ -316,7 +316,7 @@
                 </p>
 
                 <p name="factura_bonificable" class="mt-12">
-                    <b><span>FACTURA BONIFICABLE A PARTIR DEL BOLETIN DE COTIZACION DEL MES DE LA PRESENTE FACTURA Y HASTA EL BOLETIN DE DICIEMBRE DEL PRESENTE EJERCICIO</span></b>
+                    <b><span>FACTURA BONIFICABLE A PARTIR DEL BOLETIN DE COTIZACIÓN DEL MES DE LA PRESENTE FACTURA Y HASTA EL BOLETIN DE DICIEMBRE DEL PRESENTE EJERCICIO</span></b>
                 </p>
 
 				<p t-if="o.payment_mode_id" name="payment_mode" class="mt-4">

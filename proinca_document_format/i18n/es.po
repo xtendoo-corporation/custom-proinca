@@ -1,0 +1,265 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* proinca_document_format
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-29 10:29+0000\n"
+"PO-Revision-Date: 2024-01-29 10:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: proinca_document_format
+#: model:ir.actions.report,print_report_name:proinca_document_format.account_invoices_bonificable
+msgid "(object._get_report_base_filename())"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
+msgid "<b><span>Cantidad Total a Bonificar: </span></b>"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
+msgid ""
+"<b><span>FACTURA BONIFICABLE A PARTIR DEL BOLETIN DE COTIZACIÓN DEL MES DE "
+"LA PRESENTE FACTURA Y HASTA EL BOLETIN DE DICIEMBRE DEL PRESENTE "
+"EJERCICIO</span></b>"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid ""
+"<span groups=\"account.group_show_line_subtotals_tax_excluded\">Amount</span>\n"
+"                                        <span groups=\"account.group_show_line_subtotals_tax_included\">Total Price</span>"
+msgstr ""
+"<span groups=\"account.group_show_line_subtotals_tax_excluded\">Total</span>\n"
+"                                        <span groups=\"account.group_show_line_subtotals_tax_included\">Total Precios</span>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<span>Description</span>"
+msgstr "<span>Descripción</span>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<span>Disc.%</span>"
+msgstr "<span>Desc.%</span>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_document_inherit
+msgid "<span>Modo de pago: </span>"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<span>Quantity</span>"
+msgstr "<span>Cantidad</span>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<span>Taxes</span>"
+msgstr "<span>Impuestos</span>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<span>Unit Price</span>"
+msgstr "<span>Precio Unitario</span>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr "<strong class=\"mr16\">Subtotal</strong>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid ""
+"<strong class=\"text-center\">Scan me with your banking "
+"app.</strong><br/><br/>"
+msgstr ""
+"<strong class=\"text-center\">Scan me with your banking "
+"app.</strong><br/><br/>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
+msgid "<strong>ACCIONES FORMATIVAS Y ALUMNOS</strong>"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<strong>Credit Note Date:</strong>"
+msgstr "<strong>Nota de Credito Fecha:</strong>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<strong>Customer Code:</strong>"
+msgstr "<strong>Código de cliente:</strong>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<strong>Date:</strong>"
+msgstr "<strong>Fecha:</strong>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<strong>Due Date:</strong>"
+msgstr "<strong>Fecha Vencimiento:</strong>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
+msgid "<strong>E. Impartidora: </strong>"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
+msgid "<strong>E. Organizadora: </strong>"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
+msgid "<strong>Fin: </strong>"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
+msgid "<strong>Grupo: </strong>"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
+msgid "<strong>Horas: </strong>"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<strong>Incoterm: </strong>"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
+msgid "<strong>Inicio: </strong>"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<strong>Invoice Date:</strong>"
+msgstr "<strong>Fecha Factura:</strong>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
+msgid "<strong>Modalidad: </strong>"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
+msgid "<strong>Número: </strong>"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<strong>Receipt Date:</strong>"
+msgstr "<strong>Fecha de recepción:</strong>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<strong>Reference:</strong>"
+msgstr "<strong>Referencia:</strong>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<strong>Shipping Address:</strong>"
+msgstr "<strong>Dirección de Envio:</strong>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<strong>Source:</strong>"
+msgstr "<strong>Origen:</strong>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "Amount Due"
+msgstr "Importe Pendiente"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "Cancelled Invoice"
+msgstr "Factura Cancelada"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "Credit Note"
+msgstr "Nota de Credito"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "Discount"
+msgstr "Descuento"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "Draft Invoice"
+msgstr "Factura Borrador"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "Due Date"
+msgstr "Fecha Vencimiento"
+
+#. module: proinca_document_format
+#: model:ir.actions.report,name:proinca_document_format.account_invoices_bonificable
+msgid "Factura Bonificable"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: proinca_document_format
+#: model:ir.model,name:proinca_document_format.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "Paid on"
+msgstr "Pagado el"
+
+#. module: proinca_document_format
+#: model:ir.model.fields,field_description:proinca_document_format.field_account_bank_statement_line__sale_order_id
+#: model:ir.model.fields,field_description:proinca_document_format.field_account_move__sale_order_id
+#: model:ir.model.fields,field_description:proinca_document_format.field_account_payment__sale_order_id
+msgid "Pedido de Venta"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "Please use the following communication for your payment :"
+msgstr "Por favor, utilice la siguiente comunicación para su pago:"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "Tax ID"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "Vendor Bill"
+msgstr "Factura de Proveedor"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "Vendor Credit Note"
+msgstr "Nota de Credito de Proveedor"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "if paid before"
+msgstr "si se paga antes del"
