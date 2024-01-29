@@ -71,7 +71,7 @@ msgstr "<span>Impuestos</span>"
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
 msgid "<span>Unit Price</span>"
-msgstr "<span>Precio Unitario</span>"
+msgstr "<span>Precio</span>"
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
