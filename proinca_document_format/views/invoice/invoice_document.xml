@@ -402,7 +402,7 @@
                 <p name="amount_untaxed_signed" class="mt-4"
                    style="border-style: solid; border-color: black; border-width: medium; color: white; background-color: black;">
                     <b>
-                        <span>CANTIDAD TOTAL A BONIFICAR: </span>
+                        <span>CANTIDAD TOTAL A BONIFICAR:</span>
                         <span
                             class="m-0" t-esc="o.amount_untaxed_signed"
                             t-options='{"widget": "monetary", "display_currency": o.company_currency_id}'
@@ -418,7 +418,8 @@
                     </b>
                 </p>
 
-                <p name="servicios_formacion" class="mt-12" style="page-break-inside: avoid;">
+                <p name="servicios_formacion" class="mt-12"
+                   style="page-break-inside: avoid; font-size: xx-small;">
                     <span>
                         Servicios de formación (incluye costes de organización e impartición)
                         Observaciones: La actividad está exenta de IVA, según art. 20, apartado 1.9 de la Ley 37/1992
@@ -442,8 +443,8 @@
                 </p>
 
                 <p t-if="o.payment_mode_id" name="payment_mode" class="mt-4">
-                    <span>Modo de pago:</span>
                     <b>
+                        <span>Modo de pago:</span>
                         <span t-field="o.payment_mode_id"/>
                     </b>
                 </p>
