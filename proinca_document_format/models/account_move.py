@@ -12,7 +12,6 @@ class AccountMove(models.Model):
         store=True,
     )
 
-    @api.model
     def write(self, vals):
         if self.invoice_line_ids.sale_line_ids:
             sale_order_id = self.mapped("invoice_line_ids.sale_line_ids.order_id")
