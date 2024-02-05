@@ -103,44 +103,44 @@
                              style="page-break-inside:avoid;color:black;width:1095px;height:793px;">
                             <div
                                 style="width: 1095px; height: 793px; background-color: white; border: 2px solid #2f5395;">
-<!--                                <div style="position: relative; left: 50px; top: 50px;">-->
-<!--                                    <b>-->
-<!--                                        <u>-->
-<!--                                            <span-->
-<!--                                                style="font-weight: bold; font-size: 20px; color: #2f5395; text-decoration: underline;">-->
-<!--                                                Descripción del curso:-->
-<!--                                            </span>-->
-<!--                                        </u>-->
-<!--                                    </b>-->
-<!--                                    <span style="color: #2f5395;">-->
-<!--                                        <span t-field="o.slide_channel_id.description"/>-->
-<!--                                    </span>-->
-
-<!--                                </div>-->
                                 <div style="position: relative; left: 50px; top: 50px;">
                                     <b>
                                         <u>
                                             <span
                                                 style="font-weight: bold; font-size: 20px; color: #2f5395; text-decoration: underline;">
-                                                Contenidos impartidos:
+                                                Descripción del curso:
                                             </span>
                                         </u>
                                     </b>
-                                    <br/>
-                                    <br/>
-                                    <t t-set="counter" t-value="1"/>
-                                    <t t-foreach="o.order_id.slide_channel_id" t-as="channel">
-                                        <t t-foreach="channel.slide_ids" t-as="slide">
-                                            <b>
-                                                <span style="color: #2f5395; text-transform: uppercase;">
-                                                    <span t-esc="'UD ' + str(counter) + '. ' + slide.name"/>
-                                                </span>
-                                            </b>
-                                            <br/>
-                                            <t t-set="counter" t-value="counter + 1"/>
-                                        </t>
-                                    </t>
+                                    <span style="color: #2f5395;">
+                                        <span t-field="o.slide_channel_id.description"/>
+                                    </span>
+
                                 </div>
+<!--                                <div style="position: relative; left: 50px; top: 50px;">-->
+<!--                                    <b>-->
+<!--                                        <u>-->
+<!--                                            <span-->
+<!--                                                style="font-weight: bold; font-size: 20px; color: #2f5395; text-decoration: underline;">-->
+<!--                                                Contenidos impartidos:-->
+<!--                                            </span>-->
+<!--                                        </u>-->
+<!--                                    </b>-->
+<!--                                    <br/>-->
+<!--                                    <br/>-->
+<!--                                    <t t-set="counter" t-value="1"/>-->
+<!--                                    <t t-foreach="o.order_id.slide_channel_id" t-as="channel">-->
+<!--                                        <t t-foreach="channel.slide_ids" t-as="slide">-->
+<!--                                            <b>-->
+<!--                                                <span style="color: #2f5395; text-transform: uppercase;">-->
+<!--                                                    <span t-esc="'UD ' + str(counter) + '. ' + slide.name"/>-->
+<!--                                                </span>-->
+<!--                                            </b>-->
+<!--                                            <br/>-->
+<!--                                            <t t-set="counter" t-value="counter + 1"/>-->
+<!--                                        </t>-->
+<!--                                    </t>-->
+<!--                                </div>-->
                             </div>
                         </div>
                     </t>
