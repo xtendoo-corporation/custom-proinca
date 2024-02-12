@@ -395,6 +395,12 @@
                             <span t-field="o.sale_order_id.end_date"/>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="5">
+                            <strong>Curso:</strong>
+                            <span t-field="o.sale_order_id.slide_chanel_id"/>
+                        </td>
+                    </tr>
                 </table>
             </xpath>
 
