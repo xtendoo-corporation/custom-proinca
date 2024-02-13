@@ -14,8 +14,7 @@ class SaleOrder(models.Model):
         comodel_name="slide.channel",
         string="Curso",
     )
-    questionnaire_number = fields.Integer(
-        comodel_name="slide_channel",
+    questionnaire_number = fields.Char(
         string="Nº Cuestionario",
     )
     url = fields.Char(
@@ -53,12 +52,10 @@ class SaleOrder(models.Model):
         inverse_name='sale_order_id',
         string='Hitos',
     )
-
-    curso_n_group = fields.Integer(
+    curso_n_group = fields.Char(
         string="Nº Grupo",
     )
-
-    curso_learning_action = fields.Integer(
+    curso_learning_action = fields.Char(
         string="Nº Acción Formativa",
     )
 
@@ -69,4 +66,3 @@ class SaleOrder(models.Model):
         if self.slide_channel_id:
             self.price_hours = self.slide_channel_id.price_hours
             self.questionnaire_number = self.slide_channel_id.questionnaire_number
-
