@@ -14,9 +14,9 @@ class SaleOrder(models.Model):
         comodel_name="slide.channel",
         string="Curso",
     )
-    # questionnaire_number = fields.Char(
-    #     string="Nº Cuestionario",
-    # )
+    questionnaire_number = fields.Char(
+        string="Nº Cuestionario",
+    )
     url = fields.Char(
         string="URL",
     )

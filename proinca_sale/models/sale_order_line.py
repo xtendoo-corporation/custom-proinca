@@ -26,7 +26,7 @@ class SaleOrderLine(models.Model):
     hours = fields.Integer(
         string='Horas',
     )
-    questionnaire_number = fields.Integer(
+    questionnaire_number = fields.Char(
         string="Nº Cuestionario",
         related='order_id.questionnaire_number',
     )
