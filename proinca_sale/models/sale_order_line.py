@@ -115,9 +115,10 @@ class SaleOrderLine(models.Model):
     @api.depends('questionnaire_number_done', 'questionnaire_number')
     def _compute_percentage_completed(self):
         for record in self:
-            if record.questionnaire_number:
+            if record.questionnaire_number != 0 and record.questionnaire_number_done != 0:
                 record.questionnaire_percentage_completed = (
-                                                                record.questionnaire_number_done / record.questionnaire_number) * 100
+                    (record.questionnaire_number_done / record.questionnaire_number) * 100
+                )
             else:
                 record.questionnaire_percentage_completed = 0.0
 
