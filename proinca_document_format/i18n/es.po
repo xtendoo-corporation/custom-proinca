@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-29 10:29+0000\n"
-"PO-Revision-Date: 2024-01-29 10:29+0000\n"
+"POT-Creation-Date: 2024-04-30 11:28+0000\n"
+"PO-Revision-Date: 2024-04-30 11:28+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,15 +22,12 @@ msgstr ""
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
-msgid "<b><span>Cantidad Total a Bonificar: </span></b>"
-msgstr ""
-
-#. module: proinca_document_format
-#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
 msgid ""
-"<b><span>FACTURA BONIFICABLE A PARTIR DEL BOLETIN DE COTIZACIÓN DEL MES DE "
-"LA PRESENTE FACTURA Y HASTA EL BOLETIN DE DICIEMBRE DEL PRESENTE "
-"EJERCICIO</span></b>"
+"<b>\n"
+"                        <span>FACTURA BONIFICABLE A PARTIR DEL BOLETIN DE COTIZACIÓN DEL MES DE LA PRESENTE FACTURA Y\n"
+"                            HASTA EL BOLETIN DE DICIEMBRE DEL PRESENTE EJERCICIO\n"
+"                        </span>\n"
+"                    </b>"
 msgstr ""
 
 #. module: proinca_document_format
@@ -43,9 +40,44 @@ msgstr ""
 "                                        <span groups=\"account.group_show_line_subtotals_tax_included\">Total Precios</span>"
 
 #. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
+msgid ""
+"<span>\n"
+"                        Servicios de formación (incluye costes de organización e impartición)\n"
+"                        Observaciones: La actividad está exenta de IVA, según art. 20, apartado 1.9 de la Ley 37/1992\n"
+"                        Información para contabilidad\n"
+"                        La cantidad recogida en el apartado \"bonificación a aplicar es aquella que se recogerá en la\n"
+"                        casilla 763 del sistema RED. Las empresas que no utilicen el sistema RED, indicarán esta\n"
+"                        cantidad en la casilla 601 del TC1 complementario con clave de liquidación (CL): 4 y con clave\n"
+"                        de control (CC): 95\n"
+"                        De conformidad con lo dispuesto en la legislación vigente en materia de protección de datos\n"
+"                        personales, desde PROINCA TRAINING CENTRE S.L.U. se le informa que sus datos serán tratados con\n"
+"                        la finalidad de gestionar la facturación derivada de la impartición de las acciones formativas\n"
+"                        reflejadas en el presente documento, quedando almacenados durante el tiempo que se mantenga la\n"
+"                        relación contractual o durante los años necesarios para cumplir con las obligaciones legales\n"
+"                        estipuladas. Así mismo, se le informa que sus datos personales no serán cedidos a terceros,\n"
+"                        salvo que se disponga en una obligación legal.\n"
+"                        En todo caso, podrá ejercer en cualquier momento, sus derechos de acceso, rectificación,\n"
+"                        supresión, limitación del tratamiento, portabilidad y oposición, los cuales podrá ejercer\n"
+"                        dirigiéndose a la siguiente dirección de correo electrónico: lopd@proinca.com o bien mediante\n"
+"                        escrito a: C/ República Argentina s/n Edificio Principado 10-4, 41930 Bormujos\n"
+"                    </span>"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
+msgid "<span>CANTIDAD TOTAL A BONIFICAR:</span>"
+msgstr ""
+
+#. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
-msgid "<span>Description</span>"
-msgstr "<span>Descripción</span>"
+msgid "<span>Cantidad</span>"
+msgstr ""
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
+msgid "<span>Descripción</span>"
+msgstr ""
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
@@ -55,13 +87,13 @@ msgstr "<span>Desc.%</span>"
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_document_inherit
-msgid "<span>Modo de pago: </span>"
+msgid "<span>Modo de pago:</span>"
 msgstr ""
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
-msgid "<span>Quantity</span>"
-msgstr "<span>Cantidad</span>"
+msgid "<span>Precio</span>"
+msgstr ""
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
@@ -70,22 +102,16 @@ msgstr "<span>Impuestos</span>"
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
-msgid "<span>Unit Price</span>"
-msgstr "<span>Precio</span>"
-
-#. module: proinca_document_format
-#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
 msgid "<strong class=\"mr16\">Subtotal</strong>"
-msgstr "<strong class=\"mr16\">Subtotal</strong>"
+msgstr ""
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
 msgid ""
-"<strong class=\"text-center\">Scan me with your banking "
-"app.</strong><br/><br/>"
+"<strong class=\"text-center\">Scan me with your banking app.</strong>\n"
+"                                <br/>\n"
+"                                <br/>"
 msgstr ""
-"<strong class=\"text-center\">Scan me with your banking "
-"app.</strong><br/><br/>"
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
@@ -96,6 +122,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
 msgid "<strong>Credit Note Date:</strong>"
 msgstr "<strong>Nota de Credito Fecha:</strong>"
+
+#. module: proinca_document_format
+#: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
+msgid "<strong>Curso:</strong>"
+msgstr ""
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
@@ -114,37 +145,37 @@ msgstr "<strong>Fecha Vencimiento:</strong>"
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
-msgid "<strong>E. Impartidora: </strong>"
+msgid "<strong>E. Impartidora:</strong>"
 msgstr ""
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
-msgid "<strong>E. Organizadora: </strong>"
+msgid "<strong>E. Organizadora:</strong>"
 msgstr ""
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
-msgid "<strong>Fin: </strong>"
+msgid "<strong>Fin:</strong>"
 msgstr ""
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
-msgid "<strong>Grupo: </strong>"
+msgid "<strong>Grupo:</strong>"
 msgstr ""
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
-msgid "<strong>Horas: </strong>"
+msgid "<strong>Horas:</strong>"
 msgstr ""
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_base_document
-msgid "<strong>Incoterm: </strong>"
+msgid "<strong>Incoterm:</strong>"
 msgstr ""
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
-msgid "<strong>Inicio: </strong>"
+msgid "<strong>Inicio:</strong>"
 msgstr ""
 
 #. module: proinca_document_format
@@ -154,12 +185,12 @@ msgstr "<strong>Fecha Factura:</strong>"
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
-msgid "<strong>Modalidad: </strong>"
+msgid "<strong>Modalidad:</strong>"
 msgstr ""
 
 #. module: proinca_document_format
 #: model_terms:ir.ui.view,arch_db:proinca_document_format.report_invoice_bonificable
-msgid "<strong>Número: </strong>"
+msgid "<strong>Número:</strong>"
 msgstr ""
 
 #. module: proinca_document_format
