@@ -40,7 +40,7 @@
                 <attribute name="attrs">{'invisible': [('is_formation', '=', False)]}</attribute>
             </field>
             <field name="sale_order_template_id" position="attributes">
-                <attribute name="attrs">{'invisible': [('is_formation', '=', False)]}</attribute>
+                <attribute name="attrs">{'invisible': [('is_formation', '=', True)]}</attribute>
             </field>
         </field>
     </record>
