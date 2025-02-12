@@ -1,13 +1,16 @@
 <odoo>
     <template id="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
         <xpath expr="//div[@class='page']" position="inside">
+
+            <div class="oe_structure"/>
+            <t t-if="doc.confirmed_by_user_id">
+             <p>
+                    Validado por el usuario <t t-esc="doc.confirmed_by_user_id.name"/> el dia <t t-esc="doc.date_order"/>
+                </p>
+            </t>
             <t t-if="doc.revision_count &gt; 0">
-                <div class="oe_structure"/>
                 <p>
                     Esta revisión de <t t-esc="doc.name"/> sustituye a la revisión <t t-esc="doc.get_previous_revision_name()"/>
-                </p>
-                <p>
-                    Validado por el usuario <t t-esc="doc.confirmed_by_user_id.name"/> el dia <t t-esc="doc.date_order"/>
                 </p>
             </t>
         </xpath>
