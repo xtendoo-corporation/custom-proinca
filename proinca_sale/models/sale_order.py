@@ -111,9 +111,8 @@ class SaleOrder(models.Model):
     def get_previous_revision_name(self):
         self.ensure_one()
         domain = ["|", ("active", "=", False), ("active", "=", True), ("current_revision_id", "=", self.id)]
-        revisions = self.search(domain)
-        revision_names = []
-        for revision in revisions:
+        revision = self.search(domain, limit=1)
+        if revision:
             print(f"Found revision: {revision.name} with revision_number: {revision.revision_number}")
-            revision_names.append(revision.name)
-        return revision_names
+            return revision.name
+        return revision.name
