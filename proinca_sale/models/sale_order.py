@@ -1,7 +1,7 @@
 # Copyright 2023 Jaime Millan (https://xtendoo.es)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, exceptions, _
 
 
 class SaleOrder(models.Model):
@@ -59,6 +59,12 @@ class SaleOrder(models.Model):
         string="Nº Acción Formativa",
     )
 
+    confirmed_by_user_id = fields.Many2one(
+        comodel_name='res.users',
+        string='Confirmed By',
+        readonly=True,
+    )
+
     @api.onchange('slide_channel_id')
     def _onchange_slide_channel_id(self):
         self.price_hours = 0
@@ -66,3 +72,48 @@ class SaleOrder(models.Model):
         if self.slide_channel_id:
             self.price_hours = self.slide_channel_id.price_hours
             self.questionnaire_number = self.slide_channel_id.questionnaire_number
+
+    def action_confirm(self):
+        for order in self:
+            if order.sale_order_template_id and order.sale_order_template_id.user_id:
+                if order.sale_order_template_id.user_id != self.env.user:
+                    raise exceptions.UserError(
+                        _("Solo el usuario autorizado puede confirmar este pedido de venta.")
+                    )
+            order.confirmed_by_user_id = self.env.user
+        return super(SaleOrder, self).action_confirm()
+
+    def write(self, vals):
+        for order in self:
+            if order.sale_order_template_id and order.sale_order_template_id.no_modification:
+                # Log para ver qué campos se están intentando modificar
+                print(f"Intentando modificar campos: {list(vals.keys())}")
+
+                allowed_fields = {'state', 'date_order','procurement_group_id', 'access_token','confirmed_by_user_id'}
+
+                modifying_fields = set(vals.keys())
+
+                if not modifying_fields.issubset(allowed_fields):
+                    raise exceptions.UserError(
+                        _("No se permite modificar este pedido de venta, si desea realizar algún cambio, cancele el pedido"
+                          "y cree una revisión del mismo.")
+                    )
+        return super(SaleOrder, self).write(vals)
+
+    def action_draft(self):
+        for order in self:
+            if order.sale_order_template_id and order.sale_order_template_id.no_modification:
+                raise exceptions.UserError(
+                    _("No se permite volver a convertir a presupuesto este pedido de venta, en su lugar, puede crear un revisión.")
+                )
+        return super(SaleOrder, self).action_draft()
+
+    def get_previous_revision_name(self):
+        self.ensure_one()
+        domain = ["|", ("active", "=", False), ("active", "=", True), ("current_revision_id", "=", self.id)]
+        revisions = self.search(domain)
+        revision_names = []
+        for revision in revisions:
+            print(f"Found revision: {revision.name} with revision_number: {revision.revision_number}")
+            revision_names.append(revision.name)
+        return revision_names

@@ -24,6 +24,7 @@
             "views/menu_sale_order_view.xml",
             "views/sale_order_line_view.xml",
             "views/partner_view.xml",
+            "views/sale_order_template_view.xml",
             "reports/report_diploma.xml",
             "views/layout/diploma_layout.xml",
         ],

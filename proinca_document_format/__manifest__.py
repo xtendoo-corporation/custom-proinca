@@ -16,6 +16,7 @@
     ],
     "data": [
         "views/invoice/invoice_document.xml",
+        "views/report_sale_order_document.xml",
 
     ],
     "installable": True,
