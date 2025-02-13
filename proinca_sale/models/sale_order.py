@@ -89,14 +89,15 @@ class SaleOrder(models.Model):
                 # Log para ver qué campos se están intentando modificar
                 print(f"Intentando modificar campos: {list(vals.keys())}")
 
-                allowed_fields = {'state', 'date_order','procurement_group_id', 'access_token','confirmed_by_user_id'}
+                allowed_fields = {'state', 'date_order','procurement_group_id', 'access_token','confirmed_by_user_id','current_revision_id',
+                                  'active'}
 
                 modifying_fields = set(vals.keys())
 
                 if not modifying_fields.issubset(allowed_fields):
                     raise exceptions.UserError(
                         _("No se permite modificar este pedido de venta, si desea realizar algún cambio, cancele el pedido"
-                          "y cree una revisión del mismo.")
+                          " y cree una revisión del mismo.")
                     )
         return super(SaleOrder, self).write(vals)
 
