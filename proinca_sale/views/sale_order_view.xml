@@ -11,13 +11,14 @@
                 <field name="is_formation" invisible="1"/>
                 <field name="course_partner_formation_id" attrs="{'invisible': [('is_formation', '=', False)]}"/>
                 <field name="manager_id" attrs="{'invisible': [('is_formation', '=', False)]}"/>
-                <field name="tutor_id" domain="[('is_tutor', '=', True)]"  attrs="{'invisible': [('is_formation', '=', False)]}"/>
-                <field name="url"  attrs="{'invisible': [('is_formation', '=', False)]}"/>
+                <field name="tutor_id" domain="[('is_tutor', '=', True)]"
+                       attrs="{'invisible': [('is_formation', '=', False)]}"/>
+                <field name="url" attrs="{'invisible': [('is_formation', '=', False)]}"/>
                 <field name="start_date" attrs="{'invisible': [('is_formation', '=', False)]}"/>
                 <field name="end_date" attrs="{'invisible': [('is_formation', '=', False)]}"/>
             </xpath>
             <xpath expr="//field[@name='payment_term_id']" position="after">
-                <field name="slide_channel_id"  attrs="{'invisible': [('is_formation', '=', False)]}"/>
+                <field name="slide_channel_id" attrs="{'invisible': [('is_formation', '=', False)]}"/>
                 <field name="modality" attrs="{'invisible': [('is_formation', '=', False)]}"/>
                 <field name="price_hours" attrs="{'invisible': [('is_formation', '=', False)]}"/>
                 <field name="questionnaire_number" attrs="{'invisible': [('is_formation', '=', False)]}"/>
@@ -42,6 +43,31 @@
             <field name="sale_order_template_id" position="attributes">
                 <attribute name="attrs">{'invisible': [('is_formation', '=', True)]}</attribute>
             </field>
+
+            <xpath expr="//header" position="inside">
+                <field name="sale_order_template_no_modification" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//button[@name='action_quotation_send']" position="replace">
+                <button name="action_quotation_send" type="object" string="Enviar por correo electrónico" class="btn-primary"
+                        attrs="{'invisible': ['|', ('sale_order_template_no_modification', '=', True), ('state', '!=', 'draft')]}"/>
+            </xpath>
+
+            <xpath expr="//header/button[@name='action_cancel']" position="before">
+                <button name="action_confirm" type="object" string="Aprobar"
+                        attrs="{'invisible': ['|', ('sale_order_template_no_modification', '=', False), ('state', '!=', 'draft')]}"/>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm' and @id='action_confirm']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('sale_order_template_no_modification', '=', True),
+                    ('state', 'not in', ['sent'])]}
+                </attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm' and not(@id)]" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('sale_order_template_no_modification', '=', True),
+                    ('state', 'not in', ['draft'])]}
+                </attribute>
+            </xpath>
+
         </field>
     </record>
 </odoo>

@@ -3,15 +3,27 @@
         <xpath expr="//div[@class='page']" position="inside">
 
             <div class="oe_structure"/>
-            <t t-if="doc.confirmed_by_user_id">
-             <p>
-                    Validado por el usuario <t t-esc="doc.confirmed_by_user_id.name"/> el dia <t t-esc="doc.date_order"/>
+            <t t-if="doc.state in ['draft','sent'] and doc.sale_order_template_no_modification == True">
+                <p>(Edición borrador de uso interno, no vinculante a efectos contractuales)</p>
+            </t>
+            <t t-if="doc.state == 'sale' and doc.sale_order_template_no_modification == True">
+                <p>Aprobado por
+                    <t t-esc="doc.confirmed_by_user_id.name"/>
+                    <t t-esc="(doc.date_order + relativedelta(hours=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
                 </p>
             </t>
             <t t-if="doc.revision_count &gt; 0">
                 <p>
-                    Esta revisión de <t t-esc="doc.name"/> sustituye a la revisión <t t-esc="doc.get_previous_revision_name()"/>
+                    Esta revisión de
+                    <t t-esc="doc.name"/>
+                    sustituye a la revisión
+                    <t t-esc="doc.get_previous_revision_name()"/>
                 </p>
+            </t>
+        </xpath>
+        <xpath expr="//h2[@class='mt-4']" position="after">
+            <t t-if="doc.state == 'cancel' and doc.sale_order_template_no_modification == True">
+                <p>(Cancelado)</p>
             </t>
         </xpath>
     </template>

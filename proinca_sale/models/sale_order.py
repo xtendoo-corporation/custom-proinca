@@ -90,7 +90,7 @@ class SaleOrder(models.Model):
                 print(f"Intentando modificar campos: {list(vals.keys())}")
 
                 allowed_fields = {'state', 'date_order','procurement_group_id', 'access_token','confirmed_by_user_id','current_revision_id',
-                                  'active'}
+                                  'active','confirmed_by_user_id','applied_coupon_ids'}
 
                 modifying_fields = set(vals.keys())
 
@@ -117,3 +117,36 @@ class SaleOrder(models.Model):
             print(f"Found revision: {revision.name} with revision_number: {revision.revision_number}")
             return revision.name
         return revision.name
+
+    sale_order_template_no_modification = fields.Boolean(
+        string="Template No Modification", compute="_compute_sale_order_template_no_modification", store=True
+    )
+
+    @api.depends("sale_order_template_id")
+    def _compute_sale_order_template_no_modification(self):
+        for order in self:
+            order.sale_order_template_no_modification = order.sale_order_template_id.no_modification if order.sale_order_template_id else False
+            print(f"sale_order_template_no_modification: {order.sale_order_template_no_modification}")
+
+    def unlink(self):
+        for order in self:
+            if order.confirmed_by_user_id and order.confirmed_by_user_id != self.env.user and order.sale_order_template_no_modification == True:
+                raise exceptions.UserError(
+                    _("Only the user who approved the budget can delete this sales order.")
+                )
+        return super(SaleOrder, self).unlink()
+
+    def action_cancel(self):
+        for order in self:
+            if order.confirmed_by_user_id and order.confirmed_by_user_id != self.env.user and order.sale_order_template_no_modification == True:
+                raise exceptions.UserError(
+                    _("Only the user who approved the budget can cancel this sales order.")
+                )
+        return super(SaleOrder, self).action_cancel()
+
+    def action_print(self):
+        if self.state == 'cancel':
+            raise exceptions.UserError(
+                   _("No se puede imprimir un pedido o presupuesto cancelado.")
+                   )
+        return super(SaleOrder, self).action_print()
