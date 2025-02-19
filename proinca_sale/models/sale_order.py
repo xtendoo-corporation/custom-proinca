@@ -132,7 +132,7 @@ class SaleOrder(models.Model):
         for order in self:
             if order.confirmed_by_user_id and order.confirmed_by_user_id != self.env.user and order.sale_order_template_no_modification == True:
                 raise exceptions.UserError(
-                    _("Only the user who approved the budget can delete this sales order.")
+                    _("Solo el usuario que aprobó el presupuesto puede eliminar este pedido de venta.")
                 )
         return super(SaleOrder, self).unlink()
 
@@ -140,7 +140,7 @@ class SaleOrder(models.Model):
         for order in self:
             if order.confirmed_by_user_id and order.confirmed_by_user_id != self.env.user and order.sale_order_template_no_modification == True:
                 raise exceptions.UserError(
-                    _("Only the user who approved the budget can cancel this sales order.")
+                    _("Solo el usuario que aprobó el presupuesto puede cancelar este pedido de venta.")
                 )
         return super(SaleOrder, self).action_cancel()
 
