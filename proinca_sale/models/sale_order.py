@@ -90,7 +90,7 @@ class SaleOrder(models.Model):
                 print(f"Intentando modificar campos: {list(vals.keys())}")
 
                 allowed_fields = {'state', 'date_order','procurement_group_id', 'access_token','confirmed_by_user_id','current_revision_id',
-                                  'active','confirmed_by_user_id','applied_coupon_ids'}
+                                  'active','confirmed_by_user_id','applied_coupon_ids','message_main_attachment_id'}
 
                 modifying_fields = set(vals.keys())
 
