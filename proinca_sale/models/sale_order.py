@@ -150,3 +150,34 @@ class SaleOrder(models.Model):
                    _("No se puede imprimir un pedido o presupuesto cancelado.")
                    )
         return super(SaleOrder, self).action_print()
+
+    def action_quotation_send(self):
+        self.ensure_one()
+
+        template = self.env.ref(
+            'sale.email_template_edi_sale')
+        compose_form_id = self.env.ref('mail.email_compose_message_wizard_form').id
+
+        if template and self.confirmed_by_user_id:
+            template.email_from = self.confirmed_by_user_id.email
+
+        ctx = {
+            'default_model': 'sale.order',
+            'default_res_id': self.id,
+            'default_use_template': bool(template.id),
+            'default_template_id': template.id,
+            'default_composition_mode': 'comment',
+            'mark_so_as_sent': True,
+            'proforma': self.env.context.get('proforma', False),
+            'force_email': True
+        }
+
+        return {
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'views': [(compose_form_id, 'form')],
+            'view_id': compose_form_id,
+            'target': 'new',
+            'context': ctx,
+        }
