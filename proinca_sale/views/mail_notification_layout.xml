@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+        <template id="custom_mail_notification_layout" inherit_id="mail.mail_notification_layout">
+            <xpath expr="//td[@t-if='has_button_access']" position="replace">
+            </xpath>
+            <xpath expr="//td[@t-if='has_button_access']" position="replace">
+            </xpath>
+        </template>
+    </data>
+</odoo>

@@ -27,7 +27,7 @@
             "views/sale_order_template_view.xml",
             "reports/report_diploma.xml",
             "views/layout/diploma_layout.xml",
-            "views/mail_template_inherit.xml",
+            "views/mail_notification_layout.xml",
         ],
     'installable': True,
     'active': False,
