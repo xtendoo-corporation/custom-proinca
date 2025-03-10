@@ -127,16 +127,10 @@
                                  t-if="o.invoice_date_due and o.move_type == 'out_invoice' and o.state == 'posted'"
                                  name="due_date">
                                 <strong>Fecha Vencimiento:</strong>
-                                <br></br>
+                                <br/>
                                 <t t-foreach="o.needed_terms" t-as="line">
                                     <span class="m-0" t-options='{"widget": "date"}' t-esc="line['date_maturity']"/>
-                                    <span>, Importe: </span>
-                                    <span class="m-0"
-                                          t-options='{"widget": "monetary", "display_currency": o.company_currency_id}'
-                                          t-esc="line_value['balance']"/>
-                                    <br></br>
                                 </t>
-<!--                                <p class="m-0" t-field="o.invoice_date_due"/>-->
                             </div>
                             <div class="col-auto col-3 mw-100 mb-2" t-if="o.invoice_origin" name="origin">
                                 <strong>Source:</strong>
