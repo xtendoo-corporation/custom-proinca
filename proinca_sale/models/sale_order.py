@@ -75,8 +75,14 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         for order in self:
+            print(f"Confirming order: {order.name}")
+            print(f"Sale Order Template: {order.sale_order_template_id}")
+            print(f"Confirmed by user: {order.confirmed_by_user_id} (current user: {self.env.user})")
             if order.sale_order_template_id and order.sale_order_template_id.user_id:
-                if order.sale_order_template_id.user_id != self.env.user and order.state != 'draft':
+                print(f"Authorized user: {order.sale_order_template_id.user_id}")
+                print(f"Current user: {self.env.user}")
+                print(f"Order state: {order.state}")
+                if order.sale_order_template_id.user_id != self.env.user:
                     raise exceptions.UserError(
                         _("Solo el usuario autorizado puede confirmar este pedido de venta.")
                     )
@@ -85,6 +91,11 @@ class SaleOrder(models.Model):
 
     def write(self, vals):
         for order in self:
+            print(f"Writing values to order: {order.name}")
+            print(f"Values being written: {vals}")
+            print(f"Sale Order Template: {order.sale_order_template_id}")
+            print(f"Confirmed by user: {order.confirmed_by_user_id} (current user: {self.env.user})")
+            print(f"Order state: {order.state}")
             if order.sale_order_template_id and order.sale_order_template_id.no_modification and order.state != 'draft':
                 # Log para ver qué campos se están intentando modificar
                 print(f"Intentando modificar campos: {list(vals.keys())}")
@@ -97,7 +108,7 @@ class SaleOrder(models.Model):
                 if not modifying_fields.issubset(allowed_fields):
                     raise exceptions.UserError(
                         _("No se permite modificar este pedido de venta, si desea realizar algún cambio, cancele el pedido"
-                          " y cree una revisión del mismo.")
+                          " y cree una revisión del mismo. O pida ayuda al usuario que lo aprobó.")
                     )
         return super(SaleOrder, self).write(vals)
 
