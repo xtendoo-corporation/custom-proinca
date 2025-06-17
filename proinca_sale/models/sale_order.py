@@ -76,7 +76,7 @@ class SaleOrder(models.Model):
     def action_confirm(self):
         for order in self:
             if order.sale_order_template_id and order.sale_order_template_id.user_id:
-                if order.sale_order_template_id.user_id != self.env.user:
+                if order.sale_order_template_id.user_id != self.env.user and order.state != 'draft':
                     raise exceptions.UserError(
                         _("Solo el usuario autorizado puede confirmar este pedido de venta.")
                     )
@@ -85,7 +85,7 @@ class SaleOrder(models.Model):
 
     def write(self, vals):
         for order in self:
-            if order.sale_order_template_id and order.sale_order_template_id.no_modification:
+            if order.sale_order_template_id and order.sale_order_template_id.no_modification and order.state != 'draft':
                 # Log para ver qué campos se están intentando modificar
                 print(f"Intentando modificar campos: {list(vals.keys())}")
 
@@ -138,6 +138,8 @@ class SaleOrder(models.Model):
 
     def action_cancel(self):
         for order in self:
+            print(f"Attempting to cancel order: {order.name}")
+            print(f"Confirmed by user: {order.confirmed_by_user_id} (current user: {self.env.user})")
             if order.confirmed_by_user_id and order.confirmed_by_user_id != self.env.user and order.sale_order_template_no_modification == True:
                 raise exceptions.UserError(
                     _("Solo el usuario que aprobó el presupuesto puede cancelar este pedido de venta.")
