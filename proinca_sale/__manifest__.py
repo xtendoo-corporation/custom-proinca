@@ -4,7 +4,7 @@
 
 {
     "name": "Presupuestos y Pedidos Proinca",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "license": "AGPL-3",
     "author": "Jaime Millan (https://xtendoo.es)",
     "category": "Proinca",

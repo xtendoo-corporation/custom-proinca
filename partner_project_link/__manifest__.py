@@ -1,6 +1,6 @@
 {
     'name': 'Partner Project Link',
-    'version': '16.0.1.0.0',
+    'version': '17.0.1.0.0',
     'author': 'Proinca',
     'category': 'Project',
     'description': """
