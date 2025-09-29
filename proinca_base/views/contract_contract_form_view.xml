@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="contract_contract_form_view_inherit" model="ir.ui.view">
         <field name="name">contract.contract form view inherit</field>
@@ -8,7 +9,7 @@
                 <button
                     name="recurring_create_invoice"
                     type="object"
-                    attrs="{'invisible': ['|', ('create_invoice_visibility', '=', False),('generation_type','!=','invoice')]}"
+                    invisible="create_invoice_visibility == False or generation_type != 'invoice'"
                     string="Crear facturas"
                 />
             </xpath>
