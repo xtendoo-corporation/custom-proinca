@@ -29,7 +29,7 @@
                 <page string="Hitos" name="milestones" invisible="is_formation == False">
                     <field name="milestone_ids" widget="one2many">
                         <tree string="Hitos" editable="bottom">
-                            <field name="date"/>
+                            <field name="date_order"/>
                         </tree>
                     </field>
                 </page>

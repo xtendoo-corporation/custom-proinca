@@ -7,7 +7,7 @@
             <field name="name">formacion.curso.tree</field>
             <field name="model">slide.channel</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="code"/>
                     <field name="name"/>
                     <field name="url"/>
@@ -15,20 +15,20 @@
                     <field name="questionnaire_number"/>
                     <field name="price_hours"/>
                     <field name="modality"/>
-                </tree>
+                </list>
             </field>
         </record>
 
         <record id="action_proinca_channel" model="ir.actions.act_window">
             <field name="name">Cursos</field>
             <field name="res_model">slide.channel</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <record id="action_proinca_alumnos" model="ir.actions.act_window">
             <field name="name">Alumnos</field>
             <field name="res_model">res.partner</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="context">{'search_default_is_alumno' : 1, 'default_is_alumno' : True,}</field>
         </record>
 
@@ -58,7 +58,7 @@
         <record id="action_proinca_res_partner" model="ir.actions.act_window">
             <field name="name">Tutores</field>
             <field name="res_model">res.partner</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="context">{'search_default_is_tutor' : 1, 'default_is_tutor' : True,}</field>
         </record>
 
