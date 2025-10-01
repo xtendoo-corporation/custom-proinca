@@ -1,7 +1,7 @@
 {
     "name": "Proinca Contacts Filter",
     "summary": """Proinca Contacts Filter""",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "description": """Proinca Contacts Filter""",
     "author": "Daniel Dominguez",
     "company": "Xtendoo",

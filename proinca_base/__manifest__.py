@@ -3,7 +3,7 @@
 
 {
     "name": "Formación Proinca",
-    "version": "17.0",
+    "version": "18.0",
     "depends": [
         "sale",
         "account",
