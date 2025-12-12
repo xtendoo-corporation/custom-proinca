@@ -21,10 +21,10 @@
                 </p>
             </t>
         </xpath>
-        <xpath expr="//h2[@class='mt-4']" position="after">
-            <t t-if="doc.state == 'cancel' and doc.sale_order_template_no_modification == True">
-                <p>(Cancelado)</p>
-            </t>
-        </xpath>
+<!--        <xpath expr="//h2[@class='mt-4']" position="after">-->
+<!--            <t t-if="doc.state == 'cancel' and doc.sale_order_template_no_modification == True">-->
+<!--                <p>(Cancelado)</p>-->
+<!--            </t>-->
+<!--        </xpath>-->
     </template>
 </odoo>
