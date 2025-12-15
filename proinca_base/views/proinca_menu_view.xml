@@ -65,7 +65,7 @@
         <menuitem id="proinca_menu"
                   name="Formación"
                   sequence="20"
-                  web_icon="proinca_menu,static/img/icon.png"/>
+                  web_icon="proinca_base,static/description/icon.png"/>
 
 
         <menuitem id="proinca_menu_channel"
