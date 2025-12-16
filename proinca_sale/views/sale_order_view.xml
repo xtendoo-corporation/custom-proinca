@@ -28,9 +28,9 @@
             <xpath expr="//notebook/page[@name='order_lines']" position="after">
                 <page string="Hitos" name="milestones" invisible="is_formation == False">
                     <field name="milestone_ids" widget="one2many">
-                        <tree string="Hitos" editable="bottom">
-                            <field name="date_order"/>
-                        </tree>
+                        <list string="Hitos" editable="bottom">
+                            <field name="date"/>
+                        </list>
                     </field>
                 </page>
             </xpath>
