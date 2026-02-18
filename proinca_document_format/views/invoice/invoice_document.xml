@@ -414,7 +414,7 @@
                     </th>
                     <tr>
                         <td>
-                            <strong>Número:</strong>
+                            <strong>Acción:</strong>
                             <span t-field="o.sale_order_id.curso_learning_action" />
                         </td>
                         <td>
