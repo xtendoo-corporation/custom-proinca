@@ -41,8 +41,7 @@
         <template id="proinca_document_format.report_invoice_base_document">
             <t t-call="web.external_layout">
                 <t t-set="o" t-value="o.with_context(lang='es_ES')" />
-                <t t-set="forced_vat"
-                    t-value="o.fiscal_position_id.foreign_vat" />
+                <t t-set="forced_vat" t-value="o.fiscal_position_id.foreign_vat" />
                 <div class="row">
                     <t t-if="o.partner_shipping_id and (o.partner_shipping_id != o.partner_id)">
                         <div class="col-6">
@@ -59,14 +58,6 @@
                             <t t-set="address">
                                 <address class="mb-0" t-field="o.partner_id"
                                     t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
-                                <div t-if="o.partner_id.vat"
-                                    id="partner_vat_address_not_same_as_shipping">
-                                    <t t-if="o.company_id.account_fiscal_country_id.vat_label"
-                                        t-esc="o.company_id.account_fiscal_country_id.vat_label"
-                                        id="inv_tax_id_label" />
-                                    <t t-else="">Tax ID</t>: <span
-                                        t-field="o.partner_id.vat" />
-                                </div>
                             </t>
                         </div>
                     </t>
@@ -75,14 +66,6 @@
                             <t t-set="address">
                                 <address class="mb-0" t-field="o.partner_id"
                                     t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
-                                <div t-if="o.partner_id.vat"
-                                    id="partner_vat_address_same_as_shipping">
-                                    <t t-if="o.company_id.account_fiscal_country_id.vat_label"
-                                        t-esc="o.company_id.account_fiscal_country_id.vat_label"
-                                        id="inv_tax_id_label" />
-                                    <t t-else="">Tax ID</t>: <span
-                                        t-field="o.partner_id.vat" />
-                                </div>
                             </t>
                         </div>
                     </t>
@@ -91,19 +74,42 @@
                             <t t-set="address">
                                 <address class="mb-0" t-field="o.partner_id"
                                     t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
-                                <div t-if="o.partner_id.vat" id="partner_vat_no_shipping">
-                                    <t t-if="o.company_id.account_fiscal_country_id.vat_label"
-                                        t-esc="o.company_id.account_fiscal_country_id.vat_label"
-                                        id="inv_tax_id_label" />
-                                    <t t-else="">Tax ID</t>: <span
-                                        t-field="o.partner_id.vat" />
-                                </div>
                             </t>
                         </div>
                     </t>
                 </div>
                 <div class="">
                     <div class="page">
+                        <style>
+                            .o_subtotal, .o_total { color: #017e84 !important; }
+                            .table-lighter-bordered, .table-lighter-bordered th,
+                            .table-lighter-bordered td, .table-lighter-bordered tr {
+                            border: none !important;
+                            border-left: 0px solid transparent !important;
+                            border-right: 0px solid transparent !important;
+                            }
+                            .table-lighter-bordered {
+                            border-top: 2px solid black !important;
+                            border-bottom: 2px solid #e0e0e0 !important;
+                            }
+                            .table-lighter-bordered tr {
+                            border-bottom: 1px solid #e0e0e0 !important;
+                            }
+                            .o_main_table thead tr th, .o_main_table thead tr, .o_main_table thead {
+                            border-bottom: 0px solid transparent !important;
+                            border-top: 0px solid transparent !important;
+                            color: #017e84 !important;
+
+                            /* Make tax totals blue */
+                            #total .ms-auto table, #total .ms-auto table tr, #total .ms-auto table
+                            td, #total .ms-auto table strong {
+                            color: #017e84 !important;
+                            }
+                            /* Dark top border on tax totals table */
+                            .o_total_table, #total .ms-auto table {
+                            border-top: 2px solid #333 !important;
+                            }
+                        </style>
                         <h2>
                             <span t-if="o.move_type == 'out_invoice' and o.state == 'posted'">
                                 Invoice</span>
@@ -165,7 +171,7 @@
 
                         <table class="table table-sm o_main_table table-borderless"
                             name="invoice_line_table">
-                            <thead>
+                            <thead style="color: #017e84;">
                                 <tr>
                                     <th name="th_description" class="text-start">
                                         <span>Descripción</span>
@@ -186,12 +192,7 @@
                                         <span>Taxes</span>
                                     </th>
                                     <th name="th_subtotal" class="text-end">
-                                        <span
-                                            groups="account.group_show_line_subtotals_tax_excluded">
-                                            Amount</span>
-                                        <span
-                                            groups="account.group_show_line_subtotals_tax_included">Total
-                                            Price</span>
+                                        <span>Total</span>
                                     </th>
                                 </tr>
                             </thead>
@@ -236,11 +237,7 @@
                                                     id="line_tax_ids" />
                                             </td>
                                             <td class="text-end o_price_total">
-                                                <span class="text-nowrap"
-                                                    t-field="line.price_subtotal"
-                                                    groups="account.group_show_line_subtotals_tax_excluded" />
-                                                <span class="text-nowrap" t-field="line.price_total"
-                                                    groups="account.group_show_line_subtotals_tax_included" />
+                                                <span class="text-nowrap" t-field="line.price_total" />
                                             </td>
                                         </t>
                                         <t t-if="line.display_type == 'line_section'">
@@ -397,9 +394,10 @@
             inherit_id="proinca_document_format.report_invoice_base_document">
 
             <xpath expr="//table[@name='invoice_line_table']" position="before">
-                <table t-if="o.sale_order_id" class="table table-sm"
+                <table t-if="o.sale_order_id"
+                    class="table table-sm table-lighter-bordered"
                     style="page-break-inside: avoid;">
-                    <th colspan="5" class="border-black">
+                    <th colspan="5" class="text-center">
                         <strong>ACCIONES FORMATIVAS Y ALUMNOS</strong>
                     </th>
                     <tr>
