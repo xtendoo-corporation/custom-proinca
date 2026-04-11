@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="menu_proinca_mileage_root"
+        name="Kilometraje PROINCA"
+        parent="hr_expense.menu_hr_expense_configuration"
+        sequence="90"
+        groups="proinca_hr_expense_mileage_rate.group_proinca_mileage_manager"
+    />
+
+    <menuitem
+        id="menu_proinca_mileage_category"
+        name="Categorías"
+        parent="menu_proinca_mileage_root"
+        action="action_proinca_mileage_category"
+        sequence="10"
+        groups="proinca_hr_expense_mileage_rate.group_proinca_mileage_manager"
+    />
+
+    <menuitem
+        id="menu_proinca_mileage_rate"
+        name="Tarifas"
+        parent="menu_proinca_mileage_root"
+        action="action_proinca_mileage_rate"
+        sequence="20"
+        groups="proinca_hr_expense_mileage_rate.group_proinca_mileage_manager"
+    />
+</odoo>

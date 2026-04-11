@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+proinca_mileage_category_manager,proinca.mileage.category (manager),model_proinca_mileage_category,proinca_hr_expense_mileage_rate.group_proinca_mileage_manager,1,1,1,1
+proinca_mileage_category_user,proinca.mileage.category (user),model_proinca_mileage_category,base.group_user,0,0,0,0
+proinca_mileage_rate_manager,proinca.mileage.rate (manager),model_proinca_mileage_rate,proinca_hr_expense_mileage_rate.group_proinca_mileage_manager,1,1,1,1
+proinca_mileage_rate_user,proinca.mileage.rate (user),model_proinca_mileage_rate,base.group_user,0,0,0,0

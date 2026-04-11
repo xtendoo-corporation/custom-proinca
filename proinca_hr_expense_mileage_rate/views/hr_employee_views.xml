@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_employee_form_proinca_mileage" model="ir.ui.view">
+        <field name="name">hr.employee.form.proinca.mileage</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='department_id']" position="after">
+                <field
+                    name="proinca_mileage_category_id"
+                    groups="proinca_hr_expense_mileage_rate.group_proinca_mileage_manager"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
