@@ -1,9 +1,9 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 {
-    "name": "PROINCA - HR Expense Mileage Rate",
+    "name": "Kilometraje en gastos",
     "summary": (
         "Asignación automática del precio por kilometraje "
-        "en gastos de empleado según categoría/convenio PROINCA"
+        "en gastos de empleado según la categoría configurada."
     ),
     "version": "18.0.1.0.0",
     "category": "Human Resources/Expenses",

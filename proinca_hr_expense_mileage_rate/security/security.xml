@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="module_proinca_hr_expense_mileage_rate" model="ir.module.category">
-        <field name="name">PROINCA</field>
+        <field name="name">Gastos</field>
         <field name="sequence">100</field>
     </record>
 
     <record id="group_proinca_mileage_manager" model="res.groups">
-        <field name="name">Gestor de Tarifas de Kilometraje</field>
+        <field name="name">Gestor de kilometraje</field>
         <field name="category_id" ref="module_proinca_hr_expense_mileage_rate"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         <field name="comment">
-            Permite acceder y mantener las categorías y tarifas de kilometraje PROINCA.
+            Permite acceder y mantener las categorías y tarifas de kilometraje.
             Asignar a perfiles de RRHH y Administración.
         </field>
     </record>

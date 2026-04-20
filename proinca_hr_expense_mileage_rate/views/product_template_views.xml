@@ -8,6 +8,20 @@
             <xpath expr="//field[@name='categ_id']" position="after">
                 <field name="proinca_is_mileage_product"/>
             </xpath>
+            <xpath expr="//sheet" position="inside">
+                <group string="Tarifas de kilometraje por categoría" invisible="not proinca_is_mileage_product">
+                    <field name="proinca_mileage_rate_ids" nolabel="1">
+                        <list editable="bottom">
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="category_id"/>
+                            <field name="price_per_km" string="€/km"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="active" column_invisible="True"/>
+                        </list>
+                    </field>
+                </group>
+            </xpath>
         </field>
     </record>
 </odoo>

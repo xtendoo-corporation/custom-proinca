@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <menuitem
-        id="menu_proinca_mileage_root"
-        name="Kilometraje PROINCA"
+        id="menu_proinca_mileage_category"
+        name="Kilometraje"
         parent="hr_expense.menu_hr_expense_configuration"
+        action="action_proinca_mileage_category"
         sequence="90"
         groups="proinca_hr_expense_mileage_rate.group_proinca_mileage_manager"
     />
 
-    <menuitem
-        id="menu_proinca_mileage_category"
-        name="Categorías"
-        parent="menu_proinca_mileage_root"
-        action="action_proinca_mileage_category"
-        sequence="10"
-        groups="proinca_hr_expense_mileage_rate.group_proinca_mileage_manager"
-    />
+    <record id="menu_proinca_mileage_root" model="ir.ui.menu">
+        <field name="active" eval="False"/>
+    </record>
 
-    <menuitem
-        id="menu_proinca_mileage_rate"
-        name="Tarifas"
-        parent="menu_proinca_mileage_root"
-        action="action_proinca_mileage_rate"
-        sequence="20"
-        groups="proinca_hr_expense_mileage_rate.group_proinca_mileage_manager"
-    />
+    <record id="menu_proinca_mileage_rate" model="ir.ui.menu">
+        <field name="active" eval="False"/>
+    </record>
 </odoo>

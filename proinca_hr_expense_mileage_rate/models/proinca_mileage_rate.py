@@ -14,7 +14,7 @@ class ProincaMileageRate(models.Model):
     """
 
     _name = "proinca.mileage.rate"
-    _description = "Tarifa de Kilometraje PROINCA"
+    _description = "Tarifa de kilometraje"
     _order = "category_id, date_from desc"
 
     company_id = fields.Many2one(
@@ -30,8 +30,8 @@ class ProincaMileageRate(models.Model):
         required=True,
         ondelete="restrict",
     )
-    product_id = fields.Many2one(
-        comodel_name="product.product",
+    product_tmpl_id = fields.Many2one(
+        comodel_name="product.template",
         string="Producto",
         required=True,
         ondelete="restrict",
@@ -82,7 +82,7 @@ class ProincaMileageRate(models.Model):
                     )
                 )
 
-    @api.constrains("category_id", "product_id", "company_id", "date_from", "date_to")
+    @api.constrains("category_id", "product_tmpl_id", "company_id", "date_from", "date_to")
     def _check_no_overlap(self):
         for rate in self:
             overlapping = self._find_overlapping_rates(rate)
@@ -101,7 +101,7 @@ class ProincaMileageRate(models.Model):
         domain = [
             ("id", "!=", rate.id),
             ("category_id", "=", rate.category_id.id),
-            ("product_id", "=", rate.product_id.id),
+            ("product_tmpl_id", "=", rate.product_tmpl_id.id),
             ("company_id", "=", rate.company_id.id),
             ("active", "=", True),
         ]
@@ -149,15 +149,15 @@ class ProincaMileageRate(models.Model):
         if isinstance(date, str):
             date = fields.Date.from_string(date)
 
-        product_id = (
-            product.product_variant_ids[0].id
+        product_tmpl_id = (
+            product.id
             if product._name == "product.template"
-            else product.id
+            else product.product_tmpl_id.id
         )
 
         domain = [
             ("category_id", "=", category.id),
-            ("product_id", "=", product_id),
+            ("product_tmpl_id", "=", product_tmpl_id),
             ("company_id", "=", company.id),
             ("active", "=", True),
         ]

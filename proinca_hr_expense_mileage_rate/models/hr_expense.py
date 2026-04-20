@@ -25,7 +25,7 @@ class HrExpense(models.Model):
                     record._apply_mileage_rate()
         return result
 
-    @api.onchange("product_id", "employee_id", "date")
+    @api.onchange("product_id", "employee_id", "date", "quantity")
     def _onchange_mileage_rate(self):
         for record in self:
             if record._is_mileage_expense():

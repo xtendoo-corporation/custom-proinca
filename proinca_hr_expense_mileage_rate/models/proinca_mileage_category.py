@@ -3,7 +3,7 @@ from odoo import fields, models
 
 
 class ProincaMileageCategory(models.Model):
-    """Categorías de kilometraje PROINCA.
+    """Categorías de kilometraje.
 
     Define los distintos convenios o grupos de empleados que pueden
     tener un precio por kilómetro diferente en sus gastos de desplazamiento.
@@ -11,7 +11,7 @@ class ProincaMileageCategory(models.Model):
     """
 
     _name = "proinca.mileage.category"
-    _description = "Categoría de Kilometraje PROINCA"
+    _description = "Categoría de kilometraje"
     _order = "name"
 
     name = fields.Char(
@@ -30,7 +30,6 @@ class ProincaMileageCategory(models.Model):
         comodel_name="proinca.mileage.rate",
         inverse_name="category_id",
         string="Tarifas",
-        readonly=True,
     )
     rate_count = fields.Integer(
         string="Nº de Tarifas",

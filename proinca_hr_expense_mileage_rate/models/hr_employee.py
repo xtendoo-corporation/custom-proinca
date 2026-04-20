@@ -3,7 +3,7 @@ from odoo import fields, models
 
 
 class HrEmployee(models.Model):
-    """Extensión de hr.employee con la categoría de kilometraje PROINCA."""
+    """Extensión de hr.employee con la categoría de kilometraje."""
 
     _inherit = "hr.employee"
 

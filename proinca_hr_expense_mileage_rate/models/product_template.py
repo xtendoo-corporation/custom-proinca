@@ -3,15 +3,20 @@ from odoo import fields, models
 
 
 class ProductTemplate(models.Model):
-    """Extensión de product.template para marcar productos de kilometraje PROINCA."""
+    """Extensión de product.template para marcar productos con tarifa de kilometraje."""
 
     _inherit = "product.template"
 
     proinca_is_mileage_product = fields.Boolean(
-        string="Producto de kilometraje regulado (PROINCA)",
+        string="Aplicar tarifa de kilometraje",
         default=False,
         help=(
-            "Si está activo, el precio por km se calculará automáticamente "
-            "según la categoría/convenio del empleado al registrar un gasto."
+            "Si está activo, el gasto calculará automáticamente el precio por km "
+            "según la categoría del empleado."
         ),
+    )
+    proinca_mileage_rate_ids = fields.One2many(
+        comodel_name="proinca.mileage.rate",
+        inverse_name="product_tmpl_id",
+        string="Tarifas por categoría",
     )
