@@ -35,7 +35,7 @@
                     <group string="Tarifas">
                         <field name="rate_ids" nolabel="1">
                             <list string="Tarifas" editable="bottom">
-                                <field name="company_id"/>
+                                <field name="company_id" column_invisible="True"/>
                                 <field name="category_id" column_invisible="True"/>
                                 <field name="product_tmpl_id"/>
                                 <field name="price_per_km" string="€/km"/>

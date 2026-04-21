@@ -5,7 +5,7 @@
         <field name="model">proinca.mileage.rate</field>
         <field name="arch" type="xml">
             <list string="Tarifas">
-                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="company_id" column_invisible="True"/>
                 <field name="category_id"/>
                 <field name="product_tmpl_id"/>
                 <field name="price_per_km" string="€/km"/>
@@ -24,7 +24,7 @@
                 <sheet>
                     <group>
                         <group string="Clasificación">
-                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="company_id" invisible="True"/>
                             <field name="category_id"/>
                             <field name="product_tmpl_id"/>
                         </group>
