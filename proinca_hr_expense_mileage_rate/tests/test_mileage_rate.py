@@ -75,14 +75,14 @@ class TestProincaMileageRate(TransactionCase):
             {
                 "name": "Kilometraje regulado",
                 "type": "service",
-                "proinca_is_mileage_product": True,
+                "can_be_expensed": True,
             }
         )
         cls.product_other = cls.env["product.product"].create(
             {
                 "name": "Dieta genérica",
                 "type": "service",
-                "proinca_is_mileage_product": False,
+                "can_be_expensed": True,
             }
         )
 
@@ -297,7 +297,7 @@ class TestProincaMileageRate(TransactionCase):
                 }
             )
 
-    def test_11_non_mileage_product_skips_rate(self):
+    def test_11_expense_product_without_rates_skips_mileage_logic(self):
         expense = self.env["hr.expense"].create(
             {
                 "name": "Dieta sin km",
@@ -344,6 +344,8 @@ class TestProincaMileageRate(TransactionCase):
         self.assertIsNotNone(rate_field)
         self.assertIsNone(rate_field.attrib.get("readonly"))
         self.assertIsNone(arch.find(".//notebook"))
+        self.assertIsNone(arch.find(".//sheet/field[@name='description']"))
+        self.assertIsNone(arch.find(".//sheet/group/group/field[@name='active']"))
         self.assertIsNotNone(list_node)
         self.assertEqual(list_node.attrib.get("editable"), "bottom")
         self.assertIn("company_id", embedded_fields)
@@ -420,9 +422,30 @@ class TestProincaMileageRate(TransactionCase):
     def test_16_labels_drop_internal_branding(self):
         """Los textos visibles no deben mostrar la marca interna."""
         employee_field = self.env["hr.employee"]._fields["proinca_mileage_category_id"]
-        product_field = self.env["product.template"]._fields["proinca_is_mileage_product"]
+        product_field = self.env["product.template"]._fields["can_be_expensed"]
 
         self.assertEqual(employee_field.string, "Categoría de kilometraje")
-        self.assertEqual(product_field.string, "Aplicar tarifa de kilometraje")
+        self.assertNotIn("proinca_is_mileage_product", self.env["product.template"]._fields)
         self.assertNotIn("PROINCA", product_field.help or "")
+
+    def test_17_rate_product_domain_uses_expense_flag(self):
+        """La tarifa debe filtrar productos por el flag estándar de gastos."""
+        product_field = self.env["proinca.mileage.rate"]._fields["product_tmpl_id"]
+
+        self.assertEqual(product_field.domain, "[('can_be_expensed', '=', True)]")
+
+    def test_18_product_view_uses_standard_expense_flag(self):
+        """La ficha de producto no debe depender del antiguo flag custom."""
+        view = self.env.ref(
+            "proinca_hr_expense_mileage_rate.view_product_template_form_proinca_mileage"
+        )
+        arch = ElementTree.fromstring(view.arch_db)
+        rates_group = arch.find(".//group[@string='Tarifas de kilometraje por categoría']")
+        expense_field = arch.find(".//field[@name='can_be_expensed']")
+
+        self.assertIsNotNone(expense_field)
+        self.assertEqual(expense_field.attrib.get("invisible"), "True")
+        self.assertIsNone(arch.find(".//field[@name='proinca_is_mileage_product']"))
+        self.assertIsNotNone(rates_group)
+        self.assertEqual(rates_group.attrib.get("invisible"), "not can_be_expensed")
 

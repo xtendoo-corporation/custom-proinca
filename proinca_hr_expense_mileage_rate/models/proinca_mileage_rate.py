@@ -35,7 +35,7 @@ class ProincaMileageRate(models.Model):
         string="Producto",
         required=True,
         ondelete="restrict",
-        domain="[('proinca_is_mileage_product', '=', True)]",
+        domain="[('can_be_expensed', '=', True)]",
     )
     price_per_km = fields.Float(
         string="Precio por km (€)",

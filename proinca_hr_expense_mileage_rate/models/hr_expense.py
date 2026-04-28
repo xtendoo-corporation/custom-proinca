@@ -32,11 +32,21 @@ class HrExpense(models.Model):
                 record._apply_mileage_rate()
 
     def _is_mileage_expense(self):
-        """Devuelve True si el producto está marcado como kilometraje regulado."""
+        """Devuelve True si el producto es de gasto y tiene tarifas activas."""
         if not self.product_id:
             return False
         template = self.product_id.product_tmpl_id
-        return bool(template.proinca_is_mileage_product)
+        if not template.can_be_expensed:
+            return False
+        return bool(
+            self.env["proinca.mileage.rate"].search(
+                [
+                    ("product_tmpl_id", "=", template.id),
+                    ("active", "=", True),
+                ],
+                limit=1,
+            )
+        )
 
     def _apply_mileage_rate(self):
         """Busca y aplica la tarifa de kilometraje al precio unitario.

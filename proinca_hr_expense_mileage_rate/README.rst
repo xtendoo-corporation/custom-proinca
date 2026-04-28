@@ -15,8 +15,8 @@ cada gasto se valore con la tarifa vigente que corresponda.
 Qué hace el módulo
 ==================
 
-Cuando un usuario crea un gasto con un producto marcado como
-``Producto de kilometraje regulado (PROINCA)``, el módulo:
+Cuando un usuario crea un gasto con un producto de gasto que tiene tarifas de
+kilometraje configuradas, el módulo:
 
 - identifica la categoría de kilometraje del empleado,
 - busca la tarifa válida para esa categoría,
@@ -71,21 +71,22 @@ Campos principales:
 - ``Descripción``: explicación interna opcional.
 - ``Activo``: permite archivar la categoría sin borrarla.
 
-2. Marcar el producto de kilometraje
-------------------------------------
+2. Usar un producto de gasto
+----------------------------
 
 Ruta:
 
 ``Inventario/Ventas > Productos > Productos``
 
-Abra el producto que se utilizará para registrar el kilometraje y active el
-campo:
+Abra el producto que se utilizará para registrar el kilometraje y confirme que
+está marcado con el campo estándar de Odoo:
 
-- ``Producto de kilometraje regulado (PROINCA)``
+- ``Puede ser un gasto``
 
 Importante:
 
-- solo los productos marcados con este indicador activan el cálculo automático,
+- el cálculo automático solo se aplica a productos de gasto que además tengan
+  tarifas de kilometraje configuradas,
 - los demás productos de gasto siguen funcionando con el comportamiento normal
   de Odoo.
 
@@ -100,8 +101,8 @@ En la ficha del empleado, el gestor debe informar el campo:
 
 - ``Categoría de kilometraje``
 
-Sin esta asignación, el empleado no podrá registrar gastos con producto de
-kilometraje regulado.
+Sin esta asignación, el empleado no podrá registrar gastos de kilometraje con
+tarifa configurada.
 
 4. Crear las tarifas
 --------------------
@@ -151,7 +152,7 @@ Pasos:
 
 1. Crear un nuevo gasto.
 2. Seleccionar el empleado.
-3. Elegir el producto de kilometraje regulado.
+3. Elegir el producto de gasto con tarifa de kilometraje.
 4. Informar la fecha del gasto.
 5. Introducir la cantidad en kilómetros.
 6. Guardar.
@@ -187,11 +188,11 @@ Reglas de negocio importantes
 
 El módulo aplica estas validaciones:
 
-1. Un empleado con gasto de kilometraje regulado debe tener categoría asignada.
+1. Un empleado con gasto de kilometraje debe tener categoría asignada.
 2. Debe existir una tarifa válida para la fecha del gasto.
 3. No puede haber tarifas solapadas para la misma empresa, categoría y producto.
 4. El precio por km no puede ser negativo.
-5. Los productos no marcados como kilometraje regulado no se recalculan.
+5. Los productos de gasto sin tarifas de kilometraje no se recalculan.
 6. En multicompañía, cada empresa usa sus propias tarifas.
 
 Mensajes de error más habituales
@@ -247,8 +248,8 @@ Buenas prácticas recomendadas
 Limitaciones y alcance
 ======================
 
-- El módulo solo actúa sobre gastos con productos marcados como kilometraje
-  regulado.
+- El módulo solo actúa sobre gastos con productos de gasto que tengan tarifas
+  de kilometraje configuradas.
 - La categoría de kilometraje del empleado está pensada para gestión interna y
   solo es editable por el grupo responsable.
 - La tarifa se determina por empresa, categoría, producto y fecha; no existen
@@ -269,7 +270,7 @@ estos escenarios:
 - error cuando el empleado no tiene categoría,
 - error cuando no existe tarifa,
 - aislamiento de tarifas por empresa,
-- exclusión de productos que no son de kilometraje regulado.
+- exclusión de productos de gasto sin tarifas de kilometraje.
 
 Soporte interno
 ===============

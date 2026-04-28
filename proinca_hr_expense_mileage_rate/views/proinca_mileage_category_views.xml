@@ -24,14 +24,6 @@
                             <field name="name" placeholder="Categoría o convenio"/>
                         </h1>
                     </div>
-                    <field name="description"
-                           nolabel="1"
-                           placeholder="Descripción interna opcional..."/>
-                    <group>
-                        <group>
-                            <field name="active"/>
-                        </group>
-                    </group>
                     <group string="Tarifas">
                         <field name="rate_ids" nolabel="1">
                             <list string="Tarifas" editable="bottom">
