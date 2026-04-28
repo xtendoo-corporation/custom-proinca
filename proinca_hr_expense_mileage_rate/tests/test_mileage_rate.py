@@ -408,6 +408,10 @@ class TestProincaMileageRate(TransactionCase):
             menu_category.parent_id,
             self.env.ref("hr_expense.menu_hr_expense_configuration"),
         )
+        self.assertEqual(menu_root.name, "Kilometraje")
+        self.assertEqual(menu_root.parent_id, menu_category.parent_id)
+        self.assertEqual(menu_rate.name, "Tarifas")
+        self.assertEqual(menu_rate.parent_id, menu_root)
         self.assertTrue(menu_category.active)
         self.assertFalse(menu_root.active)
         self.assertFalse(menu_rate.active)

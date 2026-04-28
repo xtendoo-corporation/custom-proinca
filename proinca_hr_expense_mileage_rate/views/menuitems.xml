@@ -10,10 +10,17 @@
     />
 
     <record id="menu_proinca_mileage_root" model="ir.ui.menu">
+        <field name="name">Kilometraje</field>
+        <field name="parent_id" ref="hr_expense.menu_hr_expense_configuration"/>
+        <field name="sequence">90</field>
         <field name="active" eval="False"/>
     </record>
 
     <record id="menu_proinca_mileage_rate" model="ir.ui.menu">
+        <field name="name">Tarifas</field>
+        <field name="parent_id" ref="menu_proinca_mileage_root"/>
+        <field name="action" ref="action_proinca_mileage_rate"/>
+        <field name="sequence">20</field>
         <field name="active" eval="False"/>
     </record>
 </odoo>
