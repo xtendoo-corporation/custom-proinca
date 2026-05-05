@@ -39,7 +39,7 @@ class HrExpense(models.Model):
         if not template.can_be_expensed:
             return False
         return bool(
-            self.env["proinca.mileage.rate"].search(
+            self.env["proinca.mileage.rate"].sudo().search(
                 [
                     ("product_tmpl_id", "=", template.id),
                     ("active", "=", True),
@@ -47,6 +47,10 @@ class HrExpense(models.Model):
                 limit=1,
             )
         )
+
+    def _get_employee_mileage_category(self, employee):
+        """Lee la categoría con privilegios elevados sin abrir permisos de edición."""
+        return employee.sudo().proinca_mileage_category_id
 
     def _apply_mileage_rate(self):
         """Busca y aplica la tarifa de kilometraje al precio unitario.
@@ -61,7 +65,7 @@ class HrExpense(models.Model):
         if not employee:
             return
 
-        category = employee.proinca_mileage_category_id
+        category = self._get_employee_mileage_category(employee)
         if not category:
             raise ValidationError(
                 _(
@@ -74,7 +78,7 @@ class HrExpense(models.Model):
         company = self.company_id or self.env.company
         date = self.date or fields.Date.context_today(self)
 
-        price = self.env["proinca.mileage.rate"].get_rate_for(
+        price = self.env["proinca.mileage.rate"].sudo().get_rate_for(
             category=category,
             product=self.product_id,
             company=company,
@@ -95,7 +99,7 @@ class HrExpense(models.Model):
             employee = expense.employee_id
             if not employee:
                 continue
-            category = employee.proinca_mileage_category_id
+            category = expense._get_employee_mileage_category(employee)
             if not category:
                 raise ValidationError(
                     _(
@@ -106,7 +110,7 @@ class HrExpense(models.Model):
                 )
             company = expense.company_id or self.env.company
             date = expense.date or fields.Date.context_today(self)
-            self.env["proinca.mileage.rate"].get_rate_for(
+            self.env["proinca.mileage.rate"].sudo().get_rate_for(
                 category=category,
                 product=expense.product_id,
                 company=company,

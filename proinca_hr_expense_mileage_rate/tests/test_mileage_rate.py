@@ -3,6 +3,7 @@
 from datetime import date, timedelta
 from xml.etree import ElementTree
 
+from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
@@ -96,6 +97,35 @@ class TestProincaMileageRate(TransactionCase):
         cls.employee_no_cat = cls.env["hr.employee"].create(
             {
                 "name": "Empleado Sin Categoría",
+                "company_id": cls.company_main.id,
+            }
+        )
+        cls.expense_user = cls.env["res.users"].with_context(
+            no_reset_password=True
+        ).create(
+            {
+                "name": "Usuario Gastos Kilometraje",
+                "login": "expense_user_mileage",
+                "email": "expense_user_mileage@example.com",
+                "company_id": cls.company_main.id,
+                "company_ids": [(6, 0, [cls.company_main.id])],
+                "groups_id": [
+                    (
+                        6,
+                        0,
+                        [
+                            cls.env.ref("base.group_user").id,
+                            cls.env.ref("hr_expense.group_hr_expense_user").id,
+                        ],
+                    )
+                ],
+            }
+        )
+        cls.employee_expense_user = cls.env["hr.employee"].create(
+            {
+                "name": "Empleado Usuario Gastos",
+                "user_id": cls.expense_user.id,
+                "proinca_mileage_category_id": cls.cat_consultoria.id,
                 "company_id": cls.company_main.id,
             }
         )
@@ -448,4 +478,175 @@ class TestProincaMileageRate(TransactionCase):
         self.assertIsNone(arch.find(".//field[@name='proinca_is_mileage_product']"))
         self.assertIsNotNone(rates_group)
         self.assertEqual(rates_group.attrib.get("invisible"), "not can_be_expensed")
+
+    def test_19_expense_user_can_apply_mileage_rate_without_hr_access(self):
+        """Un usuario de gastos debe poder calcular kilometraje sin acceso RRHH."""
+        expense = self.env["hr.expense"].with_user(self.expense_user).create(
+            {
+                "name": "Km usuario gastos",
+                "product_id": self.product_km.id,
+                "quantity": 12,
+                "company_id": self.company_main.id,
+            }
+        )
+
+        self.assertEqual(expense.employee_id, self.employee_expense_user)
+        self.assertAlmostEqual(expense.price_unit, 0.27, places=4)
+
+    def test_20_mileage_helpers_cover_onchange_and_guard_branches(self):
+        """Las ramas auxiliares deben comportarse bien en registros nuevos."""
+        non_expensed_product = self.env["product.product"].create(
+            {
+                "name": "Servicio no reembolsable",
+                "type": "service",
+                "can_be_expensed": False,
+            }
+        )
+
+        empty_expense = self.env["hr.expense"].new({})
+        self.assertFalse(empty_expense._is_mileage_expense())
+
+        non_expensed = self.env["hr.expense"].new(
+            {
+                "product_id": non_expensed_product.id,
+            }
+        )
+        self.assertFalse(non_expensed._is_mileage_expense())
+
+        draft_expense = self.env["hr.expense"].new(
+            {
+                "name": "Onchange kilometraje",
+                "employee_id": self.employee_with_cat.id,
+                "product_id": self.product_km.id,
+                "quantity": 5,
+                "company_id": self.company_main.id,
+            }
+        )
+        draft_expense._onchange_mileage_rate()
+        self.assertAlmostEqual(draft_expense.total_amount_currency, 1.35, places=4)
+
+        no_employee_expense = self.env["hr.expense"].new(
+            {
+                "name": "Sin empleado",
+                "product_id": self.product_km.id,
+                "company_id": self.company_main.id,
+            }
+        )
+        no_employee_expense._apply_mileage_rate()
+        no_employee_expense._check_mileage_consistency()
+        self.assertFalse(no_employee_expense.total_amount_currency)
+
+        no_category_expense = self.env["hr.expense"].new(
+            {
+                "name": "Sin categoría en helper",
+                "employee_id": self.employee_no_cat.id,
+                "product_id": self.product_km.id,
+                "company_id": self.company_main.id,
+            }
+        )
+        with self.assertRaises(ValidationError):
+            no_category_expense._apply_mileage_rate()
+
+    def test_21_init_migrates_legacy_flag_and_category_counts_rates(self):
+        """La migración legacy y el contador de tarifas deben quedar cubiertos."""
+        self.env.cr.execute(
+            """
+            ALTER TABLE product_template
+            ADD COLUMN IF NOT EXISTS proinca_is_mileage_product boolean
+            """
+        )
+        legacy_product = self.env["product.product"].create(
+            {
+                "name": "Producto legado kilometraje",
+                "type": "service",
+                "can_be_expensed": False,
+            }
+        )
+        self.env.cr.execute(
+            """
+            UPDATE product_template
+               SET proinca_is_mileage_product = TRUE,
+                   can_be_expensed = FALSE
+             WHERE id = %s
+            """,
+            [legacy_product.product_tmpl_id.id],
+        )
+
+        self.env["product.template"].init()
+        legacy_product.product_tmpl_id.invalidate_recordset(["can_be_expensed"])
+        self.assertTrue(legacy_product.product_tmpl_id.can_be_expensed)
+
+        self.cat_consultoria._compute_rate_count()
+        self.assertEqual(self.cat_consultoria.rate_count, len(self.cat_consultoria.rate_ids))
+
+    def test_22_rate_lookup_covers_period_edges_and_ambiguity(self):
+        """La búsqueda de tarifas debe cubrir fechas implícitas, string y ambigüedad."""
+        rate_model = self.env["proinca.mileage.rate"]
+
+        self.assertFalse(
+            rate_model._periods_overlap(
+                date(2026, 1, 1),
+                date(2026, 1, 31),
+                date(2026, 2, 1),
+                date(2026, 2, 28),
+            )
+        )
+        self.assertFalse(
+            rate_model._periods_overlap(
+                date(2026, 2, 1),
+                date(2026, 2, 28),
+                date(2026, 1, 1),
+                date(2026, 1, 31),
+            )
+        )
+
+        price_with_default_date = rate_model.get_rate_for(
+            category=self.cat_consultoria,
+            product=self.product_km.product_tmpl_id,
+            company=self.company_main,
+            date=None,
+        )
+        self.assertAlmostEqual(price_with_default_date, 0.27, places=4)
+
+        price_with_string_date = rate_model.get_rate_for(
+            category=self.cat_consultoria,
+            product=self.product_km,
+            company=self.company_main,
+            date=fields.Date.to_string(date.today()),
+        )
+        self.assertAlmostEqual(price_with_string_date, 0.27, places=4)
+
+        self.env.cr.execute(
+            """
+            INSERT INTO proinca_mileage_rate (
+                company_id,
+                category_id,
+                product_tmpl_id,
+                price_per_km,
+                active,
+                create_uid,
+                create_date,
+                write_uid,
+                write_date
+            ) VALUES (%s, %s, %s, %s, %s, %s, NOW(), %s, NOW())
+            """,
+            [
+                self.company_main.id,
+                self.cat_consultoria.id,
+                self.product_km.product_tmpl_id.id,
+                0.33,
+                True,
+                self.env.uid,
+                self.env.uid,
+            ],
+        )
+        self.env.invalidate_all()
+
+        with self.assertRaises(ValidationError):
+            rate_model.get_rate_for(
+                category=self.cat_consultoria,
+                product=self.product_km,
+                company=self.company_main,
+                date=date.today(),
+            )
 
