@@ -129,6 +129,39 @@ class TestProincaMileageRate(TransactionCase):
                 "company_id": cls.company_main.id,
             }
         )
+        cls.mileage_manager_user = cls.env["res.users"].with_context(
+            no_reset_password=True
+        ).create(
+            {
+                "name": "Usuario Gestor Kilometraje",
+                "login": "mileage_manager_user",
+                "email": "mileage_manager_user@example.com",
+                "company_id": cls.company_main.id,
+                "company_ids": [(6, 0, [cls.company_main.id])],
+                "groups_id": [
+                    (
+                        6,
+                        0,
+                        [
+                            cls.env.ref("base.group_user").id,
+                            cls.env.ref("hr_expense.group_hr_expense_user").id,
+                            cls.env.ref(
+                                "proinca_hr_expense_mileage_rate."
+                                "group_proinca_mileage_manager"
+                            ).id,
+                        ],
+                    )
+                ],
+            }
+        )
+        cls.employee_mileage_manager = cls.env["hr.employee"].create(
+            {
+                "name": "Empleado Gestor Kilometraje",
+                "user_id": cls.mileage_manager_user.id,
+                "proinca_mileage_category_id": cls.cat_consultoria.id,
+                "company_id": cls.company_main.id,
+            }
+        )
 
         cls.rate_consultoria = cls.env["proinca.mileage.rate"].create(
             {
@@ -649,4 +682,18 @@ class TestProincaMileageRate(TransactionCase):
                 company=self.company_main,
                 date=date.today(),
             )
+
+    def test_23_mileage_manager_can_read_public_employee_category(self):
+        """El gestor sin RRHH no debe romper al leer empleados desde gastos."""
+        employee = self.env["hr.employee"].with_user(self.mileage_manager_user).browse(
+            self.employee_mileage_manager.id
+        )
+
+        employee.fetch(["name", "proinca_mileage_category_id"])
+
+        self.assertEqual(employee.name, "Empleado Gestor Kilometraje")
+        self.assertEqual(
+            employee.proinca_mileage_category_id.id,
+            self.cat_consultoria.id,
+        )
 
