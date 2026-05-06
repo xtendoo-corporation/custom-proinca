@@ -31,8 +31,11 @@ class HrEmployeePublic(models.Model):
 
     proinca_mileage_category_id = fields.Many2one(
         comodel_name="proinca.mileage.category",
+        related="employee_id.proinca_mileage_category_id",
+        related_sudo=True,
         string="Categoría de kilometraje",
         readonly=True,
+        store=False,
         groups="proinca_hr_expense_mileage_rate.group_proinca_mileage_manager",
     )
 

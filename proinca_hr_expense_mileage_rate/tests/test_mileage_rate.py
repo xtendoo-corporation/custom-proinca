@@ -697,3 +697,10 @@ class TestProincaMileageRate(TransactionCase):
             self.cat_consultoria.id,
         )
 
+    def test_24_public_employee_category_field_is_not_stored(self):
+        """El campo público no debe requerir una columna física en la vista SQL."""
+        field = self.env["hr.employee.public"]._fields["proinca_mileage_category_id"]
+
+        self.assertFalse(field.store)
+        self.assertEqual(field.related, "employee_id.proinca_mileage_category_id")
+
